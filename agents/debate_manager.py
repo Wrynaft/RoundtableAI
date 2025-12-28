@@ -255,6 +255,17 @@ class DebateManager:
 
         risk_guidance = risk_context.get(risk_tolerance, risk_context["moderate"])
 
+        # Structured header instruction
+        structured_header = """**CRITICAL: You MUST start your response with this EXACT structured header format:**
+```
+[DECISION]
+RECOMMENDATION: <BUY or HOLD or SELL>
+CONFIDENCE: <number from 0 to 100>%
+[/DECISION]
+```
+
+After the structured header, provide your detailed analysis."""
+
         prompts = {
             "fundamental": f"""Analyze {company} ({ticker}) from a FUNDAMENTAL ANALYSIS perspective.
 
@@ -262,7 +273,9 @@ class DebateManager:
 
 You are the Fundamental Analysis Agent. Your role is to evaluate the company's financial health, profitability, and intrinsic value based on financial statements.
 
-Perform your analysis and provide:
+{structured_header}
+
+In your analysis, cover:
 
 1. **Key Findings**: What do the financial statements reveal about this company?
    - Revenue and profit trends
@@ -270,15 +283,11 @@ Perform your analysis and provide:
    - Cash flow quality
    - Balance sheet strength
 
-2. **Investment Recommendation**: Based purely on fundamentals AND considering the investor's {risk_tolerance} risk tolerance, should they BUY, HOLD, or SELL this stock?
+2. **Key Supporting Evidence**: List 3-5 specific data points that support your recommendation.
 
-3. **Confidence Level**: How confident are you in this recommendation? (0-100%)
+3. **Key Risks**: What fundamental risks should this {risk_tolerance} investor be particularly aware of?
 
-4. **Key Supporting Evidence**: List 3-5 specific data points that support your recommendation.
-
-5. **Key Risks**: What fundamental risks should this {risk_tolerance} investor be particularly aware of?
-
-Format your response clearly with these sections. Be specific with numbers and data. Tailor your recommendation to the investor's risk profile.""",
+Be specific with numbers and data. Tailor your recommendation to the investor's risk profile.""",
 
             "sentiment": f"""Analyze {company} ({ticker}) from a MARKET SENTIMENT perspective.
 
@@ -286,7 +295,9 @@ Format your response clearly with these sections. Be specific with numbers and d
 
 You are the Sentiment Analysis Agent. Your role is to evaluate market perception, news sentiment, and investor mood based on recent news articles and FinBERT sentiment scores.
 
-Perform your analysis and provide:
+{structured_header}
+
+In your analysis, cover:
 
 1. **Key Findings**: What does recent news sentiment reveal?
    - Overall sentiment distribution (positive/negative/neutral percentages)
@@ -294,15 +305,11 @@ Perform your analysis and provide:
    - Notable news events
    - Sentiment trend (improving/stable/deteriorating)
 
-2. **Investment Recommendation**: Based on sentiment signals AND considering the investor's {risk_tolerance} risk tolerance, should they BUY, HOLD, or SELL?
+2. **Key Supporting Evidence**: List 3-5 specific sentiment indicators that support your recommendation.
 
-3. **Confidence Level**: How confident are you in this recommendation? (0-100%)
+3. **Sentiment Risks**: What sentiment-related risks should this {risk_tolerance} investor particularly monitor?
 
-4. **Key Supporting Evidence**: List 3-5 specific sentiment indicators that support your recommendation.
-
-5. **Sentiment Risks**: What sentiment-related risks should this {risk_tolerance} investor particularly monitor?
-
-Format your response clearly with these sections. Reference specific articles or sentiment patterns. Tailor your recommendation to the investor's risk profile.""",
+Reference specific articles or sentiment patterns. Tailor your recommendation to the investor's risk profile.""",
 
             "valuation": f"""Analyze {company} ({ticker}) from a RISK-RETURN VALUATION perspective.
 
@@ -310,7 +317,9 @@ Format your response clearly with these sections. Reference specific articles or
 
 You are the Valuation Analysis Agent. Your role is to evaluate the stock's risk characteristics, historical performance, and risk-adjusted returns.
 
-Perform your analysis and provide:
+{structured_header}
+
+In your analysis, cover:
 
 1. **Key Findings**: What do the risk-return metrics reveal?
    - Historical returns (annualized, cumulative)
@@ -318,18 +327,60 @@ Perform your analysis and provide:
    - Risk metrics (Sharpe ratio, VaR, max drawdown)
    - Volume patterns
 
-2. **Investment Recommendation**: Based on risk-return analysis AND considering the investor's {risk_tolerance} risk tolerance, should they BUY, HOLD, or SELL?
+2. **Key Supporting Evidence**: List 3-5 specific risk-return metrics that support your recommendation.
 
-3. **Confidence Level**: How confident are you in this recommendation? (0-100%)
+3. **Risk Assessment**: What are the key risks that this {risk_tolerance} investor should focus on based on historical patterns?
 
-4. **Key Supporting Evidence**: List 3-5 specific risk-return metrics that support your recommendation.
-
-5. **Risk Assessment**: What are the key risks that this {risk_tolerance} investor should focus on based on historical patterns?
-
-Format your response clearly with these sections. Provide specific numbers for all metrics. Tailor your recommendation to the investor's risk profile."""
+Provide specific numbers for all metrics. Tailor your recommendation to the investor's risk profile."""
         }
 
         return prompts.get(agent_type, prompts["fundamental"])
+
+    def _format_own_history(self, state: DebateState, agent_type: str) -> str:
+        """
+        Format an agent's own previous messages for context.
+
+        Args:
+            state: Current debate state
+            agent_type: The agent requesting their history
+
+        Returns:
+            Formatted string of agent's previous analyses
+        """
+        own_messages = state.get_messages_by_agent(agent_type)
+        if not own_messages:
+            return ""
+
+        history_parts = ["## YOUR PREVIOUS ANALYSIS"]
+        for msg in own_messages:
+            history_parts.append(f"**Round {msg.round_number}** [{msg.recommendation.value}, {msg.confidence:.0%}]:")
+            # Truncate long content to save tokens
+            content_preview = msg.content[:800] + "..." if len(msg.content) > 800 else msg.content
+            history_parts.append(content_preview)
+            history_parts.append("")
+
+        return "\n".join(history_parts)
+
+    def _format_current_positions(self, state: DebateState, current_agent: str) -> str:
+        """
+        Format current voting positions of all agents.
+
+        Args:
+            state: Current debate state
+            current_agent: The agent receiving this context
+
+        Returns:
+            Formatted string of agent positions
+        """
+        if not state.current_votes:
+            return ""
+
+        positions = ["## CURRENT AGENT POSITIONS"]
+        for agent, vote in state.current_votes.items():
+            marker = "(You)" if agent == current_agent else ""
+            positions.append(f"- **{agent.upper()}** {marker}: {vote.recommendation.value} ({vote.confidence:.0%})")
+
+        return "\n".join(positions)
 
     def get_response_prompt(
         self,
@@ -364,31 +415,50 @@ Format your response clearly with these sections. Provide specific numbers for a
         }
         risk_desc = risk_context.get(risk_tolerance, risk_context["moderate"])
 
+        # Get agent's own previous messages for continuity
+        own_history = self._format_own_history(state, agent_type)
+
+        # Get current positions of all agents
+        current_positions = self._format_current_positions(state, agent_type)
+
+        # Structured header for response
+        structured_header = """**CRITICAL: You MUST start your response with this EXACT structured header format:**
+```
+[DECISION]
+RECOMMENDATION: <BUY or HOLD or SELL>
+CONFIDENCE: <number from 0 to 100>%
+[/DECISION]
+```
+
+After the structured header, provide your response."""
+
         return f"""You are the {agent_type.upper()} Analysis Agent in a multi-agent debate about {company} ({ticker}).
 
 **INVESTOR PROFILE**: {risk_desc}
+**CURRENT ROUND**: {state.current_round}
 
-The {other_agent.upper()} Agent provided this analysis:
+{current_positions}
+
+{own_history}
+---
+
+The {other_agent.upper()} Agent just provided this analysis:
 
 ---
 {other_analysis}
 ---
 
-From your {agent_type} analysis perspective, respond to their assessment while keeping the investor's {risk_tolerance} risk tolerance in mind:
+{structured_header}
+
+From your {agent_type} analysis perspective, respond to their assessment:
 
 1. **Agreement/Disagreement**: Do you agree with their recommendation? Why or why not?
 
-2. **Additional Insights**: What does your analysis add that they may have missed? How does your perspective differ given the investor's risk profile?
+2. **Additional Insights**: What does your analysis add that they may have missed?
 
-3. **Updated Assessment**: Considering both perspectives AND the {risk_tolerance} investor profile, do you maintain or change your recommendation?
-   - If changing: What new factors influenced this change?
-   - If maintaining: What reinforces your original position?
+3. **Updated Assessment**: Considering all perspectives and your previous analysis, do you maintain or update your recommendation? If changing, explain why.
 
-4. **Recommendation**: State your current recommendation (BUY/HOLD/SELL) for this {risk_tolerance} investor
-
-5. **Confidence**: What is your confidence level now? (0-100%)
-
-Be constructive in your critique. Acknowledge valid points while highlighting different perspectives. Always consider how your analysis applies to a {risk_tolerance} investor."""
+Be constructive in your critique. Acknowledge valid points while highlighting different perspectives. Reference your previous analysis if relevant."""
 
     def get_synthesis_prompt(self, state: DebateState) -> str:
         """
@@ -421,28 +491,83 @@ Be constructive in your critique. Acknowledge valid points while highlighting di
 
 {debate_summary}
 
-**CRITICAL INSTRUCTION**: The agents have voted and reached a consensus. The majority recommendation is **{majority_rec.value}** with {consensus:.0%} agreement. Your final recommendation MUST reflect this majority vote. Do NOT override the agents' consensus based on risk tolerance - the agents have already considered the investor's risk profile in their individual analyses.
+**CRITICAL INSTRUCTION**: The agents have voted and reached a consensus. The majority recommendation is **{majority_rec.value}** with {consensus:.0%} agreement. Your final recommendation MUST reflect this majority vote.
 
-As the synthesis agent, provide:
+**You MUST start your response with this EXACT structured header:**
+```
+[DECISION]
+RECOMMENDATION: {majority_rec.value}
+CONFIDENCE: <your confidence 0-100>%
+[/DECISION]
+```
 
-1. **Final Recommendation**: {majority_rec.value} (this MUST match the agent consensus)
+After the structured header, provide:
 
-2. **Consensus Level**: {consensus:.0%} agreement among the agents
+1. **Synthesis Summary**: Combine the key insights from all three perspectives (Fundamental, Sentiment, Risk-return)
 
-3. **Synthesis Summary**: Combine the key insights from all three perspectives:
-   - Fundamental factors
-   - Sentiment factors
-   - Risk-return factors
+2. **Key Investment Points**: The 3-5 most important points for this {risk_tolerance} investor
 
-4. **Key Investment Points**: The 3-5 most important points for this {risk_tolerance} investor to consider
+3. **Key Risks**: The most significant risks to be aware of
 
-5. **Key Risks**: The most significant risks this {risk_tolerance} investor should be aware of
+4. **Risk-Adjusted Advice**: Specific guidance for this {risk_tolerance} investor (position sizing, entry timing, etc.)"""
 
-6. **Confidence Level**: Overall confidence in this recommendation (0-100%)
+    def strip_decision_block(self, response: str) -> str:
+        """
+        Remove the [DECISION]...[/DECISION] block from response for clean display.
 
-7. **Risk-Adjusted Advice**: Specific guidance for this {risk_tolerance} investor (e.g., position sizing, entry timing, stop-loss levels if appropriate)
+        Args:
+            response: Agent's response text
 
-Remember: Your final recommendation MUST be {majority_rec.value} to reflect the agent consensus."""
+        Returns:
+            Response with decision block removed
+        """
+        # Pattern 1: Triple backticks on their own line, then decision block, then closing backticks
+        # This handles: ```\n[DECISION]...[/DECISION]\n```
+        cleaned = re.sub(
+            r'```\s*\n\[DECISION\].*?\[/DECISION\]\s*\n```',
+            '',
+            response,
+            flags=re.DOTALL | re.IGNORECASE
+        )
+
+        # Pattern 2: Triple backticks with optional language identifier, then decision block
+        # This handles: ```text\n[DECISION]... or ```markdown\n[DECISION]...
+        cleaned = re.sub(
+            r'```\w*\s*\n?\[DECISION\].*?\[/DECISION\]\s*\n?```',
+            '',
+            cleaned,
+            flags=re.DOTALL | re.IGNORECASE
+        )
+
+        # Pattern 3: Decision block with single backticks
+        cleaned = re.sub(
+            r'`\[DECISION\].*?\[/DECISION\]`',
+            '',
+            cleaned,
+            flags=re.DOTALL | re.IGNORECASE
+        )
+
+        # Pattern 4: Plain decision block (no code fence)
+        cleaned = re.sub(
+            r'\[DECISION\].*?\[/DECISION\]',
+            '',
+            cleaned,
+            flags=re.DOTALL | re.IGNORECASE
+        )
+
+        # Clean up orphaned triple backticks ANYWHERE in the text (not just start/end)
+        # Pattern: line that is ONLY triple backticks (with optional language identifier)
+        cleaned = re.sub(r'^\s*```\w*\s*$', '', cleaned, flags=re.MULTILINE)
+
+        # Also clean up paired empty code blocks that might remain: ```\n```
+        cleaned = re.sub(r'```\s*\n\s*```', '', cleaned)
+
+        # Clean up multiple consecutive newlines (more than 2)
+        cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)
+
+        # Clean up extra whitespace at the start
+        cleaned = cleaned.strip()
+        return cleaned
 
     def parse_recommendation_from_response(self, response: str) -> Recommendation:
         """
@@ -456,7 +581,16 @@ Remember: Your final recommendation MUST be {majority_rec.value} to reflect the 
         """
         response_upper = response.upper()
 
-        # Method 1: Look for explicit recommendation patterns (same line)
+        # Method 1 (PRIORITY): Look for structured [DECISION] block
+        decision_match = re.search(
+            r'\[DECISION\].*?RECOMMENDATION:\s*(BUY|HOLD|SELL)',
+            response_upper,
+            re.DOTALL
+        )
+        if decision_match:
+            return Recommendation(decision_match.group(1))
+
+        # Method 2: Look for explicit recommendation patterns (same line)
         patterns = [
             r"RECOMMENDATION[:\s]+(\bBUY\b|\bHOLD\b|\bSELL\b)",
             r"RECOMMEND[:\s]+(\bBUY\b|\bHOLD\b|\bSELL\b)",
@@ -470,7 +604,7 @@ Remember: Your final recommendation MUST be {majority_rec.value} to reflect the 
                 rec_str = match.group(1)
                 return Recommendation(rec_str)
 
-        # Method 2: Find "Recommendation" section and get FIRST recommendation word after it
+        # Method 3: Find "Recommendation" section and get FIRST recommendation word after it
         # This handles multi-line formats like "4. Recommendation:\n\nHOLD. ..."
         rec_section_match = re.search(
             r"(?:\d+\.\s*)?RECOMMENDATION[:\s]*",
@@ -485,12 +619,12 @@ Remember: Your final recommendation MUST be {majority_rec.value} to reflect the 
             if first_rec_match:
                 return Recommendation(first_rec_match.group(1))
 
-        # Method 3: Look for bold recommendation patterns like **HOLD** or **BUY**
+        # Method 4: Look for bold recommendation patterns like **HOLD** or **BUY**
         bold_match = re.search(r"\*\*(BUY|HOLD|SELL)\*\*", response_upper)
         if bold_match:
             return Recommendation(bold_match.group(1))
 
-        # Method 4: Look for recommendation at the start of a sentence
+        # Method 5: Look for recommendation at the start of a sentence
         sentence_patterns = [
             r"(?:^|\.\s+)(BUY|HOLD|SELL)\.",
             r"(?:^|\n)\s*(BUY|HOLD|SELL)\s*[-–:]",
@@ -522,7 +656,22 @@ Remember: Your final recommendation MUST be {majority_rec.value} to reflect the 
         Returns:
             Confidence as float (0.0 to 1.0)
         """
-        # Look for percentage patterns
+        response_upper = response.upper()
+
+        # Method 1 (PRIORITY): Look for structured [DECISION] block
+        decision_match = re.search(
+            r'\[DECISION\].*?CONFIDENCE:\s*(\d+)',
+            response_upper,
+            re.DOTALL
+        )
+        if decision_match:
+            value = float(decision_match.group(1))
+            # Convert to 0-1 range if given as percentage
+            if value > 1:
+                value = value / 100
+            return min(1.0, max(0.0, value))
+
+        # Method 2: Look for percentage patterns
         patterns = [
             r"CONFIDENCE[:\s]+(\d+)%",
             r"CONFIDENCE LEVEL[:\s]+(\d+)%",
@@ -531,7 +680,7 @@ Remember: Your final recommendation MUST be {majority_rec.value} to reflect the 
         ]
 
         for pattern in patterns:
-            match = re.search(pattern, response.upper())
+            match = re.search(pattern, response_upper)
             if match:
                 value = float(match.group(1))
                 # Convert to 0-1 range if given as percentage
@@ -718,7 +867,7 @@ Remember: Your final recommendation MUST be {majority_rec.value} to reflect the 
         """
         return DebateMessage(
             agent_type=agent_type,
-            content=response,
+            content=self.strip_decision_block(response),
             confidence=self.parse_confidence_from_response(response),
             recommendation=self.parse_recommendation_from_response(response),
             round_number=round_number,
@@ -790,7 +939,7 @@ Remember: Your final recommendation MUST be {majority_rec.value} to reflect the 
             recommendation=recommendation,
             confidence=confidence,
             consensus_level=consensus,
-            summary=synthesis_response,
+            summary=self.strip_decision_block(synthesis_response),
             key_points=key_points,
             risks=risks[:5],
             agent_breakdown=state.current_votes.copy(),

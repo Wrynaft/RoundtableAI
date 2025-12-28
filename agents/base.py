@@ -7,7 +7,7 @@ This module provides:
 - Shared utilities for multi-agent orchestration
 """
 import os
-from typing import Optional, List, Any, Generator
+from typing import Optional, List, Any, Generator, Dict
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI  # pip install langchain-google-genai
 from langgraph.checkpoint.memory import InMemorySaver
@@ -15,8 +15,22 @@ from langgraph.checkpoint.memory import InMemorySaver
 # Load environment variables
 load_dotenv()
 
-# Singleton instance for model reuse across agents
-_llm_instance: Optional[ChatGoogleGenerativeAI] = None
+# Available models for selection
+AVAILABLE_MODELS = {
+    "gemini-2.0-flash": {
+        "name": "Gemini 2.0 Flash",
+        "description": "Fast and efficient, good for quick analysis",
+        "model_id": "gemini-2.0-flash"
+    },
+    "gemini-2.5-pro": {
+        "name": "Gemini 2.5 Pro",
+        "description": "Most capable, best for complex reasoning",
+        "model_id": "gemini-2.5-pro"
+    }
+}
+
+# Cache for model instances (keyed by model_name)
+_llm_cache: Dict[str, ChatGoogleGenerativeAI] = {}
 
 
 def get_llm(
@@ -25,9 +39,9 @@ def get_llm(
     force_reload: bool = False
 ) -> ChatGoogleGenerativeAI:
     """
-    Get or create a Google Gemini LLM instance (singleton pattern).
+    Get or create a Google Gemini LLM instance (cached by model name).
 
-    Uses Gemini 2.0 Flash via Google AI API for inference.
+    Uses Gemini via Google AI API for inference.
 
     Prerequisites:
         1. Get API key from: https://aistudio.google.com/apikey
@@ -35,17 +49,23 @@ def get_llm(
 
     Args:
         model_name: Gemini model name (default: gemini-2.0-flash)
-                   Other options: gemini-2.5-flash, gemini-2.5-pro
+                   Options: gemini-2.0-flash, gemini-2.5-pro
         temperature: Sampling temperature (default: 0.3)
-        force_reload: Force reload the model even if already loaded (default: False)
+        force_reload: Force reload the model even if already cached (default: False)
 
     Returns:
         ChatGoogleGenerativeAI instance configured for text generation
     """
-    global _llm_instance
+    global _llm_cache
 
-    if _llm_instance is not None and not force_reload:
-        return _llm_instance
+    # Get the actual model ID (handles aliases)
+    model_config = AVAILABLE_MODELS.get(model_name, {})
+    actual_model_id = model_config.get("model_id", model_name)
+
+    # Check cache
+    cache_key = f"{actual_model_id}_{temperature}"
+    if cache_key in _llm_cache and not force_reload:
+        return _llm_cache[cache_key]
 
     # Get API key from environment
     api_key = os.getenv("GOOGLE_API_KEY")
@@ -57,19 +77,19 @@ def get_llm(
             "Get your API key from: https://aistudio.google.com/apikey"
         )
 
-    print(f"Initializing Gemini model: {model_name}")
+    print(f"Initializing Gemini model: {actual_model_id}")
 
     # Create Gemini LLM instance
-    _llm_instance = ChatGoogleGenerativeAI(
-        model=model_name,
+    llm_instance = ChatGoogleGenerativeAI(
+        model=actual_model_id,
         temperature=temperature,
         google_api_key=api_key,
     )
 
     # Test connection
     try:
-        _llm_instance.invoke("Hello")
-        print(f"Successfully connected to Gemini model: {model_name}")
+        llm_instance.invoke("Hello")
+        print(f"Successfully connected to Gemini model: {actual_model_id}")
     except Exception as e:
         print(f"Warning: Could not connect to Gemini API")
         print(f"Error: {e}")
@@ -77,7 +97,26 @@ def get_llm(
         print("  1. Get API key: https://aistudio.google.com/apikey")
         print("  2. Add to .env: GOOGLE_API_KEY=your_key_here")
 
-    return _llm_instance
+    # Cache the instance
+    _llm_cache[cache_key] = llm_instance
+
+    return llm_instance
+
+
+def get_available_models() -> Dict[str, dict]:
+    """
+    Get dictionary of available models for UI selection.
+
+    Returns:
+        Dictionary mapping model keys to their configuration
+    """
+    return AVAILABLE_MODELS
+
+
+def clear_llm_cache():
+    """Clear the LLM cache to force reloading models."""
+    global _llm_cache
+    _llm_cache = {}
 
 
 def get_memory_saver() -> InMemorySaver:

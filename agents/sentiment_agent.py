@@ -162,7 +162,20 @@ class SentimentAgent(BaseAgentMixin):
             Agent's response as a string
         """
         response = self.invoke(message, thread_id)
-        return response["messages"][-1].content
+        content = response["messages"][-1].content
+        # Handle different response formats (Gemini 2.5 Pro returns list of content blocks)
+        if isinstance(content, list):
+            # Extract text from content blocks
+            text_parts = []
+            for block in content:
+                if isinstance(block, str):
+                    text_parts.append(block)
+                elif isinstance(block, dict) and 'text' in block:
+                    text_parts.append(block['text'])
+                elif hasattr(block, 'text'):
+                    text_parts.append(block.text)
+            return '\n'.join(text_parts)
+        return content
 
     def chat_stream(self, message: str, thread_id: str = "default") -> Generator[str, None, None]:
         """
@@ -188,7 +201,18 @@ class SentimentAgent(BaseAgentMixin):
                 msg = event[0]
                 if hasattr(msg, 'content') and msg.content:
                     if hasattr(msg, 'type') and msg.type == 'AIMessageChunk':
-                        yield msg.content
+                        content = msg.content
+                        # Handle different response formats (Gemini 2.5 Pro may return list)
+                        if isinstance(content, list):
+                            for block in content:
+                                if isinstance(block, str):
+                                    yield block
+                                elif isinstance(block, dict) and 'text' in block:
+                                    yield block['text']
+                                elif hasattr(block, 'text'):
+                                    yield block.text
+                        else:
+                            yield content
 
     def analyze_sentiment(
         self,
