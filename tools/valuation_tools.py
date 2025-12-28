@@ -119,7 +119,9 @@ def analyze_stock_metrics(ticker_symbol: str, period: str = "1y", risk_free_rate
         username = quote_plus("Wrynaft")
         password = quote_plus("Ryan@120104")
         client = MongoClient(
-            f"mongodb+srv://{username}:{password}@cluster0.bjjt9fa.mongodb.net/?appName=Cluster0"
+            f"mongodb+srv://{username}:{password}@cluster0.bjjt9fa.mongodb.net/?appName=Cluster0",
+            tls=True,
+            tlsAllowInvalidCertificates=True
         )
         db = client['roundtable_ai']
         col = db['stock_prices']

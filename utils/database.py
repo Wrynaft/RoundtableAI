@@ -22,7 +22,13 @@ def get_mongo_client() -> MongoClient:
         username = quote_plus("Wrynaft")
         password = quote_plus("Ryan@120104")
         _client = MongoClient(
-            f"mongodb+srv://{username}:{password}@cluster0.bjjt9fa.mongodb.net/?appName=Cluster0"
+            f"mongodb+srv://{username}:{password}@cluster0.bjjt9fa.mongodb.net/?appName=Cluster0",
+            tls=True,
+            tlsAllowInvalidCertificates=True,
+            serverSelectionTimeoutMS=30000,
+            connectTimeoutMS=30000,
+            socketTimeoutMS=30000,
+            retryWrites=True
         )
     return _client
 
