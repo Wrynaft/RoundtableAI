@@ -26,6 +26,7 @@ from streamlit_components.agent_card import render_agent_panel
 from streamlit_components.debate_timeline import render_round_summary
 from streamlit_components.recommendation_panel import render_consensus_gauge, render_export_options
 from utils.config import get_streamlit_config, get_debate_config
+from agents.base import get_available_models
 
 
 # =============================================================================
@@ -56,6 +57,10 @@ def init_session_state():
         st.session_state.debate_history = []
     if "last_result" not in st.session_state:
         st.session_state.last_result = None
+    if "selected_model" not in st.session_state:
+        st.session_state.selected_model = "gemini-2.0-flash"
+    if "current_orchestrator_model" not in st.session_state:
+        st.session_state.current_orchestrator_model = None
 
 
 # =============================================================================
@@ -147,6 +152,36 @@ def main():
     # Sidebar settings
     with st.sidebar:
         st.markdown("### ⚙️ Analysis Settings")
+
+        # Model selection
+        available_models = get_available_models()
+        model_options = list(available_models.keys())
+        model_names = [available_models[m]["name"] for m in model_options]
+
+        # Create a mapping for display
+        current_model_idx = model_options.index(st.session_state.selected_model) if st.session_state.selected_model in model_options else 0
+
+        selected_model_name = st.selectbox(
+            "🤖 AI Model",
+            options=model_names,
+            index=current_model_idx,
+            help="Select the Gemini model to use for analysis"
+        )
+
+        # Map back to model key
+        selected_model_key = model_options[model_names.index(selected_model_name)]
+
+        # Show model description
+        model_info = available_models[selected_model_key]
+        st.caption(f"*{model_info['description']}*")
+
+        # Check if model changed - reset orchestrator if so
+        if selected_model_key != st.session_state.selected_model:
+            st.session_state.selected_model = selected_model_key
+            st.session_state.orchestrator = None  # Force recreate with new model
+            st.session_state.current_orchestrator_model = None
+
+        st.markdown("---")
 
         debate_config = get_debate_config()
 
@@ -280,18 +315,33 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
         "valuation": {"icon": "📈", "name": "Valuation Analyst", "color": "#FF9800"}
     }
 
+    # Timing tracking
+    timing = {
+        "total_start": time.time(),
+        "classification": 0,
+        "debate": 0,
+        "synthesis": 0,
+        "total": 0
+    }
+
     try:
         # Import orchestrator (lazy load)
         from agents import create_debate_orchestrator
 
-        # Create orchestrator if not exists
-        if st.session_state.orchestrator is None:
-            with st.spinner("Loading AI models... (this may take a moment on first run)"):
+        # Get selected model
+        selected_model = st.session_state.selected_model
+
+        # Create orchestrator if not exists or model changed
+        if st.session_state.orchestrator is None or st.session_state.current_orchestrator_model != selected_model:
+            model_display_name = get_available_models().get(selected_model, {}).get("name", selected_model)
+            with st.spinner(f"Loading {model_display_name}... (this may take a moment on first run)"):
                 st.session_state.orchestrator = create_debate_orchestrator(
+                    model_name=selected_model,
                     max_rounds=max_rounds,
                     consensus_threshold=consensus_threshold,
                     on_message_callback=on_message_callback
                 )
+                st.session_state.current_orchestrator_model = selected_model
 
         orchestrator = st.session_state.orchestrator
 
@@ -299,16 +349,20 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
         with st.status("🔍 Analyzing your query...", expanded=True) as status:
             # Step 1: Classify the query
             st.write("**Step 1:** Classifying query and inferring risk tolerance...")
+            classification_start = time.time()
             classification = orchestrator.classify_query(query)
+            timing["classification"] = time.time() - classification_start
 
             company = classification.get("company")
             risk_tolerance = classification.get("risk_tolerance", "moderate")
             needs_debate = classification.get("needs_debate", True)
 
             risk_emoji = {"conservative": "🛡️", "moderate": "⚖️", "aggressive": "🚀"}.get(risk_tolerance, "⚖️")
+            model_display = get_available_models().get(selected_model, {}).get("name", selected_model)
             st.write(f"• Company detected: **{company or 'Not specified'}**")
             st.write(f"• Risk tolerance: {risk_emoji} **{risk_tolerance.title()}**")
             st.write(f"• Route: **{'Multi-Agent Debate' if needs_debate else 'Single Agent'}**")
+            st.write(f"• Model: **{model_display}**")
 
             if needs_debate:
                 if not company:
@@ -346,6 +400,9 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
                 current_display_round = 0
                 message_count = 0
 
+                # Start timing debate
+                debate_start = time.time()
+
                 # Use the generator directly for streaming
                 debate_gen = orchestrator.start_debate(company_name, risk_tolerance=risk_tolerance)
 
@@ -373,9 +430,14 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
                     # Debate complete, get final recommendation
                     final_rec = e.value
 
+                timing["debate"] = time.time() - debate_start
+
                 # Step 4: Synthesis
                 st.write("")
                 st.write("**Step 4:** Synthesizing final recommendation...")
+
+                # Calculate total time
+                timing["total"] = time.time() - timing["total_start"]
 
                 # Build result
                 result = {
@@ -387,14 +449,28 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
                     "consensus": final_rec.consensus_level,
                     "risk_tolerance": risk_tolerance,
                     "full_result": final_rec,
-                    "classification": classification
+                    "classification": classification,
+                    "model_used": selected_model,
+                    "timing": timing,
+                    "rounds_completed": current_display_round
                 }
 
                 # Store result
                 st.session_state.last_result = result
                 st.session_state.final_recommendation = final_rec.to_dict() if hasattr(final_rec, 'to_dict') else final_rec
 
-                # Final status
+                # Log timing to console
+                print(f"\n{'='*60}")
+                print(f"DEBATE TIMING - {company_name} ({ticker})")
+                print(f"{'='*60}")
+                print(f"Model: {selected_model}")
+                print(f"Rounds: {current_display_round}")
+                print(f"Classification: {timing['classification']:.2f}s")
+                print(f"Debate: {timing['debate']:.2f}s")
+                print(f"Total: {timing['total']:.2f}s")
+                print(f"{'='*60}\n")
+
+                # Final status with timing
                 rec_emoji = {"BUY": "🟢", "HOLD": "🟡", "SELL": "🔴"}.get(final_rec.recommendation.value, "⚪")
                 status.update(
                     label=f"✅ Analysis complete - {rec_emoji} {final_rec.recommendation.value} ({final_rec.confidence:.0%} confidence)",
@@ -411,6 +487,9 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
                 info = agent_info.get(agent_type, {"icon": "🤖", "name": "Agent"})
                 st.write(f"  {info['icon']} **{info['name']}** is analyzing...")
                 st.write("")
+
+                # Start timing single agent
+                agent_start = time.time()
 
                 # Use streaming for single agent response
                 stream_gen = orchestrator._handle_single_agent_query_stream(
@@ -437,7 +516,23 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
                         "recommendation": None
                     }
 
+                # Calculate timing
+                timing["debate"] = time.time() - agent_start  # Reuse debate field for single agent time
+                timing["total"] = time.time() - timing["total_start"]
+
                 result["classification"] = classification
+                result["model_used"] = selected_model
+                result["timing"] = timing
+
+                # Log timing to console
+                print(f"\n{'='*60}")
+                print(f"SINGLE AGENT TIMING - {agent_type}")
+                print(f"{'='*60}")
+                print(f"Model: {selected_model}")
+                print(f"Classification: {timing['classification']:.2f}s")
+                print(f"Agent Response: {timing['debate']:.2f}s")
+                print(f"Total: {timing['total']:.2f}s")
+                print(f"{'='*60}\n")
 
                 # Store result
                 st.session_state.last_result = result
@@ -465,7 +560,7 @@ def render_results(result: dict):
     # Show classification info
     st.markdown("### 📋 Query Classification")
 
-    info_cols = st.columns(4)
+    info_cols = st.columns(5)
 
     with info_cols[0]:
         st.metric("Route Type", route_type.upper() if route_type else "N/A")
@@ -484,6 +579,40 @@ def render_results(result: dict):
             st.metric("Agents Used", "3 (All)")
         else:
             st.metric("Agent Used", result.get('agent_used', 'N/A').title())
+
+    with info_cols[4]:
+        model_key = result.get('model_used', 'gemini-2.0-flash')
+        model_display = get_available_models().get(model_key, {}).get("name", model_key)
+        st.metric("Model", model_display)
+
+    # Show timing info if available
+    timing = result.get('timing', {})
+    if timing:
+        st.markdown("### ⏱️ Performance Metrics")
+        timing_cols = st.columns(4)
+
+        with timing_cols[0]:
+            total_time = timing.get('total', 0)
+            st.metric("Total Time", f"{total_time:.1f}s")
+
+        with timing_cols[1]:
+            classification_time = timing.get('classification', 0)
+            st.metric("Classification", f"{classification_time:.1f}s")
+
+        with timing_cols[2]:
+            debate_time = timing.get('debate', 0)
+            if route_type == 'debate':
+                st.metric("Debate Time", f"{debate_time:.1f}s")
+            else:
+                st.metric("Agent Response", f"{debate_time:.1f}s")
+
+        with timing_cols[3]:
+            if route_type == 'debate':
+                rounds = result.get('rounds_completed', 'N/A')
+                st.metric("Rounds", rounds)
+            else:
+                agent_used = result.get('agent_used', 'N/A')
+                st.metric("Agent", agent_used.title() if agent_used else 'N/A')
 
     st.markdown("---")
 

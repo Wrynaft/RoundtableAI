@@ -5,6 +5,28 @@ This module provides:
 - OpenTelemetry-based tracing setup for Phoenix
 - Decorators for tracing agent calls
 - Debate-level tracing utilities
+
+Usage (with Docker - RECOMMENDED for Windows):
+    # First, run Phoenix in Docker:
+    # docker run -d --name phoenix -p 6006:6006 -p 4317:4317 arizephoenix/phoenix:latest
+
+    from evaluation.phoenix_tracer import setup_docker_phoenix
+
+    # Connect to Docker Phoenix
+    setup_docker_phoenix()
+
+    # Now run your LangChain code - traces appear at http://localhost:6006
+
+Usage (in notebook - may have issues on Windows):
+    from evaluation.phoenix_tracer import launch_phoenix, setup_tracing
+
+    # Launch Phoenix UI
+    session = launch_phoenix()
+
+    # Setup tracing
+    setup_tracing()
+
+    # Now run your LangChain code - traces will appear in Phoenix UI
 """
 import os
 import time
@@ -15,9 +37,141 @@ from datetime import datetime
 from utils.config import get_phoenix_config
 
 
-# Global tracer instance
+# Global state
 _tracer = None
 _phoenix_enabled = False
+_phoenix_session = None
+
+
+def setup_docker_phoenix(
+    project_name: str = "roundtable-ai",
+    endpoint: str = "http://localhost:4317"
+) -> bool:
+    """
+    Connect to Phoenix running in Docker.
+
+    Prerequisites:
+        Run Phoenix in Docker first:
+        docker run -d --name phoenix -p 6006:6006 -p 4317:4317 arizephoenix/phoenix:latest
+
+    Args:
+        project_name: Name of the project for tracing
+        endpoint: Phoenix collector endpoint (default: http://localhost:4317)
+
+    Returns:
+        True if setup successful, False otherwise
+
+    Usage:
+        setup_docker_phoenix()
+        # Then run your LangChain code
+        # View traces at http://localhost:6006
+    """
+    global _phoenix_enabled
+
+    try:
+        from phoenix.otel import register
+        from openinference.instrumentation.langchain import LangChainInstrumentor
+
+        # Register tracer provider pointing to Docker Phoenix
+        tracer_provider = register(
+            project_name=project_name,
+            endpoint=endpoint
+        )
+
+        # Instrument LangChain
+        LangChainInstrumentor(tracer_provider=tracer_provider).instrument(skip_dep_check=True)
+
+        _phoenix_enabled = True
+        print(f"Connected to Phoenix at {endpoint}")
+        print(f"View traces at: http://localhost:6006")
+        return True
+
+    except ImportError as e:
+        print("Required packages not installed. Install with:")
+        print("  pip install arize-phoenix openinference-instrumentation-langchain")
+        print(f"Error: {e}")
+        return False
+    except Exception as e:
+        print(f"Failed to connect to Phoenix: {e}")
+        print("Make sure Phoenix is running in Docker:")
+        print("  docker run -d --name phoenix -p 6006:6006 -p 4317:4317 arizephoenix/phoenix:latest")
+        return False
+
+
+def launch_phoenix():
+    """
+    Launch Phoenix UI in notebook or browser.
+
+    Returns:
+        Phoenix session object with URL to access the UI
+
+    Usage:
+        session = launch_phoenix()
+        print(f"Phoenix URL: {session.url}")
+    """
+    global _phoenix_session
+
+    try:
+        import phoenix as px
+
+        # Launch Phoenix app
+        _phoenix_session = px.launch_app()
+        print(f"Phoenix launched at: {_phoenix_session.url}")
+        return _phoenix_session
+
+    except ImportError:
+        print("Phoenix not installed. Install with:")
+        print("  pip install arize-phoenix")
+        return None
+    except Exception as e:
+        print(f"Failed to launch Phoenix: {e}")
+        return None
+
+
+def setup_tracing(project_name: Optional[str] = None):
+    """
+    Set up LangChain tracing after Phoenix is launched.
+
+    Args:
+        project_name: Name of the project for tracing
+
+    Returns:
+        True if setup successful, False otherwise
+
+    Usage:
+        # First launch Phoenix
+        session = launch_phoenix()
+
+        # Then setup tracing
+        setup_tracing()
+    """
+    global _phoenix_enabled
+
+    config = get_phoenix_config()
+    project = project_name or config.get("project_name", "roundtable-ai")
+
+    try:
+        from phoenix.otel import register
+        from openinference.instrumentation.langchain import LangChainInstrumentor
+
+        # Register tracer provider (connects to launched Phoenix instance)
+        tracer_provider = register(project_name=project)
+
+        # Instrument LangChain
+        LangChainInstrumentor(tracer_provider=tracer_provider).instrument(skip_dep_check=True)
+
+        _phoenix_enabled = True
+        print(f"Tracing enabled for project: {project}")
+        return True
+
+    except ImportError as e:
+        print("Required packages not installed. Install with:")
+        print("  pip install arize-phoenix openinference-instrumentation-langchain")
+        print(f"Error: {e}")
+        return False
+    except Exception as e:
+        print(f"Failed to setup tracing: {e}")
+        return False
 
 
 def setup_phoenix_tracing(
@@ -25,11 +179,13 @@ def setup_phoenix_tracing(
     endpoint: Optional[str] = None
 ) -> bool:
     """
-    Set up Phoenix tracing with OpenTelemetry.
+    Set up Phoenix tracing with OpenTelemetry (legacy function).
+
+    For best results, use launch_phoenix() + setup_tracing() instead.
 
     Args:
         project_name: Name of the project for tracing
-        endpoint: Phoenix server endpoint
+        endpoint: Phoenix server endpoint (ignored, use launch_phoenix instead)
 
     Returns:
         True if setup successful, False otherwise
@@ -43,29 +199,30 @@ def setup_phoenix_tracing(
         return False
 
     project = project_name or config.get("project_name", "roundtable-ai")
-    ep = endpoint or config.get("endpoint", "http://localhost:6006")
 
     try:
-        # Import Phoenix and OpenTelemetry
+        import phoenix as px
         from phoenix.otel import register
-        from phoenix.trace.langchain import LangChainInstrumentor
+        from openinference.instrumentation.langchain import LangChainInstrumentor
 
-        # Register tracer provider with Phoenix
-        tracer_provider = register(
-            project_name=project,
-            endpoint=ep
-        )
+        # Launch Phoenix app (bypasses standalone server issues on Windows)
+        session = px.launch_app()
+        print(f"Phoenix launched at: {session.url}")
 
-        # Instrument LangChain
-        LangChainInstrumentor().instrument()
+        # Register tracer provider
+        tracer_provider = register(project_name=project)
+
+        # Instrument LangChain with the tracer provider
+        LangChainInstrumentor(tracer_provider=tracer_provider).instrument(skip_dep_check=True)
 
         _phoenix_enabled = True
-        print(f"Phoenix tracing enabled. Project: {project}, Endpoint: {ep}")
+        print(f"Phoenix tracing enabled. Project: {project}")
 
         return True
 
     except ImportError as e:
-        print(f"Phoenix not installed. Install with: pip install arize-phoenix arize-phoenix-otel")
+        print(f"Phoenix not installed. Install with:")
+        print(f"  pip install arize-phoenix openinference-instrumentation-langchain")
         print(f"Error: {e}")
         return False
 

@@ -45,7 +45,7 @@ tab1, tab2, tab3 = st.tabs(["📋 Changelog", "👤 About the Author", "🙏 Spe
 with tab1:
     st.markdown("## 📋 Version History")
 
-    # Version 1.0.0
+    # Version 1.1.0
     st.markdown("""
     <div style="
         background-color: #1E1E1E;
@@ -55,24 +55,59 @@ with tab1:
         margin-bottom: 20px;
     ">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="color: #4CAF50; margin: 0;">v1.0.0</h3>
-            <span style="
-                background-color: #4CAF50;
-                color: white;
-                padding: 3px 10px;
-                border-radius: 12px;
-                font-size: 12px;
-            ">Latest</span>
+            <h3 style="color: #4CAF50; margin: 0;">v1.1.0</h3>
+            <div>
+                <span style="
+                    background-color: #FF9800;
+                    color: white;
+                    padding: 3px 10px;
+                    border-radius: 12px;
+                    font-size: 12px;
+                    margin-right: 5px;
+                ">BETA</span>
+                <span style="
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 3px 10px;
+                    border-radius: 12px;
+                    font-size: 12px;
+                ">Latest</span>
+            </div>
+        </div>
+        <p style="color: #888; font-size: 12px; margin: 5px 0 15px 0;">29 December 2025</p>
+        <p style="color: #ccc; margin-bottom: 10px;"><strong>Portfolio Builder & Agent Improvements</strong></p>
+        <ul style="color: #aaa; margin-bottom: 0;">
+            <li><strong style="color: #FF9800;">Portfolio Builder (BETA)</strong> - New multi-stock portfolio construction feature with correlation analysis, allocation strategies, and portfolio metrics. <em style="color: #FF9800;">Note: This feature is in BETA - expect bugs!</em></li>
+            <li><strong style="color: #4CAF50;">Fixed Recommendation Extraction</strong> - Improved parsing of agent recommendations using structured [DECISION] blocks for more accurate BUY/HOLD/SELL extraction</li>
+            <li><strong style="color: #4CAF50;">Conversation Continuity</strong> - Agents now remember their previous analysis during debates, enabling coherent multi-round discussions</li>
+            <li><strong style="color: #4CAF50;">Phoenix Tracer Integration</strong> - Added OpenTelemetry-based observability for debugging and monitoring agent interactions</li>
+            <li><strong style="color: #4CAF50;">Model Choices</strong> - LLM models to run the analysis can now be chosen! Currently, the only options are gemini-2.0-flash and gemini-2.5-pro</li>
+            <li><strong style="color: #4CAF50;">Performance metrics</strong> - Time taken for agent processes are now shown for easier comparison</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Version 1.0.0
+    st.markdown("""
+    <div style="
+        background-color: #1E1E1E;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #2196F3;
+        margin-bottom: 20px;
+    ">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="color: #2196F3; margin: 0;">v1.0.0</h3>
         </div>
         <p style="color: #888; font-size: 12px; margin: 5px 0 15px 0;">15 December 2025</p>
         <p style="color: #ccc; margin-bottom: 10px;"><strong>Initial Release - DEPLOYMENT</strong></p>
         <ul style="color: #aaa; margin-bottom: 0;">
-            <li><strong style="color: #4CAF50;">Multi-Agent Debate System</strong> - Three specialized AI agents (Fundamental, Sentiment, Valuation) analyze stocks through structured debate</li>
-            <li><strong style="color: #4CAF50;">Real-time Streaming</strong> - Live progress updates during debates and token streaming for single agent responses</li>
-            <li><strong style="color: #4CAF50;">Risk Tolerance Classification</strong> - Automatic inference of investor risk profile from natural language queries</li>
-            <li><strong style="color: #4CAF50;">Consensus-Based Recommendations</strong> - Agents debate until reaching agreement with transparent reasoning</li>
-            <li><strong style="color: #4CAF50;">Single Agent Response</strong> - For general queries without debate</li>
-            <li><strong style="color: #4CAF50;">Interactive UI</strong> - Streamlit-based web application with debate timeline visualization</li>
+            <li><strong style="color: #2196F3;">Multi-Agent Debate System</strong> - Three specialized AI agents (Fundamental, Sentiment, Valuation) analyze stocks through structured debate</li>
+            <li><strong style="color: #2196F3;">Real-time Streaming</strong> - Live progress updates during debates and token streaming for single agent responses</li>
+            <li><strong style="color: #2196F3;">Risk Tolerance Classification</strong> - Automatic inference of investor risk profile from natural language queries</li>
+            <li><strong style="color: #2196F3;">Consensus-Based Recommendations</strong> - Agents debate until reaching agreement with transparent reasoning</li>
+            <li><strong style="color: #2196F3;">Single Agent Response</strong> - For general queries without debate</li>
+            <li><strong style="color: #2196F3;">Interactive UI</strong> - Streamlit-based web application with debate timeline visualization</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
@@ -90,10 +125,10 @@ with tab1:
         <h3 style="color: #888; margin: 0;">🚀 Upcoming Features</h3>
         <p style="color: #666; font-size: 12px; margin: 5px 0 15px 0;">Planned for future releases</p>
         <ul style="color: #888; margin-bottom: 0;">
-            <li>Exploratory Data Analysis Update</li>
-            <li>Model Evaluation</li>
-            <li>Conversation Memory</li>
-            <li>Portfolio Tracking (TBD)</li>
+            <li>Exploratory Data Analysis Dashboard</li>
+            <li>Model Evaluation Metrics Display</li>
+            <li>Backtesting Framework</li>
+            <li>Portfolio Rebalancing Recommendations</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
