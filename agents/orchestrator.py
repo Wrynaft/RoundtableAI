@@ -39,6 +39,7 @@ class DebateOrchestrator:
     def __init__(
         self,
         llm=None,
+        model_name: str = None,
         max_rounds: int = 5,
         min_turns_per_agent: int = 2,
         consensus_threshold: float = 0.75,
@@ -51,6 +52,8 @@ class DebateOrchestrator:
 
         Args:
             llm: Language model instance (shared across all agents)
+            model_name: Name of the Gemini model to use (e.g., "gemini-2.0-flash", "gemini-2.5-pro")
+                       If provided, overrides the llm parameter
             max_rounds: Maximum number of debate rounds
             min_turns_per_agent: Minimum turns each agent must take
             consensus_threshold: Required consensus level (0.0-1.0)
@@ -58,7 +61,14 @@ class DebateOrchestrator:
             on_message_callback: Called when an agent posts a message
             on_round_complete_callback: Called when a round completes
         """
-        self.llm = llm or get_llm()
+        # If model_name is specified, create LLM with that model
+        if model_name:
+            self.llm = get_llm(model_name=model_name)
+            self.model_name = model_name
+        else:
+            self.llm = llm or get_llm()
+            self.model_name = "gemini-2.0-flash"  # Default
+
         self.max_rounds = max_rounds
         self.min_turns_per_agent = min_turns_per_agent
         self.consensus_threshold = consensus_threshold
@@ -141,7 +151,20 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
 
         # Use LLM to classify
         response = self.llm.invoke(classification_prompt)
-        response_text = response.content if hasattr(response, 'content') else str(response)
+        content = response.content if hasattr(response, 'content') else str(response)
+        # Handle different response formats (Gemini 2.5 Pro returns list of content blocks)
+        if isinstance(content, list):
+            text_parts = []
+            for block in content:
+                if isinstance(block, str):
+                    text_parts.append(block)
+                elif isinstance(block, dict) and 'text' in block:
+                    text_parts.append(block['text'])
+                elif hasattr(block, 'text'):
+                    text_parts.append(block.text)
+            response_text = '\n'.join(text_parts)
+        else:
+            response_text = content
 
         # Parse the response
         result = {
@@ -650,6 +673,7 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
 
 def create_debate_orchestrator(
     llm=None,
+    model_name: str = None,
     max_rounds: int = 5,
     consensus_threshold: float = 0.75,
     on_message_callback: Callable = None
@@ -659,6 +683,7 @@ def create_debate_orchestrator(
 
     Args:
         llm: Language model instance (optional)
+        model_name: Name of the Gemini model to use (e.g., "gemini-2.0-flash", "gemini-2.5-pro")
         max_rounds: Maximum debate rounds
         consensus_threshold: Required consensus level
         on_message_callback: Callback for new messages
@@ -668,6 +693,7 @@ def create_debate_orchestrator(
     """
     return DebateOrchestrator(
         llm=llm,
+        model_name=model_name,
         max_rounds=max_rounds,
         consensus_threshold=consensus_threshold,
         on_message_callback=on_message_callback
