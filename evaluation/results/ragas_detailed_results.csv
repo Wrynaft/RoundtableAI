@@ -1,0 +1,15 @@
+company,category,question,faithfulness,answer_relevancy
+Maybank,comprehensive,Should I invest in Maybank?,0.84,0.8460304669419286
+CIMB,comprehensive,Is CIMB a good investment for a moderate risk investor?,0.8484848484848485,0.7911768945640526
+Public Bank,comprehensive,Analyze Public Bank for long-term investment,0.8529411764705882,0.8076865000288002
+Tenaga Nasional,comprehensive,What is your recommendation for Tenaga Nasional?,0.896551724137931,0.8545606682629517
+Petronas Gas,comprehensive,Should I buy or sell Petronas Gas?,0.8717948717948718,0.8888728076769645
+IHH Healthcare,risk_focused,Is IHH Healthcare safe for a conservative investor?,0.8620689655172413,0.8685610137453147
+Press Metal,risk_focused,Can I take an aggressive position on Press Metal?,0.7307692307692307,0.7883824356165949
+Hong Leong Bank,sector_specific,Evaluate Hong Leong Bank as a banking sector investment,0.7931034482758621,0.8206859065462763
+Gamuda,sector_specific,Should I invest in Gamuda given infrastructure spending trends?,0.75,0.8942983189013829
+RHB Bank,valuation_focused,Is RHB Bank undervalued compared to its fundamentals?,0.6875,0.8608786071395178
+MISC Berhad,income_focused,Is MISC Berhad good for dividend income?,0.7333333333333333,0.8682047859135512
+Axiata,sector_allocation,Should I add Axiata to my telecommunications holdings?,0.9545454545454546,0.8491266384165763
+YTL Corporation,timing_focused,Is now a good time to invest in YTL Corporation?,0.7894736842105263,0.9236885355689809
+Nestle Malaysia,stability_focused,How stable is Nestle Malaysia as an investment?,0.7419354838709677,0.8456122501764751
