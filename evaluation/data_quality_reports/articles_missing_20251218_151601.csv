@@ -1,0 +1,12 @@
+Column,Missing_Count,Missing_Percentage,Data_Type
+_id,0,0.0,object
+url,0,0.0,object
+body,0,0.0,object
+headline,0,0.0,object
+published,0,0.0,datetime64[ns]
+scraped_at,0,0.0,datetime64[ns]
+source,0,0.0,object
+ticker,0,0.0,object
+sentiment.label,0,0.0,object
+sentiment.confidence,0,0.0,object
+sentiment.score,0,0.0,float64

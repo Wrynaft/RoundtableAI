@@ -1,0 +1,9 @@
+Column,Missing_Count,Missing_Percentage,Data_Type
+_id,0,0.0,object
+ticker,0,0.0,object
+date,0,0.0,datetime64[ns]
+open,0,0.0,float64
+high,0,0.0,float64
+low,0,0.0,float64
+close,0,0.0,float64
+volume,0,0.0,int64

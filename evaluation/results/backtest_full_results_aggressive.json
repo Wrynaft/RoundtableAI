@@ -1,0 +1,482 @@
+[
+  {
+    "success": true,
+    "ticker": "1023.KL",
+    "company_name": "CIMB Group Holdings Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "consensus": 0.6756756756756757,
+    "summary": "1. **Synthesis Summary**:\nThe consensus recommendation is HOLD, reflecting a balanced view of CIMB's prospects. The Fundamental agent sees strong growth potential and advocates a BUY, while the Sentiment and Valuation agents recommend HOLD due to mixed sentiment and risk-adjusted return concerns, respectively. The Valuation agent quantifies risk, and the Sentiment agent highlights potential short-term volatility. The aggressive investor profile needs to be balanced with these risks.\n\n2. **Key Investment Points**:\n    *   **Growth Potential**: CIMB has fundamental strengths and growth prospects that could drive upside.\n    *   **Mixed Sentiment**: Market sentiment is not uniformly positive, suggesting potential for price volatility.\n    *   **Risk-Adjusted Returns**: Valuation metrics indicate that risk-adjusted returns are a concern.\n    *   **Quantifiable Risks**: Volatility and drawdown metrics highlight downside risks.\n\n3.  **Key Risks**:\n    *   **Short-Term Volatility**: Market sentiment could lead to short-term price fluctuations.\n    *   **Downside Risk**: Valuation metrics suggest potential for significant drawdowns.\n    *   **Execution Risk**: The company's strategic initiatives may not deliver the expected growth.\n\n4.  **Risk-Adjusted Advice**:\nFor an aggressive investor, a HOLD recommendation translates to a nuanced approach. Consider a smaller initial position to capitalize on potential growth while mitigating downside risk. Closely monitor market sentiment and valuation metrics for potential entry points during periods of price weakness. Be prepared to increase the position if CIMB demonstrates consistent growth and positive market sentiment. Implement stop-loss orders to manage downside risk. Given the mixed signals, active monitoring and agile adjustments to the investment strategy are crucial.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "HOLD",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "3816.KL",
+    "company_name": "MISC Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary**:\nThe consensus BUY recommendation for MISC Berhad (3816.KL) is driven by a combination of strong fundamentals, positive market sentiment, and attractive risk-return profile. The fundamental analysis highlights the company's long-term contracts, operational efficiency, and prudent debt management. Sentiment analysis confirms positive market perception, particularly regarding contract wins. The valuation agent points to a compelling annualized return with an acceptable Sharpe ratio, suitable for an aggressive investor.\n\n**Key Investment Points**:\n1. **High Growth Potential**: The annualized return of 29.34% presents a significant growth opportunity for an aggressive investor.\n2. **Strong Fundamentals**: Long-term contracts provide revenue stability, while operational efficiency and debt management contribute to sustainable returns.\n3. **Positive Market Sentiment**: News of contract wins and other positive developments can drive short-term gains.\n4. **Acceptable Risk-Return**: The Sharpe ratio, while not specified, is deemed acceptable for an aggressive investor seeking higher returns.\n\n**Key Risks**:\n1. **Market Volatility**: As an aggressive investor, you must be prepared for higher volatility and potential drawdowns.\n2. **Contractual Risks**: Changes in contract terms or cancellations could negatively impact revenue.\n3. **Geopolitical Risks**: MISC's operations are subject to global geopolitical events, which can affect shipping rates and demand.\n\n**Risk-Adjusted Advice**:\nFor an aggressive investor, a strategic approach to MISC Berhad involves:\n*   **Position Sizing**: Allocate a portion of your portfolio to MISC that aligns with your risk tolerance. Given the higher risk profile, consider a smaller allocation compared to more conservative investments.\n*   **Entry Timing**: Monitor market sentiment and news flow for potential entry points, especially after positive announcements like contract wins.\n*   **Active Monitoring**: Continuously track MISC's financial performance, contract updates, and industry trends to make informed decisions.\n*   **Stop-Loss Orders**: Implement stop-loss orders to limit potential losses in case of adverse market movements.\n*   **Diversification**: Ensure your portfolio is well-diversified to mitigate the impact of any single investment's performance.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5819.KL",
+    "company_name": "Hong Leong Bank Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\n\nThe consensus BUY recommendation for Hong Leong Bank Berhad (5819.KL) is driven by a convergence of positive signals across fundamental strength, positive market sentiment, and attractive risk-adjusted valuation. The fundamental analysis points to intrinsic value and solid business performance. Sentiment analysis indicates positive market perception, suggesting potential for price appreciation. Valuation analysis, focusing on historical risk-adjusted returns like the Sharpe ratio, supports the investment thesis, particularly for an aggressive investor seeking high growth.\n\n**Key Investment Points:**\n\n1.  **Strong Fundamentals:** Hong Leong Bank exhibits solid financial health and business performance, indicating intrinsic value.\n2.  **Positive Market Sentiment:** The prevailing positive sentiment suggests potential for increased investor interest and price appreciation.\n3.  **Attractive Risk-Adjusted Returns:** Historical performance demonstrates attractive risk-adjusted returns, aligning with the goals of an aggressive investor.\n4.  **Corroborated Investment Thesis:** The BUY recommendation is reinforced by agreement across fundamental, sentiment, and valuation analyses.\n\n**Key Risks:**\n\n1.  **Market Volatility:** External market factors and economic downturns can negatively impact the banking sector and Hong Leong Bank's performance.\n2.  **Regulatory Changes:** Changes in banking regulations and compliance requirements could increase operational costs and affect profitability.\n3.  **Credit Risk:** Deterioration in asset quality and an increase in non-performing loans could impact the bank's financial stability.\n\n**Risk-Adjusted Advice:**\n\nFor an aggressive investor, a BUY recommendation on Hong Leong Bank Berhad (5819.KL) appears justified. However, given the inherent risks, consider the following:\n\n*   **Position Sizing:** Allocate a portion of your portfolio that aligns with your risk tolerance. While aggressive, avoid over-concentration in a single stock.\n*   **Entry Timing:** Monitor market conditions and consider staggering your entry to capitalize on potential dips.\n*   **Active Monitoring:** Continuously monitor the bank's financial performance, market sentiment, and any regulatory changes that could impact the investment.\n*   **Stop-Loss Orders:** Implement stop-loss orders to limit potential losses in case of adverse market movements.\n*   **Diversification:** Ensure your overall portfolio is well-diversified across different sectors and asset classes to mitigate risk.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "6033.KL",
+    "company_name": "PETRONAS Gas Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.7,
+    "consensus": 0.7073170731707318,
+    "summary": "**Synthesis Summary**:\nThe consensus leans towards a BUY recommendation for PETRONAS GAS BERHAD (6033.KL), driven by its fundamental strengths and positive market sentiment. The Fundamental agent highlights PetGas's operational resilience, its crucial role in Malaysia's gas supply chain, and its predictable revenue stream. The Sentiment agent reinforces this view with observations of positive market perception. While the Valuation agent suggests a SELL due to limited upside potential based on valuation metrics, the other agents argue that these metrics don't fully capture the company's intrinsic value and future potential, especially considering its strategic importance.\n\n**Key Investment Points**:\n\n1.  **Strategic Importance**: PetGas plays a vital role in Malaysia's gas infrastructure, ensuring a stable and predictable revenue stream.\n2.  **Operational Resilience**: The company demonstrates strong operational performance, even in challenging market conditions.\n3.  **Positive Sentiment**: Market sentiment towards PetGas is generally positive, potentially driving further stock appreciation.\n4.  **Long-Term Growth Potential**: While current valuations may appear full, PetGas's long-term growth potential, driven by its strategic importance, could provide significant returns.\n\n**Key Risks**:\n\n1.  **Valuation Concerns**: The Valuation agent's analysis suggests limited upside potential based on current market prices, indicating a risk of overvaluation.\n2.  **Market Volatility**: Short-term market fluctuations could negatively impact returns, as highlighted by the Valuation agent's risk metrics (Sharpe ratio, maximum drawdown).\n\n**Risk-Adjusted Advice**:\n\nFor an aggressive investor, a BUY recommendation is appropriate, but with careful risk management. Consider the following:\n\n*   **Position Sizing**: Allocate a portion of the portfolio to PetGas that reflects its strategic importance and growth potential, but limit the allocation to account for valuation risks.\n*   **Entry Timing**: Given valuation concerns, consider a phased entry strategy, accumulating shares over time to mitigate the risk of buying at a peak.\n*   **Active Monitoring**: Closely monitor market sentiment and financial performance to adjust the position as needed. Be prepared to reduce exposure if valuation metrics deteriorate significantly or if market sentiment turns negative.\n*   **Long-Term Horizon**: This investment is best suited for a long-term horizon, allowing the company's fundamental strengths to drive returns despite potential short-term volatility.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "SELL"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "6012.KL",
+    "company_name": "Maxis Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\nThe consensus BUY recommendation for Maxis Berhad (6012.KL) is driven by a combination of strong fundamentals, positive market sentiment, and attractive risk-return profile for an aggressive investor. The fundamental analysis highlights Maxis's revenue growth and profitability. Sentiment analysis confirms positive market perception driven by strong quarterly results. The valuation analysis provides a quantitative risk assessment, indicating manageable volatility and attractive annualized returns.\n\n**Key Investment Points:**\n1. **Revenue Growth and Profitability:** Maxis demonstrates solid revenue growth and profitability, indicating a healthy and well-managed business.\n2. **Positive Market Sentiment:** Market perception of Maxis is positive, suggesting potential for further price appreciation.\n3. **Manageable Risk:** The annualized volatility and maximum drawdown are within acceptable limits for an aggressive investor.\n4. **Attractive Annualized Return:** The annualized return of 6.9% is attractive compared to the risk involved.\n\n**Key Risks:**\n1. **Market Sentiment Shift:** Changes in market sentiment could negatively impact the stock price, despite strong fundamentals.\n2. **Competition:** Increased competition in the telecommunications sector could erode Maxis's market share and profitability.\n3. **Regulatory Changes:** Unfavorable regulatory changes could impact Maxis's operations and financial performance.\n\n**Risk-Adjusted Advice:**\nFor an aggressive investor, a BUY recommendation is appropriate. Given the manageable risk profile, a larger position size can be considered. However, it's crucial to monitor market sentiment and competitive landscape closely. Consider using a stop-loss order to limit potential losses. While the current entry point appears favorable, staggering entries can mitigate the risk of short-term market fluctuations.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "7084.KL",
+    "company_name": "QL Resources Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\nAll three agents (Fundamental, Sentiment, and Valuation) have reached a consensus BUY recommendation for QL Resources (7084.KL), indicating a strong overall positive outlook. The Fundamental agent highlights the underlying business drivers and operational risks, emphasizing a thorough understanding of potential downsides. The Sentiment agent focuses on market perception, real-time sentiment shifts, and news-driven opportunities, while the Valuation agent points to high annualized returns and undervaluation based on current market prices. This convergence suggests that QL Resources presents a compelling opportunity for an aggressive investor.\n\n**Key Investment Points:**\n1.  **High Growth Potential:** QL Resources demonstrates strong potential for high annualized returns, aligning with the aggressive investor's growth-oriented strategy.\n2.  **Positive Market Sentiment:** Market perception and sentiment shifts are favorable, potentially leading to short-term price appreciation that an aggressive investor can capitalize on.\n3.  **Solid Business Fundamentals:** The company exhibits sustainable growth drivers and manageable operational risks, providing a degree of stability amidst the high-growth potential.\n4.  **Undervaluation:** Current market prices suggest that QL Resources is undervalued, presenting an attractive entry point for investors.\n\n**Key Risks:**\n1.  **Operational Risks:** While manageable, operational risks within QL Resources' business model could impact profitability and growth.\n2.  **Market Volatility:** External market factors and sentiment shifts could lead to price fluctuations, requiring the investor to have a high tolerance for volatility.\n3.  **Execution Risk:** The company's ability to execute its growth strategies and maintain its competitive edge is crucial and carries inherent risks.\n\n**Risk-Adjusted Advice:**\nFor an aggressive investor, a BUY recommendation on QL Resources (7084.KL) is appropriate. Given the high-growth potential, consider allocating a significant portion of the portfolio to this investment. However, due to the inherent risks, implement a strategy of staggered entry to capitalize on potential price dips and mitigate downside risk. Closely monitor market sentiment and news flow to react quickly to any adverse developments. A stop-loss order can be considered to limit potential losses. The investor should be prepared for short-term volatility in pursuit of long-term capital appreciation.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5183.KL",
+    "company_name": "PETRONAS Chemicals Group Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary**:\nThe consensus BUY recommendation for PETRONAS CHEMICALS GROUP BERHAD (5183.KL) is driven by a combination of attractive valuation metrics, positive market sentiment, and solid fundamental factors. The valuation agent highlights a compelling annualized return of 15.2%, which is particularly appealing for an aggressive investor. The sentiment agent reinforces this with observations of positive market perception, driven by factors like PCG's expansion into specialty chemicals. The fundamental agent adds a layer of operational and financial context, supporting the bullish outlook. While the stock exhibits significant volatility (25.8%) and a maximum drawdown of -28.5%, these are considered acceptable risks for an investor with a high-growth, aggressive profile.\n\n**Key Investment Points**:\n1. **High Growth Potential**: The annualized return of 15.2% offers significant growth potential, aligning with the aggressive investor's objectives.\n2. **Positive Market Sentiment**: Positive sentiment surrounding PCG, particularly its expansion into specialty chemicals, can drive further stock appreciation.\n3. **Solid Fundamentals**: Strong operational and financial factors underpin the valuation and sentiment-driven perspectives.\n4. **Diversification into Specialty Chemicals**: PCG's strategic move into specialty chemicals enhances its long-term growth prospects and reduces reliance on commodity chemicals.\n\n**Key Risks**:\n1. **High Volatility**: The stock exhibits significant volatility (25.8%), which could lead to substantial short-term price fluctuations.\n2. **Maximum Drawdown**: The maximum drawdown of -28.5% indicates the potential for significant losses during market downturns.\n3. **Commodity Price Fluctuations**: PCG's profitability remains susceptible to fluctuations in commodity prices, although the diversification into specialty chemicals mitigates this risk to some extent.\n\n**Risk-Adjusted Advice**:\nFor this aggressive investor, a BUY recommendation is appropriate, but with careful risk management. Consider the following:\n*   **Position Sizing**: Allocate a portion of the portfolio that aligns with the investor's risk tolerance, acknowledging the high volatility and potential drawdown. A smaller initial position can be considered, with the possibility of adding more during dips.\n*   **Entry Timing**: While the overall outlook is positive, consider using technical indicators or market sentiment to identify potentially favorable entry points to mitigate short-term volatility.\n*   **Stop-Loss Orders**: Implement stop-loss orders to limit potential losses in case of unexpected market downturns or negative news affecting PCG.\n*   **Regular Monitoring**: Continuously monitor market sentiment, commodity prices, and PCG's financial performance to adjust the investment strategy as needed.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "8869.KL",
+    "company_name": "Press Metal Aluminium Holdings Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary**:\nThe consensus BUY recommendation for Press Metal (8869.KL) is supported by a blend of valuation, fundamental, and sentiment analyses. The valuation agent highlights an attractive annualized return, while acknowledging inherent risks. The fundamental agent emphasizes the importance of a forward-looking perspective, complementing the backward-looking valuation. The sentiment agent adds a layer of understanding regarding market perception and its potential impact on price movements, particularly concerning debt levels. All agents agree on a BUY, making it a strong consensus.\n\n**Key Investment Points**:\n1. **High Growth Potential**: Press Metal offers significant growth potential, making it suitable for an aggressive investor.\n2. **Attractive Annualized Return**: The valuation analysis suggests a compelling annualized return, justifying the higher risk.\n3. **Positive Market Sentiment**: Overall market sentiment towards Press Metal is positive, which can drive short- to medium-term price appreciation.\n4. **Forward-Looking Fundamentals**: Strong fundamentals suggest continued growth and profitability, supporting long-term investment.\n\n**Key Risks**:\n1. **High Volatility**: The stock exhibits high volatility, which could lead to significant short-term losses.\n2. **Debt Levels**: Negative sentiment surrounding Press Metal's debt could negatively impact the stock price.\n3. **External Factors**: Aluminum price fluctuations and global economic conditions can significantly impact Press Metal's profitability.\n\n**Risk-Adjusted Advice**:\nFor an aggressive investor, a BUY recommendation is appropriate, but with careful risk management. Consider the following:\n\n*   **Position Sizing**: Allocate a portion of the portfolio that aligns with the investor's risk tolerance. Given the high volatility, avoid over-concentration.\n*   **Entry Timing**: Implement a dollar-cost averaging strategy to mitigate the risk of entering at a high point. Monitor news and sentiment related to debt levels for potential entry opportunities during dips.\n*   **Active Monitoring**: Closely monitor Press Metal's financial performance, aluminum prices, and market sentiment. Be prepared to adjust the position based on changing conditions.\n*   **Stop-Loss Orders**: Implement stop-loss orders to limit potential losses in case of adverse market movements.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "6742.KL",
+    "company_name": "YTL Power International Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 0.7169811320754716,
+    "summary": "**Synthesis Summary**:\nThe consensus leans towards a BUY recommendation for YTL Power (6742.KL), driven by strong fundamental analysis and positive sentiment. The Fundamental Agent highlights the company's financial strength and growth potential, while the Sentiment Agent confirms a positive market outlook, particularly regarding renewable energy initiatives. The Valuation Agent remains cautious, emphasizing the importance of risk assessment and historical volatility metrics, but acknowledges the potential for short-term price appreciation.\n\n**Key Investment Points**:\n1. **Strong Financial Position**: YTL Power exhibits a solid financial foundation, suggesting resilience and capacity for future growth.\n2. **Renewable Energy Initiatives**: Positive sentiment surrounds YTL Power's ventures into renewable energy, potentially driving stock price appreciation.\n3. **Growth Potential**: The company demonstrates significant growth potential, making it attractive for aggressive investors seeking high returns.\n4. **Overcoming Backward-Looking Metrics**: The Fundamental Agent effectively argues that past volatility metrics are less relevant given YTL Power's current financial strength and future prospects.\n\n**Key Risks**:\n1. **Historical Volatility**: The Valuation Agent's concerns about historical volatility and risk metrics should not be ignored entirely. YTL Power has exhibited significant price swings in the past.\n2. **Market Sentiment Fluctuations**: Positive sentiment can be fleeting. Changes in market conditions or investor perception could negatively impact the stock price.\n3. **Renewable Energy Project Execution**: The success of YTL Power's renewable energy initiatives is crucial for future growth. Delays or setbacks in these projects could hinder performance.\n\n**Risk-Adjusted Advice**:\nFor an aggressive investor, a BUY recommendation is appropriate, but with careful risk management. Consider the following:\n\n*   **Position Sizing**: Allocate a portion of the portfolio to YTL Power that aligns with a high-risk, high-reward strategy. Avoid over-concentration.\n*   **Entry Timing**: Given the potential for short-term price appreciation due to positive sentiment, consider a phased entry to capitalize on potential dips.\n*   **Stop-Loss Orders**: Implement stop-loss orders to limit potential losses in case of adverse market movements or negative news.\n*   **Active Monitoring**: Continuously monitor YTL Power's financial performance, renewable energy project progress, and market sentiment to make informed decisions.\n*   **Diversification**: Ensure the portfolio remains well-diversified across different sectors and asset classes to mitigate overall risk.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5681.KL",
+    "company_name": "PETRONAS Dagangan Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "SELL",
+    "confidence": 0.75,
+    "consensus": 0.4047619047619048,
+    "summary": "1. **Synthesis Summary**:\nThe consensus leans towards a SELL recommendation for PETRONAS DAGANGAN BHD (PDB), driven primarily by fundamental concerns. The Fundamental agent highlights weaknesses such as negative revenue and earnings growth, and low margins, suggesting potential structural issues and long-term challenges related to evolving energy policies. While the Sentiment agent sees potential for short-term gains, the Valuation agent points out high volatility and a low Sharpe ratio, indicating poor risk-adjusted returns. Although the investor profile is aggressive, the underlying fundamental weaknesses and risk metrics outweigh any potential short-term positive sentiment.\n\n2. **Key Investment Points**:\n    *   **Weak Fundamentals**: Negative revenue and earnings growth indicate underlying business challenges.\n    *   **Low Margins**: Suggests operational inefficiencies or competitive pressures.\n    *   **High Volatility**: The stock exhibits significant price fluctuations, increasing risk.\n    *   **Poor Risk-Adjusted Returns**: Low Sharpe ratio indicates inadequate compensation for the level of risk.\n    *   **Evolving Energy Policies**: Potential long-term challenges due to shifts in the energy sector.\n\n3.  **Key Risks**:\n    *   **Further Deterioration of Fundamentals**: Continued negative growth and margin compression.\n    *   **Market Sentiment Shift**: Negative news or events could exacerbate price declines.\n    *   **Regulatory Changes**: Unfavorable policies impacting the energy sector.\n    *   **Economic Slowdown**: Reduced consumer spending on fuel and related products.\n\n4.  **Risk-Adjusted Advice**:\n    *   **Position Sizing**: Given the high volatility and fundamental concerns, limit the position size to a small percentage of the overall portfolio.\n    *   **Entry Timing**: Avoid entering the position, given the SELL recommendation. If already holding the stock, consider reducing or exiting the position.\n    *   **Stop-Loss Order**: Implement a tight stop-loss order to limit potential losses, acknowledging the aggressive investor profile.\n    *   **Active Monitoring**: Closely monitor financial reports, industry news, and market sentiment for any signs of improvement or further deterioration.\n    *   **Alternative Investments**: Explore other investment opportunities with stronger fundamentals and better risk-adjusted returns that align with an aggressive growth strategy.",
+    "agent_votes": {
+      "fundamental": "SELL",
+      "sentiment": "BUY",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "2445.KL",
+    "company_name": "Kuala Lumpur Kepong Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "SELL",
+    "confidence": 0.65,
+    "consensus": 0.35714285714285715,
+    "summary": "1. **Synthesis Summary**:\nThe debate surrounding Kuala Lumpur Kepong Berhad (KLK) reveals a mixed outlook. The Fundamental agent strongly advocates for a SELL due to concerns about low profitability margins and a high debt-to-equity ratio, questioning the company's long-term financial health. The Sentiment agent, conversely, suggests a BUY, driven by positive market sentiment and potential short-term gains. The Valuation agent takes a neutral stance with a HOLD recommendation, acknowledging both the positive sentiment and the underlying fundamental weaknesses. The consensus leans towards SELL, reflecting concerns about KLK's financial fundamentals outweighing positive market sentiment.\n\n2. **Key Investment Points**:\n    *   **Low Profitability:** KLK's profitability metrics are a significant concern, potentially limiting its ability to generate strong returns.\n    *   **High Debt:** The high debt-to-equity ratio increases financial risk and vulnerability to economic downturns.\n    *   **Market Sentiment:** Positive market sentiment could provide short-term gains, but this is speculative and not a reliable long-term strategy.\n    *   **Diversification Strategy:** Concerns exist regarding the effectiveness and potential risks associated with KLK's diversification efforts.\n\n3.  **Key Risks**:\n    *   **Financial Distress:** The combination of low profitability and high debt could lead to financial distress, especially in adverse market conditions.\n    *   **Market Correction:** A market correction could negatively impact KLK's stock price, negating any gains from positive sentiment.\n    *   **Commodity Price Volatility:** KLK's performance is susceptible to fluctuations in commodity prices, which can impact revenue and profitability.\n\n4.  **Risk-Adjusted Advice**:\nFor an aggressive investor, the SELL recommendation should be carefully considered. While the potential for short-term gains exists due to positive sentiment, the underlying fundamental weaknesses present significant risks. If the investor chooses to proceed, a very small position size is advised to limit potential losses. Close monitoring of KLK's financial performance, particularly profitability and debt levels, is crucial. Consider setting a tight stop-loss order to protect capital. Given the high-risk profile, this investment should only be a small portion of a diversified portfolio. A more prudent approach would be to seek opportunities with stronger fundamentals and growth prospects.",
+    "agent_votes": {
+      "fundamental": "SELL",
+      "sentiment": "BUY",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5225.KL",
+    "company_name": "IHH Healthcare Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.83,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\n\nThe consensus BUY recommendation for IHH HEALTHCARE BERHAD (5225.KL) is supported by a combination of fundamental strength, positive market sentiment, and attractive risk-adjusted returns. The fundamental analysis highlights the company's inherent value, while sentiment analysis suggests that market perception is favorable. The valuation analysis provides a quantitative basis, indicating attractive historical performance and risk-adjusted returns. While risks exist, the overall outlook is positive for an aggressive investor seeking growth.\n\n**Key Investment Points:**\n\n1.  **Growth Potential:** IHH presents significant growth potential within the healthcare sector, driven by expansion and strategic initiatives.\n2.  **Positive Sentiment:** Market sentiment appears to be favorable, potentially leading to short-term gains and increased investor interest.\n3.  **Attractive Risk-Adjusted Returns:** Historical data indicates attractive annualized returns with positive skewness, aligning with an aggressive investor's risk appetite.\n4.  **Complementary Analysis:** The BUY recommendation is reinforced by agreement across fundamental, sentiment, and valuation perspectives, increasing confidence in the investment.\n\n**Key Risks:**\n\n1.  **High P/E Ratio:** The company's high P/E ratio suggests that the stock may be overvalued, increasing the risk of a price correction.\n2.  **Increasing Debt Levels:** Rising debt levels could strain the company's financial health and limit its ability to pursue growth opportunities.\n3.  **Market Volatility:** Sentiment-driven gains can be volatile, and negative news or market shifts could quickly reverse positive momentum.\n\n**Risk-Adjusted Advice:**\n\nFor an aggressive investor, a BUY recommendation is appropriate, but with careful consideration of the risks. Given the high P/E ratio and increasing debt, it's crucial to manage position size. Consider allocating a smaller portion of the portfolio to IHH initially, with the potential to increase the position if the company demonstrates continued growth and improved financial health. Monitor market sentiment and be prepared to take profits if sentiment shifts negatively. A stop-loss order can help protect against downside risk.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "4197.KL",
+    "company_name": "Sime Darby Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "SELL",
+    "confidence": 0.75,
+    "consensus": 0.45238095238095233,
+    "summary": "1. **Synthesis Summary**:\nThe consensus leans towards a SELL recommendation, driven primarily by fundamental concerns. The Fundamental agent strongly advocates selling due to persistent negative revenue and earnings growth, indicating underlying business weaknesses. While the Sentiment agent detects market optimism that could lead to short-term gains, they acknowledge the increasing strength of the fundamental concerns. The Valuation agent suggests a HOLD, balancing potential short-term gains with a robust risk assessment, highlighting negative annualized returns and high volatility. Given the investor's aggressive profile, the potential for short-term gains is tempting, but the prevailing fundamental weaknesses and risk factors outweigh the speculative upside.\n\n2. **Key Investment Points**:\n    *   **Negative Growth**: Revenue and earnings are consistently declining, signaling fundamental problems.\n    *   **Sentiment-Driven Upside**: Short-term price increases may occur due to market optimism, but these are unlikely to be sustainable.\n    *   **High Volatility**: The stock exhibits high volatility, which, while potentially attractive to an aggressive investor, amplifies the risk of significant losses.\n    *   **Risk Assessment**: A thorough risk assessment reveals negative annualized returns, further supporting a cautious approach.\n\n3.  **Key Risks**:\n    *   **Fundamental Deterioration**: Continued negative revenue and earnings growth could lead to further price declines.\n    *   **Sentiment Shift**: Market sentiment could quickly turn negative, erasing any short-term gains.\n    *   **Volatility Risk**: High volatility can result in substantial losses, especially if the investor's timing is off.\n\n4.  **Risk-Adjusted Advice**:\n    Given the aggressive investor profile, a small, speculative position *could* be considered to capitalize on potential short-term sentiment-driven gains. However, this should be done with extreme caution and a very tight stop-loss order to limit potential losses. The position size should be minimal, representing only a small fraction of the overall portfolio (e.g., 1-2%). Entry timing should be carefully considered, looking for potential positive catalysts in market sentiment, but with the understanding that these are likely to be fleeting. The primary recommendation remains SELL, and any long position should be viewed as a highly speculative, short-term trade, not a long-term investment.",
+    "agent_votes": {
+      "fundamental": "SELL",
+      "sentiment": "BUY",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5211.KL",
+    "company_name": "Sunway Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\nAll three agents (Fundamental, Sentiment, and Valuation) have converged on a BUY recommendation for Sunway Berhad (5211.KL), indicating a strong bullish outlook. The fundamental analysis suggests a solid underlying business, while sentiment analysis points to positive market perception. The valuation analysis provides quantitative support with attractive annualized returns and reasonable risk-adjusted returns. This consensus, especially for an aggressive investor, warrants a closer look at Sunway Berhad.\n\n**Key Investment Points:**\n\n1.  **High Growth Potential:** The annualized return of 24.72% signals significant growth potential, aligning with the aggressive investor's profile.\n2.  **Positive Market Sentiment:** Favorable market perception can drive short-to-medium term price appreciation, enhancing returns.\n3.  **Reasonable Risk-Adjusted Returns:** A Sharpe ratio of 0.70 suggests that the returns are adequately compensating for the risk involved.\n4.  **Diversified Conglomerate:** Sunway Berhad's diversified business model across various sectors (property, construction, healthcare, etc.) provides resilience and multiple growth avenues.\n\n**Key Risks:**\n\n1.  **Market Volatility:** As acknowledged by the Valuation agent, the stock is subject to market volatility, which can lead to short-term price fluctuations.\n2.  **Drawdown Risk:** The potential for significant drawdowns exists, requiring the investor to have a high-risk tolerance and a long-term investment horizon.\n3.  **Sector-Specific Risks:** Each of Sunway's business segments (property, construction, etc.) carries its own set of risks related to market conditions, regulatory changes, and competition.\n\n**Risk-Adjusted Advice:**\n\nGiven the aggressive investor profile and the inherent risks, the following guidance is recommended:\n\n*   **Position Sizing:** Allocate a portion of the portfolio that aligns with the investor's high-risk tolerance. Avoid over-concentration in Sunway Berhad.\n*   **Entry Timing:** Consider a staggered entry to capitalize on potential dips in the market and reduce the impact of immediate volatility.\n*   **Long-Term Horizon:** Adopt a long-term investment horizon to ride out short-term fluctuations and benefit from the company's long-term growth potential.\n*   **Active Monitoring:** Continuously monitor market sentiment, fundamental developments, and valuation metrics to make informed decisions and adjust the position as needed.\n*   **Stop-Loss Orders:** Implement stop-loss orders to limit potential losses in case of adverse market movements.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "4065.KL",
+    "company_name": "PPB Group Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.75,
+    "consensus": 0.6744186046511628,
+    "summary": "1. **Synthesis Summary**:\nThe consensus leans towards a BUY recommendation for PPB Group, driven by positive fundamental analysis and market sentiment. The fundamental agent highlights the company's diversified business, particularly its stake in Wilmar, as a key strength. The sentiment agent corroborates this with consistently positive market sentiment. However, the valuation agent raises concerns about historical performance, risk-adjusted returns (negative Sharpe ratio), and maximum drawdown, suggesting that the stock may be overvalued based on past performance. The final recommendation balances these perspectives, acknowledging the risks while emphasizing the potential for future growth that aligns with an aggressive investor's profile.\n\n2. **Key Investment Points**:\n    *   **Diversified Business**: PPB Group's diverse portfolio, including its significant stake in Wilmar International, provides stability and growth opportunities.\n    *   **Positive Market Sentiment**: Strong market sentiment suggests potential for near-term price appreciation.\n    *   **Growth Potential**: The company has potential for future growth, which may not be fully reflected in historical valuation metrics.\n    *   **Aggressive Investor Profile**: This investor is willing to tolerate higher risk for potentially higher returns.\n\n3.  **Key Risks**:\n    *   **Valuation Concerns**: Historical performance and risk-adjusted returns raise concerns about potential overvaluation.\n    *   **Market Volatility**: Negative Sharpe ratio and maximum drawdown indicate potential for significant losses during market downturns.\n    *   **Reliance on Wilmar**: A significant portion of PPB Group's value is derived from its stake in Wilmar, making it vulnerable to fluctuations in Wilmar's performance.\n\n4.  **Risk-Adjusted Advice**:\n    *   **Position Sizing**: Given the valuation concerns and market volatility, limit the position size to a smaller percentage of the overall portfolio (e.g., 3-5%) to manage downside risk.\n    *   **Entry Timing**: Consider using technical indicators or market pullbacks to identify potentially more favorable entry points.\n    *   **Active Monitoring**: Closely monitor PPB Group's performance and market sentiment, and be prepared to adjust the position if the investment thesis changes.\n    *   **Stop-Loss Order**: Implement a stop-loss order to limit potential losses in case of adverse market conditions.\n    *   **Long-Term Perspective**: While the investor is aggressive, maintain a long-term perspective to allow the company's growth potential to materialize.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "SELL"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "1155.KL",
+    "company_name": "Malayan Banking Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "1. **Synthesis Summary**:\nThe consensus BUY recommendation for MALAYAN BANKING BERHAD (1155.KL) is driven by a combination of attractive valuation metrics, positive market sentiment, and underlying fundamental strength. The valuation agent highlights a compelling annualized return of 17.6% with a Sharpe Ratio of 0.94, indicating favorable risk-adjusted returns. The sentiment agent confirms a positive market perception, reinforcing the bullish outlook. The fundamental agent acknowledges the low gross margin as a potential concern but overall agrees with the BUY recommendation, especially given the investor's aggressive profile.\n\n2. **Key Investment Points**:\n    *   **High Potential Return**: The annualized return of 17.6% offers significant growth potential for an aggressive investor.\n    *   **Positive Market Sentiment**: Strong market sentiment suggests continued upward momentum for the stock.\n    *   **Reasonable Risk-Adjusted Returns**: A Sharpe Ratio of 0.94 indicates that the returns are appropriately compensated for the level of risk.\n    *   **Fundamental Alignment**: Agreement between valuation, sentiment, and fundamental analysis strengthens the investment case.\n\n3. **Key Risks**:\n    *   **Low Gross Margin**: The fundamental agent identified a low gross margin, which could impact profitability if not addressed.\n    *   **Maximum Drawdown**: The maximum drawdown of -11.2% represents a potential loss that the investor should be prepared for.\n    *   **Market Volatility**: External market factors and unforeseen events could negatively impact the stock's performance.\n\n4. **Risk-Adjusted Advice**:\nFor an aggressive investor, a BUY recommendation on MALAYAN BANKING BERHAD (1155.KL) appears justified. Given the high-growth objective, consider allocating a significant portion of the portfolio to this stock, but be mindful of the potential drawdown. Implement a stop-loss order to mitigate downside risk. Monitor the company's gross margin and overall financial performance closely. Consider using a dollar-cost averaging strategy to build the position over time, taking advantage of any potential dips in price.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5398.KL",
+    "company_name": "Gamuda Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary**:\nThe consensus BUY recommendation for Gamuda (5398.KL) is supported by a combination of strong fundamental performance, positive market sentiment, and attractive valuation metrics. The fundamental analysis highlights consistent revenue growth, profitability, and efficient capital utilization. Sentiment analysis confirms positive market perception, potentially driven by contract wins and overall market optimism. Valuation analysis suggests an attractive annualized return and Sharpe ratio, indicating a favorable risk-reward profile.\n\n**Key Investment Points**:\n1. **Strong Fundamentals**: Gamuda demonstrates consistent revenue and earnings growth, indicating a healthy and expanding business.\n2. **Positive Market Sentiment**: Market perception is favorable, potentially leading to accelerated price appreciation.\n3. **Attractive Valuation**: The annualized return of 31.08% and Sharpe ratio of 0.83 suggest a compelling risk-adjusted return.\n4. **High Trading Volume**: High average trading volume facilitates easy entry and exit, providing liquidity for investors.\n5. **Infrastructure Growth**: Gamuda is well-positioned to benefit from infrastructure development projects in Malaysia and the region.\n\n**Key Risks**:\n1. **Market Volatility**: External market factors and economic downturns could negatively impact Gamuda's stock price.\n2. **Project Execution Risk**: Delays or cost overruns in major infrastructure projects could affect profitability.\n3. **Regulatory Changes**: Changes in government policies or regulations could impact Gamuda's operations and profitability.\n4. **Construction Material Price Fluctuations**: Increases in construction material prices could erode profit margins.\n\n**Risk-Adjusted Advice**:\nFor an aggressive investor, a BUY recommendation is appropriate. Given the high growth potential, consider allocating a significant portion of the portfolio to Gamuda. However, due to the inherent risks, employ a strategic approach:\n\n*   **Position Sizing**: Allocate a larger portion of capital compared to a conservative strategy, but still maintain diversification across other sectors to mitigate risk.\n*   **Entry Timing**: Consider staggering entry points to capitalize on potential dips in the market.\n*   **Regular Monitoring**: Closely monitor Gamuda's financial performance, project updates, and market sentiment to make informed decisions.\n*   **Stop-Loss Orders**: Implement stop-loss orders to limit potential losses in case of adverse market conditions.\n*   **Long-Term Perspective**: Adopt a long-term investment horizon to fully realize the growth potential of Gamuda.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "6947.KL",
+    "company_name": "Celcomdigi Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.8,
+    "consensus": 0.7142857142857142,
+    "summary": "**Synthesis Summary:**\nThe consensus leans towards a BUY recommendation for CELCOMDIGI (6947.KL), driven by strong fundamental improvements and positive market sentiment. The Fundamental agent highlights operational efficiencies and profitability, while the Sentiment agent confirms positive market reactions. The Valuation agent remains cautious, citing historical risk metrics, but acknowledges the improving outlook. This BUY recommendation is tailored for an aggressive investor who can tolerate higher risk for potentially higher returns.\n\n**Key Investment Points:**\n1. **Strategic Positioning:** CELCOMDIGI is strategically positioned to capitalize on the evolving telecommunications landscape in Malaysia.\n2. **Operational Efficiency:** Improving operational efficiency is boosting profitability, making the company more attractive.\n3. **Positive Sentiment:** Strong market sentiment suggests growing investor confidence in CELCOMDIGI's future prospects.\n4. **Growth Potential:** The company's growth potential outweighs the historical risk metrics for an aggressive investor.\n\n**Key Risks:**\n1. **Historical Risk Metrics:** Negative Sharpe ratios and maximum drawdown indicate potential volatility and risk.\n2. **Valuation Concerns:** The Valuation agent's concerns about valuation suggest the stock might be fairly priced or slightly overvalued.\n3. **Market Competition:** Intense competition in the telecommunications industry could impact profitability.\n\n**Risk-Adjusted Advice:**\nFor an aggressive investor, a BUY recommendation is appropriate, but with careful risk management. Consider a smaller initial position size to manage potential downside risk. Monitor market sentiment and fundamental performance closely, and be prepared to adjust the position based on new information. Given the valuation concerns, consider using technical analysis to identify optimal entry points and manage risk through stop-loss orders.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "1295.KL",
+    "company_name": "Public Bank Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "1. **Synthesis Summary**:\nThe consensus recommendation is BUY, driven by Public Bank's fundamental strength, positive market sentiment, and revised valuation. The Fundamental agent emphasizes the bank's long-term stability and consistent performance. The Sentiment agent highlights the market's recognition of Public Bank's strengths, which can drive investor demand. The Valuation agent, initially cautious, has shifted to a BUY recommendation based on updated analysis and the aggressive investor profile, acknowledging the importance of positive sentiment.\n\n2. **Key Investment Points**:\n    *   **Long-Term Stability:** Public Bank has a proven track record of stability and consistent performance, making it a reliable investment for long-term growth.\n    *   **Positive Market Sentiment:** Strong market sentiment suggests potential for increased investor demand and upward price pressure.\n    *   **Revised Valuation:** Updated valuation metrics support a BUY recommendation, especially considering the aggressive investor's higher risk tolerance.\n    *   **Established Brand:** Public Bank's strong brand recognition and reputation contribute to its stability and market confidence.\n    *   **Growth Potential:** While a mature company, Public Bank still has growth potential through strategic initiatives and market expansion.\n\n3.  **Key Risks**:\n    *   **Market Volatility:** External market conditions and economic downturns could negatively impact Public Bank's performance.\n    *   **Regulatory Changes:** Changes in banking regulations could affect profitability and operations.\n    *   **Interest Rate Fluctuations:** Fluctuations in interest rates can impact net interest margins and overall financial performance.\n\n4.  **Risk-Adjusted Advice**:\n    *   **Position Sizing:** Given the aggressive investor profile, a larger position size can be considered, but it should still be within the investor's overall risk tolerance.\n    *   **Entry Timing:** Consider entering the position during market dips or corrections to capitalize on potential price discounts.\n    *   **Diversification:** While Public Bank is a strong investment, diversification across other sectors and asset classes is crucial to manage overall portfolio risk.\n    *   **Monitoring:** Continuously monitor market sentiment, financial performance, and regulatory changes to make informed investment decisions.\n    *   **Long-Term Horizon:** Adopt a long-term investment horizon to benefit from Public Bank's stability and growth potential.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5347.KL",
+    "company_name": "Tenaga Nasional Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "HOLD",
+    "confidence": 0.75,
+    "consensus": 0.6842105263157894,
+    "summary": "1. **Synthesis Summary**:\nThe consensus recommendation is HOLD, reflecting a balanced view of Tenaga Nasional Berhad (TNB). The Fundamental agent sees long-term growth potential and strategic initiatives as reasons to BUY, while the Sentiment agent highlights mixed news sentiment, warranting caution. The Valuation agent reinforces the HOLD recommendation with quantitative risk metrics, such as a negative Sharpe ratio and maximum drawdown, indicating that historical returns haven't adequately compensated for the risk. The synthesis acknowledges TNB's fundamental strengths but tempers enthusiasm with concerns about market sentiment and quantifiable risk.\n\n2. **Key Investment Points**:\n*   **Essential Service Provider**: TNB operates as a critical utility, providing essential services with regulatory support.\n*   **Long-Term Growth Potential**: TNB has strategic initiatives that support long-term growth.\n*   **Mixed Sentiment**: Market sentiment is currently mixed, with both positive and negative news impacting investor perception.\n*   **Quantifiable Risk**: Risk metrics such as a negative Sharpe ratio and maximum drawdown highlight potential downside risk.\n\n3. **Key Risks**:\n*   **Negative News Sentiment**: Negative headlines regarding power theft, tax disputes, and operational costs can impact financial performance.\n*   **Risk Metrics**: Negative Sharpe ratio and maximum drawdown indicate that, historically, the returns have not adequately compensated for the risk taken.\n\n4. **Risk-Adjusted Advice**:\nFor an aggressive investor, a HOLD recommendation translates to a cautious approach. While the long-term potential is appealing, the current risk metrics and mixed sentiment suggest that now is not the optimal time for a large investment. Consider a small, speculative position to capitalize on potential upside, but closely monitor news sentiment and risk metrics. Implement a stop-loss order to limit potential losses. If negative sentiment persists or risk metrics worsen, reduce or eliminate the position. If positive sentiment improves and risk metrics become more favorable, consider increasing the position size. Given the negative Sharpe ratio, ensure that other investments in the portfolio have strong risk-adjusted returns to compensate.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "HOLD",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "6888.KL",
+    "company_name": "Axiata Group Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "HOLD",
+    "confidence": 0.75,
+    "consensus": 0.7272727272727273,
+    "summary": "**Synthesis Summary**:\nThe consensus recommendation is HOLD, driven by concerns about Axiata's underlying financial health (Fundamental) and risk-adjusted return profile (Valuation), which outweigh potential short-term gains from positive market sentiment. While the Sentiment agent sees potential for a BUY due to positive market perception, the Fundamental and Valuation agents highlight significant debt levels, inconsistent profitability, high volatility, and maximum drawdown as key risks. For an aggressive investor, the HOLD recommendation suggests caution despite the potential for short-term gains.\n\n**Key Investment Points**:\n1. **High Growth Potential, High Risk:** Axiata offers the potential for high growth, but this comes with substantial risk due to its financial leverage and market volatility.\n2. **Sentiment-Driven Upside:** Positive market sentiment could drive short-term gains, presenting trading opportunities.\n3. **Debt Burden:** Axiata's high debt levels pose a significant risk to its long-term financial stability and ability to invest in future growth.\n4. **Inconsistent Profitability:** The company's inconsistent profitability raises concerns about its ability to generate sustainable returns.\n\n**Key Risks**:\n1. **High Volatility:** Axiata's stock price is highly volatile, which can lead to significant losses for investors.\n2. **Maximum Drawdown:** The stock has experienced significant drawdowns in the past, indicating the potential for substantial losses.\n3. **Debt Sustainability:** The company's ability to manage its debt burden is a major concern.\n4. **Execution Risk:** Execution risk in strategic initiatives and market expansion could impact future performance.\n\n**Risk-Adjusted Advice**:\nFor an aggressive investor, a HOLD recommendation translates into a strategic approach:\n\n*   **Limited Position Sizing:** Given the high risk, allocate only a small portion of the portfolio to Axiata.\n*   **Active Monitoring:** Closely monitor market sentiment and Axiata's financial performance for potential entry or exit points.\n*   **Trading Opportunities:** Capitalize on short-term positive sentiment swings, but be prepared to exit quickly if sentiment shifts.\n*   **Risk Management:** Implement strict stop-loss orders to limit potential losses.\n*   **Re-evaluate:** Re-evaluate the position if there is a significant change in the company's fundamentals or market sentiment. If Axiata demonstrates improved financial stability and profitability, consider increasing the position. If debt concerns worsen or market sentiment turns negative, reduce or eliminate the position.",
+    "agent_votes": {
+      "fundamental": "HOLD",
+      "sentiment": "BUY",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "1015.KL",
+    "company_name": "AMMB Holdings Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\n\nThe consensus recommendation is a BUY for AMMB Holdings Berhad (1015.KL), driven by a combination of attractive valuation, positive market sentiment, and solid fundamentals. The valuation analysis highlights a compelling annualized return of 20.63% with a Sharpe ratio of 0.74, suggesting reasonable risk-adjusted returns. Positive market sentiment acts as a potential catalyst for price appreciation, complementing the fundamentally sound valuation. The fundamental analysis supports the bullish outlook, indicating a strong foundation for investment.\n\n**Key Investment Points:**\n\n1.  **High Growth Potential:** AMMB offers a substantial annualized return of 20.63%, aligning with the aggressive investor's growth objectives.\n2.  **Reasonable Risk-Adjusted Returns:** A Sharpe ratio of 0.74 indicates that the returns are appropriately compensated for the level of risk.\n3.  **Positive Market Sentiment:** Favorable market perception can drive increased investor interest and further price appreciation.\n4.  **Solid Fundamentals:** Underlying financial health and business prospects support the valuation and sentiment-driven momentum.\n\n**Key Risks:**\n\n1.  **Market Volatility:** A volatility of 21.24% suggests potential price swings, which, while acceptable for an aggressive investor, still require careful monitoring.\n2.  **Maximum Drawdown:** A maximum drawdown of -16.84% indicates the potential for significant short-term losses.\n3.  **Sentiment Reversal:** Market sentiment can change rapidly, potentially impacting the stock price negatively.\n\n**Risk-Adjusted Advice:**\n\nFor an aggressive investor, a BUY recommendation is appropriate, but with careful risk management. Consider the following:\n\n*   **Position Sizing:** Allocate a portion of the portfolio to AMMB that aligns with the investor's high-risk tolerance, understanding that significant price fluctuations are possible.\n*   **Entry Timing:** Given the positive sentiment, consider entering the position gradually to capitalize on potential dips while benefiting from upward momentum.\n*   **Stop-Loss Orders:** Implement stop-loss orders to limit potential losses in case of adverse market movements or a shift in sentiment. A stop-loss around -10% to -15% could be considered, depending on the investor's specific risk appetite.\n*   **Regular Monitoring:** Continuously monitor market sentiment, financial performance, and any news related to AMMB to make informed decisions and adjust the position as needed.\n*   **Diversification:** Ensure the portfolio is well-diversified to mitigate the impact of any single investment, including AMMB.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "4677.KL",
+    "company_name": "YTL Corporation Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\nThe consensus BUY recommendation for YTL Corporation Berhad (4677.KL) is driven by a combination of strong fundamentals, positive market sentiment, and attractive valuation metrics. The Fundamental agent highlights improving revenue and profitability, particularly in the utilities and construction segments. The Sentiment agent confirms positive market perception fueled by infrastructure projects and data center developments. The Valuation agent's analysis provides quantitative support, indicating attractive risk-adjusted returns. All agents agree that YTL presents a compelling investment opportunity.\n\n**Key Investment Points:**\n\n1.  **Strong Sector Growth:** YTL benefits from exposure to high-growth sectors like utilities, construction, and data centers, positioning it to capitalize on Malaysia's infrastructure development and digital transformation.\n2.  **Improving Financial Performance:** Revenue and profitability are on an upward trend, indicating effective management and strategic positioning within its core business segments.\n3.  **Positive Market Sentiment:** News flow and market perception are favorable, suggesting potential for further stock price appreciation.\n4.  **Attractive Risk-Adjusted Returns:** Valuation metrics indicate that YTL offers a compelling balance between risk and potential reward, aligning with an aggressive investor's profile.\n5.  **Data Center Partnerships:** Recent partnerships in the data center space provide a significant catalyst for future growth and revenue diversification.\n\n**Key Risks:**\n\n1.  **Economic Sensitivity:** YTL's construction and utilities businesses are sensitive to economic cycles and government spending policies. A slowdown in the Malaysian economy or changes in government priorities could negatively impact its performance.\n2.  **Regulatory Risks:** The utilities sector is subject to regulatory oversight, and changes in regulations could affect YTL's profitability.\n3.  **Execution Risk:** Successful execution of large-scale infrastructure projects and data center developments is crucial for YTL's growth. Delays or cost overruns could negatively impact investor sentiment and financial performance.\n\n**Risk-Adjusted Advice:**\n\nGiven the aggressive investor profile, a higher allocation to YTL within the portfolio is justifiable. However, it's crucial to actively monitor news flow, financial performance, and macroeconomic indicators. Consider using a dollar-cost averaging strategy to build the position over time, mitigating the risk of adverse price movements. Set clear price targets and stop-loss orders to manage potential downside risk. Given the inherent volatility associated with growth stocks, be prepared for short-term fluctuations and focus on the long-term growth potential of YTL.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "4863.KL",
+    "company_name": "Telekom Malaysia Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.75,
+    "consensus": 0.7209302325581395,
+    "summary": "**Synthesis Summary**:\nThe consensus leans towards a BUY recommendation for TELEKOM MALAYSIA BERHAD (4863.KL), driven by positive market sentiment and attractive risk-return metrics. The Valuation agent highlights the stock's annualized return and Sharpe ratio, suggesting potential for gains. The Sentiment agent reinforces this with a forward-looking view, anticipating improvements in financial performance. However, the Fundamental agent expresses concerns regarding cash flow and debt levels, advocating for a more cautious approach. This analysis synthesizes these viewpoints, acknowledging both the potential upside and the inherent risks.\n\n**Key Investment Points**:\n1. **Positive Market Sentiment**: Market sentiment anticipates future improvements, potentially driving the stock price upward.\n2. **Attractive Risk-Return Profile**: Historical data suggests a favorable risk-return profile, appealing to aggressive investors.\n3. **Growth Potential**: Telekom Malaysia may have growth potential due to its market position and potential for innovation.\n4. **Valuation Metrics**: Valuation analysis supports the view that TELEKOM MALAYSIA BERHAD (4863.KL) presents an attractive opportunity.\n\n**Key Risks**:\n1. **Cash Flow Concerns**: Potential cash flow issues could hinder the company's ability to invest in growth and innovation.\n2. **Debt Levels**: High debt levels may increase financial risk and limit flexibility.\n3. **Volatility**: The stock exhibits significant volatility (20.26% annualized), which could lead to substantial losses.\n\n**Risk-Adjusted Advice**:\nFor an aggressive investor, a BUY recommendation is warranted, but with careful risk management. Given the volatility and fundamental concerns, consider the following:\n\n*   **Position Sizing**: Allocate a smaller portion of the portfolio to this investment to mitigate potential losses.\n*   **Entry Timing**: Consider using technical indicators or market dips to find an opportune entry point.\n*   **Stop-Loss Orders**: Implement stop-loss orders to limit downside risk.\n*   **Active Monitoring**: Closely monitor the company's financial performance, particularly cash flow and debt levels, and be prepared to adjust the position if necessary.\n*   **Diversification**: Ensure the portfolio is well-diversified to reduce the impact of any single investment.",
+    "agent_votes": {
+      "fundamental": "HOLD",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "1066.KL",
+    "company_name": "RHB Bank Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.9,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary**:\nAll three agents (Fundamental, Sentiment, and Valuation) converge on a BUY recommendation for RHB Bank (1066.KL), making it a strong consensus. The Valuation agent highlights attractive risk-adjusted returns with an annualized return of 23.65% and a Sharpe ratio of 1.19. The Fundamental agent reinforces this with a deep dive into the company's financial health, while the Sentiment agent points to positive market perception acting as a potential catalyst for further gains. The combined analysis suggests RHB Bank presents a compelling opportunity for aggressive investors.\n\n**Key Investment Points**:\n1. **High Growth Potential**: The annualized return of 23.65% signals substantial growth prospects.\n2. **Strong Risk-Adjusted Returns**: A Sharpe ratio of 1.19 indicates favorable returns relative to the risk taken.\n3. **Positive Market Sentiment**: Upward market sentiment can drive further price appreciation.\n4. **Solid Fundamentals**: Underlying financial health supports the valuation and sentiment.\n\n**Key Risks**:\n1. **Market Volatility**: While the maximum drawdown is manageable, market fluctuations can still impact returns.\n2. **Unforeseen Economic Events**: External economic shocks could negatively affect the banking sector and RHB Bank's performance.\n3. **Regulatory Changes**: Changes in banking regulations could impact profitability.\n\n**Risk-Adjusted Advice**:\nFor an aggressive investor, a BUY recommendation is appropriate. Given the high growth potential and positive sentiment, consider allocating a significant portion of the portfolio to RHB Bank. However, due to inherent market risks, implement a stop-loss order to limit potential losses. Regularly monitor financial news and market sentiment to stay informed and adjust the position accordingly. Consider using options strategies to leverage potential gains while managing downside risk.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5296.KL",
+    "company_name": "Mr D.I.Y. Group (M) Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "consensus": 0.7073170731707318,
+    "summary": "**Synthesis Summary:**\n\nThe consensus recommendation is HOLD, driven by concerns from the Sentiment and Valuation agents, despite the Fundamental agent's BUY recommendation. The Fundamental agent sees long-term growth potential in MR D.I.Y.'s expanding store network and potential operational efficiencies. However, the Sentiment agent notes mixed market sentiment, indicating that the growth story isn't fully priced in. The Valuation agent highlights risks related to cost pressures and potential margin squeeze, leading to an unattractive risk-adjusted return profile given the stock's volatility.\n\n**Key Investment Points:**\n\n1.  **Growth Potential:** MR D.I.Y. has demonstrated a strong track record of expanding its store network, which could drive future revenue growth.\n2.  **Operational Efficiency:** There is potential for improved operational efficiency that could boost profitability.\n3.  **Mixed Sentiment:** Market sentiment is mixed, suggesting that the stock's growth potential may not be fully reflected in its current price.\n4.  **Valuation Concerns:** Cost pressures and potential margin squeeze pose risks to the company's valuation.\n\n**Key Risks:**\n\n1.  **Cost Pressures:** Rising costs could squeeze margins and negatively impact profitability.\n2.  **Market Sentiment:** Mixed market sentiment could limit the stock's upside potential.\n3.  **Volatility:** The stock has exhibited high volatility, which could lead to significant short-term losses.\n\n**Risk-Adjusted Advice:**\n\nFor an aggressive investor, a HOLD recommendation suggests caution despite the company's growth prospects. Given the mixed sentiment and valuation concerns, it's prudent to wait for a clearer positive catalyst or a more favorable risk-reward profile before initiating or increasing a position. If already holding the stock, consider maintaining the current position size. Monitor the company's financial performance closely, paying particular attention to margin trends and cost management. Look for improvements in market sentiment and positive signals regarding the company's ability to navigate cost pressures. A potential entry point could be considered if the stock price declines due to short-term market volatility, offering a more attractive valuation. However, be prepared for continued volatility and potential downside risk.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "HOLD",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5285.KL",
+    "company_name": "SD Guthrie Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.85,
+    "consensus": 1.0,
+    "summary": "**Synthesis Summary:**\nThe consensus from the Fundamental, Sentiment, and Valuation agents is a BUY recommendation for SD GUTHRIE BERHAD (5285.KL), especially suitable for an aggressive investor. The Valuation agent highlights an attractive annualized return and Sharpe ratio. The Fundamental agent provides a deeper dive into the company's underlying drivers, while the Sentiment agent focuses on market perception and potential short-term price movements. All agents acknowledge the potential impact of commodity price volatility.\n\n**Key Investment Points:**\n1. **High Growth Potential:** The company offers significant growth prospects, appealing to aggressive investors seeking maximum returns.\n2. **Positive Market Sentiment:** Market perception and sentiment are favorable, potentially driving short-term price appreciation.\n3. **Attractive Risk-Adjusted Returns:** The annualized return and Sharpe ratio suggest a reasonable balance between risk and reward.\n4. **Fundamental Strength:** Underlying business drivers support the company's growth trajectory.\n\n**Key Risks:**\n1. **Commodity Price Volatility:** Fluctuations in commodity prices can significantly impact the company's profitability.\n2. **Market Overvaluation:** The market may have already priced in some of the company's growth potential, limiting further upside.\n\n**Risk-Adjusted Advice:**\nFor an aggressive investor, a BUY recommendation is appropriate. However, given the inherent risks, consider the following:\n*   **Position Sizing:** Allocate a portion of the portfolio that aligns with a high-risk tolerance.\n*   **Entry Timing:** Monitor commodity prices and market sentiment for optimal entry points.\n*   **Stop-Loss Orders:** Implement stop-loss orders to mitigate potential losses from commodity price volatility or negative market sentiment shifts.\n*   **Active Monitoring:** Continuously monitor financial performance, market conditions, and news related to the company and the commodity market.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "BUY",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "1961.KL",
+    "company_name": "IOI Corporation Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.75,
+    "consensus": 0.6982758620689655,
+    "summary": "1. **Synthesis Summary**:\nThe consensus leans towards a BUY recommendation for IOI Corporation (1961.KL), driven by strong fundamentals and valuation despite some negative sentiment. The Fundamental agent highlights operational efficiency, revenue growth, and sustainability initiatives. The Valuation agent sees manageable risks and potential upside, even with market volatility. The Sentiment agent, while cautious, acknowledges the company's strengths but points to market caution and potential volatility. Given the aggressive investor profile, the potential upside outweighs the risks, justifying a BUY recommendation.\n\n2. **Key Investment Points**:\n    *   **Strong Fundamentals**: IOI Corporation demonstrates solid operational efficiency and revenue growth, indicating a healthy core business.\n    *   **Attractive Valuation**: The valuation analysis suggests the stock is undervalued, offering potential for capital appreciation.\n    *   **Sustainability Focus**: The company's commitment to sustainability enhances its long-term investment appeal.\n    *   **Manageable Risks**: While risks exist, they appear manageable, especially considering the potential upside for an aggressive investor.\n    *   **Potential for Growth**: Strategic initiatives and market expansion opportunities provide further growth potential.\n\n3.  **Key Risks**:\n    *   **Commodity Price Volatility**: Fluctuations in commodity prices could impact profitability.\n    *   **Market Sentiment**: Negative market sentiment could lead to short-term price volatility.\n    *   **FBM KLCI Removal**: Potential removal from the FBM KLCI could negatively impact investor sentiment and trading volumes.\n\n4.  **Risk-Adjusted Advice**:\n    *   **Position Sizing**: Given the aggressive investor profile, a larger position size can be considered, but diversification across multiple stocks is still crucial to manage overall portfolio risk.\n    *   **Entry Timing**: Consider dollar-cost averaging to mitigate the impact of short-term market volatility.\n    *   **Monitoring**: Closely monitor commodity prices, market sentiment, and any news related to FBM KLCI composition.\n    *   **Stop-Loss**: Implement a stop-loss order to protect against significant downside risk.\n    *   **Long-Term View**: Maintain a long-term investment horizon to capitalize on the company's growth potential and ride out short-term market fluctuations.",
+    "agent_votes": {
+      "fundamental": "BUY",
+      "sentiment": "HOLD",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "5326.KL",
+    "company_name": "99 Speed Mart Retail Holdings Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "BUY",
+    "confidence": 0.6,
+    "consensus": 0.3488372093023256,
+    "summary": "1. **Synthesis Summary**:\nThe overall recommendation, despite disagreements, leans towards a BUY for 99 Speed Mart (5326.KL). The Valuation agent sees long-term growth potential based on historical risk and return metrics. The Sentiment agent acknowledges positive market sentiment, which is crucial for aggressive investors. The Fundamental agent raises concerns about the lack of available financial data, highlighting the need for caution. The final recommendation balances the valuation upside and positive sentiment with the fundamental data risks.\n\n2. **Key Investment Points**:\n    *   **High Growth Potential**: Historical data suggests potential for significant returns, appealing to aggressive investors.\n    *   **Positive Market Sentiment**: Strong market sentiment can drive short-term gains.\n    *   **Limited Financial Transparency**: Lack of available financial data requires careful monitoring and risk management.\n    *   **Aggressive Investor Profile**: Aligns with the high-risk, high-reward nature of the investment.\n\n3.  **Key Risks**:\n    *   **Data Scarcity**: Limited financial data makes fundamental analysis challenging and increases uncertainty.\n    *   **Sentiment-Driven Volatility**: Reliance on market sentiment can lead to unpredictable price swings.\n    *   **Lack of Intrinsic Value Assessment**: Difficulty in assessing the company's true worth due to data limitations.\n\n4. **Risk-Adjusted Advice**:\nFor an aggressive investor, a BUY recommendation is warranted, but with a strong emphasis on risk management. Given the limited financial data, allocate only a small portion of the portfolio to 99 Speed Mart. Closely monitor market sentiment and news for any signs of negative shifts. Consider using technical analysis to identify potential entry and exit points. Be prepared to exit the position quickly if the market sentiment turns negative or if fundamental concerns intensify. A stop-loss order is highly recommended to limit potential losses.",
+    "agent_votes": {
+      "fundamental": "SELL",
+      "sentiment": "HOLD",
+      "valuation": "BUY"
+    },
+    "retries": 0
+  },
+  {
+    "success": true,
+    "ticker": "4707.KL",
+    "company_name": "Nestl\u00e9 (Malaysia) Berhad",
+    "risk_tolerance": "aggressive",
+    "recommendation": "HOLD",
+    "confidence": 0.7,
+    "consensus": 0.6590909090909091,
+    "summary": "1. **Synthesis Summary**:\nThe consensus recommendation is HOLD, reflecting a balance between Nestle Malaysia's strong fundamentals, negative market sentiment, and valuation considerations. The Fundamental agent highlights the company's intrinsic strengths, while the Sentiment agent points to persistent negative news and investor unease. The Valuation agent sees potential buying opportunities for aggressive investors despite the negative sentiment, acknowledging both high return potential and risks.\n\n2. **Key Investment Points**:\n    *   **Strong Fundamentals**: Nestle Malaysia possesses solid underlying business fundamentals, suggesting long-term value.\n    *   **Potential Buying Opportunity**: Negative sentiment may create opportunities to acquire shares at a discount.\n    *   **Growth Potential**: As an established player in the consumer staples sector, Nestle Malaysia has demonstrated consistent growth and market leadership.\n    *   **Dividend Yield**: Nestle Malaysia has historically provided stable dividend payouts, offering a source of income.\n\n3.  **Key Risks**:\n    *   **Negative Sentiment**: Prevailing negative sentiment could lead to short-term price declines.\n    *   **Market Volatility**: External market factors and economic conditions can impact Nestle Malaysia's performance.\n\n4.  **Risk-Adjusted Advice**:\n    *   **Position Sizing**: Given the aggressive investor profile, consider a moderate allocation to Nestle Malaysia, acknowledging the risks associated with negative sentiment.\n    *   **Entry Timing**: Employ a dollar-cost averaging strategy to gradually build a position, capitalizing on potential price dips driven by negative sentiment.\n    *   **Active Monitoring**: Closely monitor sentiment indicators and news flow to assess the persistence of negative sentiment and adjust the investment strategy accordingly.\n    *   **Long-Term Perspective**: Maintain a long-term investment horizon, focusing on Nestle Malaysia's fundamental strengths and growth potential rather than short-term price fluctuations.",
+    "agent_votes": {
+      "fundamental": "HOLD",
+      "sentiment": "SELL",
+      "valuation": "HOLD"
+    },
+    "retries": 0
+  }
+]
