@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from pymongo import MongoClient
 from urllib.parse import quote_plus
 from langchain.tools import tool
+from .config import get_reference_date
 
 
 def normalize_ticker(ticker: str) -> str:
@@ -57,8 +58,8 @@ def get_recent_articles(ticker: str, days: int = 7) -> dict:
 
         col = db["articles"]
 
-        # Fixed current date (as per original implementation)
-        current_date = datetime(2025, 12, 2)
+        # Use configurable reference date
+        current_date = get_reference_date()
         lookback_date = current_date - timedelta(days=days)
 
         # Query for articles within the time window
@@ -135,8 +136,8 @@ def get_article_sentiment(ticker: str, days: int = 7) -> dict:
 
         col = db["articles"]
 
-        # Fixed current date (as per original implementation)
-        current_date = datetime(2025, 12, 2)
+        # Use configurable reference date
+        current_date = get_reference_date()
         lookback_date = current_date - timedelta(days=days)
 
         # Query for articles with sentiment data

@@ -5,7 +5,13 @@ This package provides specialized tools for:
 - Fundamental analysis (fundamental_tools.py)
 - Sentiment analysis (sentiment_tools.py)
 - Valuation analysis (valuation_tools.py)
+- Configuration (config.py)
 """
+from .config import (
+    set_reference_date,
+    get_reference_date,
+    get_default_date
+)
 from .fundamental_tools import (
     finance_report_pull,
     rag_analysis,
@@ -28,6 +34,10 @@ from .valuation_tools import (
 )
 
 __all__ = [
+    # Config
+    'set_reference_date',
+    'get_reference_date',
+    'get_default_date',
     # Fundamental tools
     'finance_report_pull',
     'rag_analysis',

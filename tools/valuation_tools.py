@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 from langchain.tools import tool
 from urllib.parse import quote_plus
 from pymongo import MongoClient
+from .config import get_reference_date
 
 
 @tool
@@ -30,8 +31,8 @@ def get_stock_data(ticker_symbol: str, period: str = "1y") -> str:
         date, close, volume (optimized for token efficiency)
     """
     try:
-        # Fixed current date (as per original implementation)
-        current_date = datetime(2025, 12, 2)
+        # Use configurable reference date
+        current_date = get_reference_date()
 
         # Connect to MongoDB
         username = quote_plus("Wrynaft")
@@ -112,8 +113,8 @@ def analyze_stock_metrics(ticker_symbol: str, period: str = "1y", risk_free_rate
         - volume_metrics: Average volume and volatility
     """
     try:
-        # Fixed current date
-        current_date = datetime(2025, 12, 2)
+        # Use configurable reference date
+        current_date = get_reference_date()
 
         # Connect to MongoDB
         username = quote_plus("Wrynaft")
