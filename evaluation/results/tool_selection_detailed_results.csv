@@ -1,0 +1,55 @@
+agent,query,description,expected_tools,actual_tools,match,success
+fundamental,Analyze the financial health of 1155.KL,Direct ticker - financial health analysis,"finance_report_pull, rag_analysis","finance_report_pull, rag_analysis",EXACT,True
+fundamental,What are the fundamentals of 1023.KL?,Direct ticker - general fundamentals,"finance_report_pull, rag_analysis","finance_report_pull, rag_analysis",EXACT,True
+fundamental,Review the financial statements of 5819.KL,Direct ticker - financial statements,"finance_report_pull, rag_analysis","finance_report_pull, rag_analysis",EXACT,True
+fundamental,Analyze the financial health of Maybank,Company name - requires ticker resolution,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,What is the profitability of CIMB Group?,Company name - profitability focus,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,Evaluate Public Bank's balance sheet,Company name - balance sheet focus,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,How is Tenaga Nasional's cash flow?,Company name - cash flow focus,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,Assess the debt levels of Petronas Gas,Company name - debt analysis,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,What is the ROE of Hong Leong Bank?,Specific metric - ROE,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,Calculate the current ratio for IHH Healthcare,Specific metric - current ratio,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,What are the profit margins of Press Metal?,Specific metric - profit margins,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,Should I invest in Gamuda based on financials?,Investment recommendation based on fundamentals,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,Is RHB Bank financially stable?,Financial stability assessment,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,Evaluate the growth potential of Sunway based on fundamentals,Growth potential from fundamentals,"finance_report_pull, rag_analysis, resolve_ticker_symbol",resolve_ticker_symbol,PARTIAL,True
+fundamental,Analyze YTL Corporation's revenue trends,Revenue trend analysis,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,What are the key financial risks for Axiata?,Financial risk identification,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,Review MISC Berhad's quarterly performance,Quarterly performance review,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+fundamental,How has Nestle Malaysia's earnings changed?,Earnings change analysis,"finance_report_pull, rag_analysis, resolve_ticker_symbol","finance_report_pull, rag_analysis, resolve_ticker_symbol",EXACT,True
+sentiment,What is the market sentiment for 1155.KL?,Direct ticker - general sentiment,"get_article_sentiment, get_recent_articles",,ERROR,False
+sentiment,Analyze the news sentiment of 1023.KL,Direct ticker - news sentiment,"get_article_sentiment, get_recent_articles","get_article_sentiment, get_recent_articles",EXACT,True
+sentiment,How is the media coverage for 5347.KL?,Direct ticker - media coverage,"get_article_sentiment, get_recent_articles","get_article_sentiment, get_recent_articles",EXACT,True
+sentiment,What is the sentiment around Maybank?,Company name - requires ticker resolution,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,Analyze news sentiment for CIMB,Company name - news sentiment,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,How is the market feeling about Public Bank?,Company name - market feeling,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,What are people saying about Tenaga Nasional?,Company name - public opinion,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,Is there positive news about Petronas Chemicals?,Company name - positive news check,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,Get recent news articles about Hong Leong Bank,Recent news request,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,What news has been published about IHH Healthcare recently?,Recent publications query,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,Show me the latest headlines for Press Metal,Latest headlines request,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_recent_articles, resolve_ticker_symbol",PARTIAL,True
+sentiment,Is the sentiment for Gamuda improving or declining?,Sentiment trend analysis,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,Has there been negative news about RHB Bank?,Negative news check,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,What is the overall mood around Maxis?,Overall mood assessment,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,"Based on news, should I be worried about Axiata?",Concern assessment from news,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,Is media sentiment bullish or bearish on YTL Power?,Bullish/bearish sentiment,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,Analyze investor sentiment for Sime Darby,Investor sentiment analysis,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+sentiment,What do news articles say about SD Guthrie's outlook?,Outlook from news,"get_article_sentiment, get_recent_articles, resolve_ticker_symbol","get_article_sentiment, get_recent_articles, resolve_ticker_symbol",EXACT,True
+valuation,Analyze the risk metrics for 1155.KL,Direct ticker - risk metrics,analyze_stock_metrics,analyze_stock_metrics,EXACT,True
+valuation,What is the volatility of 1023.KL?,Direct ticker - volatility,analyze_stock_metrics,analyze_stock_metrics,EXACT,True
+valuation,Calculate the Sharpe ratio for 5819.KL,Direct ticker - Sharpe ratio,analyze_stock_metrics,analyze_stock_metrics,EXACT,True
+valuation,What is the risk profile of Maybank?,Company name - risk profile,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,Analyze CIMB's stock volatility,Company name - volatility analysis,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,What is the Value at Risk for Public Bank?,Company name - VaR calculation,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,Calculate the maximum drawdown for Tenaga Nasional,Company name - max drawdown,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,How risky is investing in Petronas Gas?,Company name - risk assessment,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,Get the historical stock prices for Hong Leong Bank,Historical price data request,"analyze_stock_metrics, resolve_ticker_symbol","get_stock_data, resolve_ticker_symbol",PARTIAL,True
+valuation,Show me IHH Healthcare's price performance over the past year,Price performance query,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,What are the trading volumes for Press Metal?,Volume data request,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,Evaluate the risk-adjusted returns of Gamuda,Risk-adjusted returns,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,Is RHB Bank a low-risk investment?,Low-risk assessment,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,What is the annualized return for Sunway?,Annualized return calculation,"analyze_stock_metrics, resolve_ticker_symbol",resolve_ticker_symbol,PARTIAL,True
+valuation,Is YTL Corporation suitable for a conservative investor?,Conservative investor suitability,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,Analyze Axiata's risk for an aggressive portfolio,Aggressive portfolio risk,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,What is the downside risk of MISC Berhad?,Downside risk analysis,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
+valuation,Calculate risk metrics for IOI Corporation,General risk metrics,"analyze_stock_metrics, resolve_ticker_symbol","analyze_stock_metrics, resolve_ticker_symbol",EXACT,True
