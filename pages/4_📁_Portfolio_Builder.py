@@ -7,6 +7,7 @@ This page allows users to:
 - Calculate portfolio-level metrics
 - Run multi-agent analysis on each stock
 - Get portfolio allocation recommendations
+- Save/Load portfolios from CSV files
 """
 import streamlit as st
 import pandas as pd
@@ -14,9 +15,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 import sys
 from pathlib import Path
+import io
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
@@ -120,6 +122,156 @@ def clear_portfolio():
 def get_portfolio_tickers() -> List[str]:
     """Get list of ticker symbols in portfolio."""
     return [s["ticker"] for s in st.session_state.portfolio_stocks]
+
+
+def export_portfolio_to_csv() -> Tuple[str, str]:
+    """
+    Export current portfolio to CSV format.
+
+    Returns:
+        Tuple of (csv_string, filename)
+    """
+    if not st.session_state.portfolio_stocks:
+        return "", ""
+
+    # Build export data
+    export_data = []
+    for stock in st.session_state.portfolio_stocks:
+        ticker = stock["ticker"]
+        name = stock["name"]
+
+        # Get recommendation data if available
+        rec_data = st.session_state.portfolio_recommendations.get(ticker, {})
+
+        row = {
+            "ticker": ticker,
+            "company_name": name,
+            "recommendation": rec_data.get("recommendation", ""),
+            "confidence": rec_data.get("confidence", ""),
+            "route_type": rec_data.get("route_type", ""),
+        }
+        export_data.append(row)
+
+    # Create DataFrame
+    df = pd.DataFrame(export_data)
+
+    # Generate filename with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"portfolio_{timestamp}.csv"
+
+    # Convert to CSV string
+    csv_string = df.to_csv(index=False)
+
+    return csv_string, filename
+
+
+def validate_portfolio_csv(df: pd.DataFrame) -> Tuple[bool, str, List[Dict]]:
+    """
+    Validate uploaded portfolio CSV file.
+
+    Args:
+        df: DataFrame from uploaded CSV
+
+    Returns:
+        Tuple of (is_valid, error_message, valid_stocks)
+    """
+    # Check required columns
+    required_columns = ["ticker", "company_name"]
+    missing_columns = [col for col in required_columns if col not in df.columns]
+
+    if missing_columns:
+        return False, f"Missing required columns: {', '.join(missing_columns)}", []
+
+    # Validate data
+    valid_stocks = []
+    errors = []
+
+    for idx, row in df.iterrows():
+        ticker = row.get("ticker")
+        company_name = row.get("company_name")
+
+        # Check for empty values
+        if pd.isna(ticker) or pd.isna(company_name) or str(ticker).strip() == "" or str(company_name).strip() == "":
+            errors.append(f"Row {idx + 1}: Missing ticker or company name")
+            continue
+
+        # Basic format validation for ticker
+        ticker_str = str(ticker).strip()
+        if len(ticker_str) < 2 or len(ticker_str) > 20:
+            errors.append(f"Row {idx + 1}: Invalid ticker format '{ticker_str}'")
+            continue
+
+        valid_stocks.append({
+            "ticker": ticker_str,
+            "name": str(company_name).strip()
+        })
+
+    if not valid_stocks:
+        return False, "No valid stocks found in CSV. " + "; ".join(errors[:3]), []
+
+    if len(valid_stocks) > 10:
+        return False, f"Portfolio contains {len(valid_stocks)} stocks. Maximum 10 allowed.", []
+
+    # Return success with any warnings
+    warning = ""
+    if errors:
+        warning = f"Loaded {len(valid_stocks)} valid stocks. Skipped {len(errors)} invalid rows."
+
+    return True, warning, valid_stocks
+
+
+def import_portfolio_from_csv(uploaded_file) -> Tuple[bool, str]:
+    """
+    Import portfolio from uploaded CSV file.
+
+    Args:
+        uploaded_file: Streamlit UploadedFile object
+
+    Returns:
+        Tuple of (success, message)
+    """
+    try:
+        # Read CSV
+        df = pd.read_csv(uploaded_file)
+
+        # Validate
+        is_valid, message, valid_stocks = validate_portfolio_csv(df)
+
+        if not is_valid:
+            return False, message
+
+        # Check for duplicates with existing portfolio
+        existing_tickers = {s["ticker"] for s in st.session_state.portfolio_stocks}
+        new_stocks = [s for s in valid_stocks if s["ticker"] not in existing_tickers]
+        duplicate_count = len(valid_stocks) - len(new_stocks)
+
+        if not new_stocks:
+            return False, f"All {len(valid_stocks)} stocks are already in your portfolio."
+
+        # Check if adding would exceed limit
+        total_after_import = len(st.session_state.portfolio_stocks) + len(new_stocks)
+        if total_after_import > 10:
+            excess = total_after_import - 10
+            return False, f"Cannot import. Would exceed maximum of 10 stocks by {excess}."
+
+        # Add new stocks
+        st.session_state.portfolio_stocks.extend(new_stocks)
+
+        # Build success message
+        success_msg = f"Successfully imported {len(new_stocks)} stocks."
+        if duplicate_count > 0:
+            success_msg += f" Skipped {duplicate_count} duplicates."
+        if message:  # Include warnings
+            success_msg += f" {message}"
+
+        return True, success_msg
+
+    except pd.errors.EmptyDataError:
+        return False, "CSV file is empty."
+    except pd.errors.ParserError as e:
+        return False, f"CSV parsing error: {str(e)}"
+    except Exception as e:
+        return False, f"Failed to import portfolio: {str(e)}"
 
 
 # =============================================================================
@@ -327,6 +479,74 @@ def main():
                 else:
                     st.warning(msg)
                 st.rerun()
+
+        st.divider()
+
+        # Portfolio Management
+        st.subheader("💾 Portfolio Management")
+
+        # Export portfolio
+        if st.session_state.portfolio_stocks:
+            csv_data, filename = export_portfolio_to_csv()
+            if csv_data:
+                st.download_button(
+                    label="📥 Export Portfolio",
+                    data=csv_data,
+                    file_name=filename,
+                    mime="text/csv",
+                    help="Download your portfolio as a CSV file",
+                    use_container_width=True
+                )
+        else:
+            st.button(
+                "📥 Export Portfolio",
+                disabled=True,
+                help="Add stocks to your portfolio before exporting",
+                use_container_width=True
+            )
+
+        # Import portfolio
+        uploaded_file = st.file_uploader(
+            "📤 Import Portfolio",
+            type=["csv"],
+            help="Upload a CSV file with columns: ticker, company_name",
+            label_visibility="collapsed"
+        )
+
+        if uploaded_file is not None:
+            if st.button("📤 Import from CSV", type="primary", width='stretch'):
+                success, message = import_portfolio_from_csv(uploaded_file)
+                if success:
+                    st.success(message)
+                    st.rerun()
+                else:
+                    st.error(message)
+
+        # CSV format info
+        with st.expander("ℹ️ CSV Format Help"):
+            st.markdown("""
+            **Required columns:**
+            - `ticker`: Stock ticker symbol (e.g., 1155.KL)
+            - `company_name`: Full company name (e.g., Maybank Bhd)
+
+            **Optional columns:**
+            - `recommendation`: BUY/SELL/HOLD (from analysis)
+            - `confidence`: Confidence score (0-1)
+            - `route_type`: Analysis route type
+
+            **Example CSV:**
+            ```
+            ticker,company_name
+            1155.KL,Maybank Bhd
+            1023.KL,CIMB Group Holdings Bhd
+            1295.KL,Public Bank Bhd
+            ```
+
+            **Constraints:**
+            - Maximum 10 stocks per portfolio
+            - Duplicate tickers will be skipped
+            - Invalid rows will be skipped with warnings
+            """)
 
         st.divider()
 
