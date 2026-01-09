@@ -11,6 +11,7 @@ This module provides the central orchestrator that:
 from typing import Dict, Optional, Callable, Generator, Any, Tuple
 from datetime import datetime
 import re
+import time
 
 from .base import get_llm, BaseAgentMixin
 from .fundamental_agent import FundamentalAgent, create_fundamental_agent
@@ -25,6 +26,7 @@ from .debate_state import (
     FinalRecommendation
 )
 from .debate_manager import DebateManager
+from .debate_metrics import DebateMetrics
 from utils.ticker_resolver import resolve_ticker_symbol
 
 
@@ -45,14 +47,15 @@ class DebateOrchestrator:
         consensus_threshold: float = 0.75,
         agent_order: list = None,
         on_message_callback: Callable[[DebateMessage], None] = None,
-        on_round_complete_callback: Callable[[RoundResult], None] = None
+        on_round_complete_callback: Callable[[RoundResult], None] = None,
+        track_metrics: bool = True
     ):
         """
         Initialize the debate orchestrator.
 
         Args:
             llm: Language model instance (shared across all agents)
-            model_name: Name of the Gemini model to use (e.g., "gemini-2.0-flash", "gemini-2.5-pro")
+            model_name: Name of the model to use (supports Gemini, Groq, etc.)
                        If provided, overrides the llm parameter
             max_rounds: Maximum number of debate rounds
             min_turns_per_agent: Minimum turns each agent must take
@@ -60,14 +63,17 @@ class DebateOrchestrator:
             agent_order: Custom order for round-robin turns
             on_message_callback: Called when an agent posts a message
             on_round_complete_callback: Called when a round completes
+            track_metrics: Whether to track efficiency metrics (default: True)
         """
-        # If model_name is specified, create LLM with that model
+        # Initialize LLM
         if model_name:
             self.llm = get_llm(model_name=model_name)
             self.model_name = model_name
         else:
             self.llm = llm or get_llm()
             self.model_name = "gemini-2.0-flash"  # Default
+
+        self.track_metrics = track_metrics
 
         self.max_rounds = max_rounds
         self.min_turns_per_agent = min_turns_per_agent
@@ -95,6 +101,9 @@ class DebateOrchestrator:
         # Current debate state
         self.current_debate: Optional[DebateState] = None
 
+        # Current metrics tracking
+        self.current_metrics: Optional[DebateMetrics] = None
+
     def classify_query(self, query: str) -> Dict[str, Any]:
         """
         Use LLM to classify whether a query requires multi-agent debate or single agent,
@@ -105,6 +114,7 @@ class DebateOrchestrator:
 
         Returns:
             Dictionary with:
+            - is_investment_related: bool (whether query is about stocks/investments)
             - needs_debate: bool
             - agent_type: str or None (if single agent needed)
             - company: str or None (extracted company/ticker)
@@ -113,10 +123,25 @@ class DebateOrchestrator:
         """
         classification_prompt = f"""You are a query router for a stock analysis system. Analyze the user query and determine:
 
-1. Whether it requires a MULTI-AGENT DEBATE (multiple specialist perspectives) or a SINGLE AGENT response
-2. If single agent, which specialist should handle it
-3. What company/stock is being asked about (if any)
-4. The user's implied RISK TOLERANCE based on their language and intent
+1. Whether the query is INVESTMENT-RELATED (about stocks, companies, financial analysis, or investment decisions)
+2. Whether it requires a MULTI-AGENT DEBATE (multiple specialist perspectives) or a SINGLE AGENT response
+3. If single agent, which specialist should handle it
+4. What company/stock is being asked about (if any)
+5. The user's implied RISK TOLERANCE based on their language and intent
+
+INVESTMENT-RELATED queries include:
+- Questions about specific stocks, companies, or financial instruments
+- Requests for investment advice, recommendations, or analysis
+- Questions about financial metrics, valuations, or market conditions
+- Queries about portfolio management or investment strategies
+- Questions about company fundamentals, sentiment, or valuation
+
+NOT INVESTMENT-RELATED queries include:
+- General knowledge questions (history, science, weather, etc.)
+- Personal advice unrelated to finance (relationships, health, etc.)
+- Technical questions about non-financial topics
+- Casual conversation or greetings
+- Questions about unrelated industries without investment context
 
 MULTI-AGENT DEBATE is needed when:
 - Query asks for investment decisions or recommendations (buy/sell/hold advice)
@@ -143,11 +168,12 @@ RISK TOLERANCE inference guidelines:
 USER QUERY: {query}
 
 Respond in this exact format:
+IS_INVESTMENT_RELATED: [true/false]
 NEEDS_DEBATE: [true/false]
 AGENT: [fundamental/sentiment/valuation/none]
 COMPANY: [company name or ticker, or "none" if not specified]
 RISK_TOLERANCE: [conservative/moderate/aggressive]
-REASONING: [brief explanation including why you chose this risk tolerance]"""
+REASONING: [brief explanation including why you chose this classification]"""
 
         # Use LLM to classify
         response = self.llm.invoke(classification_prompt)
@@ -168,6 +194,7 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
 
         # Parse the response
         result = {
+            "is_investment_related": True,  # Default to investment-related
             "needs_debate": True,  # Default to debate
             "agent_type": None,
             "company": None,
@@ -178,7 +205,12 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
         lines = response_text.strip().split('\n')
         for line in lines:
             line = line.strip()
-            if line.startswith("NEEDS_DEBATE:"):
+            if line.startswith("IS_INVESTMENT_RELATED:"):
+                value = line.split(":", 1)[1].strip().lower()
+                # Strip brackets if present
+                value = value.strip("[]")
+                result["is_investment_related"] = value == "true"
+            elif line.startswith("NEEDS_DEBATE:"):
                 value = line.split(":", 1)[1].strip().lower()
                 # Strip brackets if present (LLM sometimes returns [true] instead of true)
                 value = value.strip("[]")
@@ -425,6 +457,11 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
         ticker = resolution["ticker"]
         company_name = resolution.get("company_name", company)
 
+        # Update metrics with resolved ticker
+        if self.track_metrics and self.current_metrics:
+            self.current_metrics.ticker = ticker
+            self.current_metrics.company = company_name
+
         # Store risk tolerance for use in prompts
         self._current_risk_tolerance = risk_tolerance
 
@@ -470,8 +507,17 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
             risk_tolerance: User's risk tolerance (conservative/moderate/aggressive)
 
         Returns:
-            FinalRecommendation with analysis results
+            FinalRecommendation with analysis results and metrics
         """
+        # Initialize metrics tracking if enabled
+        if self.track_metrics:
+            # We'll get ticker after resolution, for now use company name
+            self.current_metrics = DebateMetrics(
+                company=company,
+                ticker="",  # Will be updated after resolution
+                model_name=self.model_name
+            )
+
         # Consume the generator to get final result
         debate_gen = self.start_debate(company, risk_tolerance=risk_tolerance)
         try:
@@ -480,7 +526,15 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
                 if self.on_message_callback:
                     self.on_message_callback(message)
         except StopIteration as e:
-            return e.value
+            final_result = e.value
+
+            # Finalize metrics
+            if self.track_metrics and self.current_metrics:
+                self.current_metrics.finalize()
+                # Attach metrics to final recommendation
+                final_result.metrics = self.current_metrics
+
+            return final_result
 
     def _run_initial_round(self) -> Generator[DebateMessage, None, None]:
         """
@@ -494,16 +548,30 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
         ticker = self.current_debate.ticker
         risk_tolerance = self.current_debate.risk_tolerance
 
+        # Track round start
+        if self.track_metrics and self.current_metrics:
+            self.current_metrics.start_round()
+
         for agent_type in self.debate_manager.agent_order:
             # Get initial analysis prompt with risk tolerance
             prompt = self.debate_manager.get_initial_analysis_prompt(
                 company, ticker, agent_type, risk_tolerance
             )
 
-            # Get agent response
+            # Get agent response with timing
             thread_id = f"debate-{ticker}-{agent_type}-r1"
             agent = self.agents[agent_type]
+
+            agent_start = time.time()
+
+            # Always use chat() to avoid double-invoke bug
             response = agent.chat(prompt, thread_id=thread_id)
+
+            agent_duration = time.time() - agent_start
+
+            # Track agent metrics (time-based only)
+            if self.track_metrics and self.current_metrics:
+                self.current_metrics.record_agent_response(agent_type, agent_duration, tokens=0)
 
             # Create message and vote
             message = self.debate_manager.create_message_from_response(
@@ -521,6 +589,10 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
             # Note: Callback is handled in run_debate() to avoid duplicates
             yield message
 
+        # Track round end
+        if self.track_metrics and self.current_metrics:
+            self.current_metrics.end_round()
+
     def _run_response_round(self) -> Generator[DebateMessage, None, None]:
         """
         Run a response round where agents critique each other's analyses.
@@ -531,6 +603,10 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
         round_num = self.current_debate.current_round
         company = self.current_debate.company
         ticker = self.current_debate.ticker
+
+        # Track round start
+        if self.track_metrics and self.current_metrics:
+            self.current_metrics.start_round()
 
         for i, agent_type in enumerate(self.debate_manager.agent_order):
             # Get the previous agent's analysis to respond to
@@ -551,10 +627,20 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
                 state=self.current_debate
             )
 
-            # Get agent response
+            # Get agent response with timing
             thread_id = f"debate-{ticker}-{agent_type}-r{round_num}"
             agent = self.agents[agent_type]
+
+            agent_start = time.time()
+
+            # Always use chat() to avoid double-invoke bug
             response = agent.chat(prompt, thread_id=thread_id)
+
+            agent_duration = time.time() - agent_start
+
+            # Track agent metrics (time-based only)
+            if self.track_metrics and self.current_metrics:
+                self.current_metrics.record_agent_response(agent_type, agent_duration, tokens=0)
 
             # Create message and vote
             message = self.debate_manager.create_message_from_response(
@@ -570,8 +656,18 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
             self.current_debate.add_message(message)
             self.current_debate.update_vote(vote)
 
+            # Check if consensus reached
+            if self.track_metrics and self.current_metrics:
+                consensus = self.current_debate.calculate_consensus()
+                if consensus >= self.consensus_threshold and not self.current_metrics.consensus_reached:
+                    self.current_metrics.mark_consensus()
+
             # Note: Callback is handled in run_debate() to avoid duplicates
             yield message
+
+        # Track round end
+        if self.track_metrics and self.current_metrics:
+            self.current_metrics.end_round()
 
     def _synthesize_recommendation(self) -> FinalRecommendation:
         """
@@ -669,6 +765,76 @@ REASONING: [brief explanation including why you chose this risk tolerance]"""
             return {}
 
         return self.current_debate.to_dict()
+
+    def _extract_tokens_from_response(self, response) -> int:
+        """
+        Extract token count from LLM response.
+
+        Different LLM providers return token usage in different formats.
+        This method attempts to extract it uniformly.
+
+        Args:
+            response: LLM response object (AIMessage from langchain)
+
+        Returns:
+            Total tokens used (input + output), or 0 if not available
+        """
+        try:
+            # For langchain AIMessage with response_metadata (Groq format)
+            if hasattr(response, 'response_metadata'):
+                metadata = response.response_metadata
+                if 'usage' in metadata:
+                    usage = metadata['usage']
+                    if isinstance(usage, dict):
+                        # Groq format: {'prompt_tokens': X, 'completion_tokens': Y, 'total_tokens': Z}
+                        return usage.get('total_tokens', 0)
+                # Some providers store token info differently in metadata
+                if 'token_usage' in metadata:
+                    token_usage = metadata['token_usage']
+                    if isinstance(token_usage, dict):
+                        return token_usage.get('total_tokens', 0)
+
+            # For Gemini responses with usage_metadata
+            if hasattr(response, 'usage_metadata'):
+                usage = response.usage_metadata
+                # Gemini format: usage_metadata.total_token_count
+                if hasattr(usage, 'total_token_count'):
+                    return usage.total_token_count
+                # Alternative attribute names
+                if hasattr(usage, 'total_tokens'):
+                    return usage.total_tokens
+
+            # For direct usage attribute (some providers)
+            if hasattr(response, 'usage'):
+                usage = response.usage
+                if hasattr(usage, 'total_tokens'):
+                    return usage.total_tokens
+                if hasattr(usage, 'total_token_count'):
+                    return usage.total_token_count
+
+            # Last resort: estimate from content length
+            # Rough estimate: 1 token ≈ 4 characters
+            if hasattr(response, 'content'):
+                content = response.content
+                if isinstance(content, list):
+                    # Handle content blocks
+                    total_chars = 0
+                    for block in content:
+                        if isinstance(block, str):
+                            total_chars += len(block)
+                        elif isinstance(block, dict) and 'text' in block:
+                            total_chars += len(block['text'])
+                        elif hasattr(block, 'text'):
+                            total_chars += len(block.text)
+                    return total_chars // 4
+                else:
+                    return len(str(content)) // 4
+
+        except Exception:
+            # Silently fail - metrics will show 0 tokens
+            pass
+
+        return 0
 
 
 def create_debate_orchestrator(

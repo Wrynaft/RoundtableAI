@@ -353,6 +353,39 @@ def run_analysis(query: str, max_rounds: int, consensus_threshold: float):
             classification = orchestrator.classify_query(query)
             timing["classification"] = time.time() - classification_start
 
+            # Check if query is investment-related
+            is_investment_related = classification.get("is_investment_related", True)
+            if not is_investment_related:
+                st.session_state.last_result = {
+                    "response": """I'm sorry, but I can only help with investment-related questions about stocks and companies.
+
+Your query doesn't appear to be about investments or financial analysis.
+
+**I can help with:**
+- Stock recommendations and analysis
+- Company fundamentals and valuations
+- Market sentiment analysis
+- Portfolio decisions
+- Risk assessments
+
+**Example questions:**
+- "Should I invest in Maybank?"
+- "What's the P/E ratio of Public Bank?"
+- "Is CIMB a good dividend stock?"
+
+Please ask an investment-related question, and I'll be happy to help!""",
+                    "route_type": "error",
+                    "agent_used": None,
+                    "recommendation": None,
+                    "risk_tolerance": classification.get("risk_tolerance", "moderate"),
+                    "classification": classification,
+                    "timing": timing
+                }
+                st.session_state.is_debating = False
+                status.update(label="❌ Query not investment-related", state="error", expanded=False)
+                st.rerun()
+                return
+
             company = classification.get("company")
             risk_tolerance = classification.get("risk_tolerance", "moderate")
             needs_debate = classification.get("needs_debate", True)
