@@ -14,6 +14,7 @@ datasets>=2.14.0
 # Data Processing
 pandas>=2.0.0
 numpy>=1.24.0
+rapidfuzz>=3.0.0
 
 # Database
 pymongo>=4.5.0

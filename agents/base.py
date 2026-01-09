@@ -62,7 +62,6 @@ def get_llm(
     model_config = AVAILABLE_MODELS.get(model_name, {})
     actual_model_id = model_config.get("model_id", model_name)
 
-    # Check cache
     cache_key = f"{actual_model_id}_{temperature}"
     if cache_key in _llm_cache and not force_reload:
         return _llm_cache[cache_key]

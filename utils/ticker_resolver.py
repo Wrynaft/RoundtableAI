@@ -59,6 +59,22 @@ COMPANY_ALIASES = {
     "genting malaysia": "GENTING MALAYSIA BERHAD",
     "genm": "GENTING MALAYSIA BERHAD",
 
+    # Construction & Property
+    "sunway": "SUNWAY BERHAD",
+    "gamuda": "GAMUDA BERHAD",
+    "ytl": "YTL CORPORATION BERHAD",
+    "ytl corp": "YTL CORPORATION BERHAD",
+    "ytl corporation": "YTL CORPORATION BERHAD",
+    "ytl power": "YTL POWER INTERNATIONAL BERHAD",
+
+    # Shipping & Healthcare
+    "misc": "MISC BERHAD",
+    "misc berhad": "MISC BERHAD",
+    "ihh": "IHH HEALTHCARE BERHAD",
+    "ihh healthcare": "IHH HEALTHCARE BERHAD",
+    "sd guthrie": "SD GUTHRIE BERHAD",
+    "sime darby guthrie": "SD GUTHRIE BERHAD",
+
     # Others
     "nestle": "NESTLE (MALAYSIA) BERHAD",
     "nestle malaysia": "NESTLE (MALAYSIA) BERHAD",
