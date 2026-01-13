@@ -1,0 +1,4 @@
+Model,Avg Accuracy,Avg Precision,Avg Recall,Avg F1 Score,Avg Exact Match,Total Errors
+gemini-2.0-flash,100.00%,100.00%,100.00%,100.00%,53/18,1
+gemini-2.5-pro,98.15%,100.00%,99.35%,99.67%,51/18,2
+gemini-2.0-flash-lite,81.26%,99.31%,93.97%,96.41%,43/18,1

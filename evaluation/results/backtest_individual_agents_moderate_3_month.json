@@ -1,0 +1,242 @@
+[
+  {
+    "ticker": "1023.KL",
+    "company_name": "CIMB Group Holdings Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "3816.KL",
+    "company_name": "MISC Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "5819.KL",
+    "company_name": "Hong Leong Bank Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "6033.KL",
+    "company_name": "PETRONAS Gas Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "6012.KL",
+    "company_name": "Maxis Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "7084.KL",
+    "company_name": "QL Resources Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "HOLD",
+    "valuation": "SELL",
+    "errors": {}
+  },
+  {
+    "ticker": "5183.KL",
+    "company_name": "PETRONAS Chemicals Group Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "SELL",
+    "valuation": "SELL",
+    "errors": {}
+  },
+  {
+    "ticker": "8869.KL",
+    "company_name": "Press Metal Aluminium Holdings Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "6742.KL",
+    "company_name": "YTL Power International Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "SELL",
+    "errors": {}
+  },
+  {
+    "ticker": "5681.KL",
+    "company_name": "PETRONAS Dagangan Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "SELL",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "2445.KL",
+    "company_name": "Kuala Lumpur Kepong Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "SELL",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "5225.KL",
+    "company_name": "IHH Healthcare Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "4197.KL",
+    "company_name": "Sime Darby Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "SELL",
+    "valuation": "SELL",
+    "errors": {}
+  },
+  {
+    "ticker": "5211.KL",
+    "company_name": "Sunway Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "4065.KL",
+    "company_name": "PPB Group Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "SELL",
+    "errors": {}
+  },
+  {
+    "ticker": "1155.KL",
+    "company_name": "Malayan Banking Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "5398.KL",
+    "company_name": "Gamuda Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "HOLD",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "6947.KL",
+    "company_name": "Celcomdigi Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "1295.KL",
+    "company_name": "Public Bank Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "5347.KL",
+    "company_name": "Tenaga Nasional Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "6888.KL",
+    "company_name": "Axiata Group Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "HOLD",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "1015.KL",
+    "company_name": "AMMB Holdings Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "4677.KL",
+    "company_name": "YTL Corporation Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "SELL",
+    "errors": {}
+  },
+  {
+    "ticker": "4863.KL",
+    "company_name": "Telekom Malaysia Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "1066.KL",
+    "company_name": "RHB Bank Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "5296.KL",
+    "company_name": "Mr D.I.Y. Group (M) Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "SELL",
+    "errors": {}
+  },
+  {
+    "ticker": "5285.KL",
+    "company_name": "SD Guthrie Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "errors": {}
+  },
+  {
+    "ticker": "1961.KL",
+    "company_name": "IOI Corporation Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "BUY",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "5326.KL",
+    "company_name": "99 Speed Mart Retail Holdings Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "SELL",
+    "valuation": "BUY",
+    "errors": {}
+  },
+  {
+    "ticker": "4707.KL",
+    "company_name": "Nestl\u00e9 (Malaysia) Berhad",
+    "risk_tolerance": "moderate",
+    "fundamental": "HOLD",
+    "valuation": "HOLD",
+    "errors": {}
+  }
+]

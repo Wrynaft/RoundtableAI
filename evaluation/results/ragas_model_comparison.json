@@ -1,0 +1,62 @@
+{
+  "evaluation_date": "2026-01-09T02:46:42.394140",
+  "evaluator_model": "gemini-2.0-flash",
+  "models_tested": [
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-lite",
+    "gemini-2.5-pro"
+  ],
+  "total_test_cases": 27,
+  "metrics_used": [
+    "faithfulness",
+    "answer_relevancy"
+  ],
+  "note": "Multi-model comparison using RAGAs metrics (no ground truth required)",
+  "model_summary": [
+    {
+      "Model": "2.0-flash",
+      "Faithfulness": 0.8695496080979952,
+      "Answer Relevancy": 0.8360753775699058,
+      "Overall": 0.8528124928339504,
+      "Test Cases": 10
+    },
+    {
+      "Model": "2.0-flash-lite",
+      "Faithfulness": 0.8614978222736843,
+      "Answer Relevancy": 0.8258993249020101,
+      "Overall": 0.8436985735878473,
+      "Test Cases": 10
+    },
+    {
+      "Model": "2.5-pro",
+      "Faithfulness": 0.8562195846080368,
+      "Answer Relevancy": 0.850152147842266,
+      "Overall": 0.8531858662251515,
+      "Test Cases": 7
+    }
+  ],
+  "per_model_results": {
+    "gemini-2.0-flash": {
+      "faithfulness": 0.8695496080979952,
+      "answer_relevancy": 0.8360753775699058,
+      "overall": 0.8528124928339504,
+      "test_cases": 10
+    },
+    "gemini-2.0-flash-lite": {
+      "faithfulness": 0.8614978222736843,
+      "answer_relevancy": 0.8258993249020101,
+      "overall": 0.8436985735878473,
+      "test_cases": 10
+    },
+    "gemini-2.5-pro": {
+      "faithfulness": 0.8562195846080368,
+      "answer_relevancy": 0.850152147842266,
+      "overall": 0.8531858662251515,
+      "test_cases": 7
+    }
+  },
+  "best_model": {
+    "model": "2.5-pro",
+    "score": 0.8531858662251515
+  }
+}

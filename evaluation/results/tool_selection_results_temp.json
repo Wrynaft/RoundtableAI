@@ -1,0 +1,2939 @@
+{
+  "gemini-2.0-flash": {
+    "fundamental": {
+      "results": [
+        {
+          "query": "Analyze the financial health of 1155.KL",
+          "description": "Direct ticker - financial health analysis",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the fundamentals of 1023.KL?",
+          "description": "Direct ticker - general fundamentals",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Review the financial statements of 5819.KL",
+          "description": "Direct ticker - financial statements",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze the financial health of Maybank",
+          "description": "Company name - requires ticker resolution",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the profitability of CIMB Group?",
+          "description": "Company name - profitability focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate Public Bank's balance sheet",
+          "description": "Company name - balance sheet focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How is Tenaga Nasional's cash flow?",
+          "description": "Company name - cash flow focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Assess the debt levels of Petronas Gas",
+          "description": "Company name - debt analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the ROE of Hong Leong Bank?",
+          "description": "Specific metric - ROE",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the current ratio for IHH Healthcare",
+          "description": "Specific metric - current ratio",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the profit margins of Press Metal?",
+          "description": "Specific metric - profit margins",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Should I invest in Gamuda based on financials?",
+          "description": "Investment recommendation based on fundamentals",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is RHB Bank financially stable?",
+          "description": "Financial stability assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate the growth potential of Sunway based on fundamentals",
+          "description": "Growth potential from fundamentals",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze YTL Corporation's revenue trends",
+          "description": "Revenue trend analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [],
+          "match": "ERROR",
+          "success": false,
+          "attempts": 1,
+          "error": "The resolution lifetime expired after 21.610 seconds: Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.",
+          "error_type": "OTHER_ERROR"
+        },
+        {
+          "query": "What are the key financial risks for Axiata?",
+          "description": "Financial risk identification",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Review MISC Berhad's quarterly performance",
+          "description": "Quarterly performance review",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How has Nestle Malaysia's earnings changed?",
+          "description": "Earnings change analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    },
+    "sentiment": {
+      "results": [
+        {
+          "query": "What is the market sentiment for 1155.KL?",
+          "description": "Direct ticker - general sentiment",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze the news sentiment of 1023.KL",
+          "description": "Direct ticker - news sentiment",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How is the media coverage for 5347.KL?",
+          "description": "Direct ticker - media coverage",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the sentiment around Maybank?",
+          "description": "Company name - requires ticker resolution",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze news sentiment for CIMB",
+          "description": "Company name - news sentiment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How is the market feeling about Public Bank?",
+          "description": "Company name - market feeling",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are people saying about Tenaga Nasional?",
+          "description": "Company name - public opinion",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is there positive news about Petronas Chemicals?",
+          "description": "Company name - positive news check",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Get recent news articles about Hong Leong Bank",
+          "description": "Recent news request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What news has been published about IHH Healthcare recently?",
+          "description": "Recent publications query",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Show me the latest headlines for Press Metal",
+          "description": "Latest headlines request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is the sentiment for Gamuda improving or declining?",
+          "description": "Sentiment trend analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Has there been negative news about RHB Bank?",
+          "description": "Negative news check",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the overall mood around Maxis?",
+          "description": "Overall mood assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Based on news, should I be worried about Axiata?",
+          "description": "Concern assessment from news",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is media sentiment bullish or bearish on YTL Power?",
+          "description": "Bullish/bearish sentiment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze investor sentiment for Sime Darby",
+          "description": "Investor sentiment analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What do news articles say about SD Guthrie's outlook?",
+          "description": "Outlook from news",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    },
+    "valuation": {
+      "results": [
+        {
+          "query": "Analyze the risk metrics for 1155.KL",
+          "description": "Direct ticker - risk metrics",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the volatility of 1023.KL?",
+          "description": "Direct ticker - volatility",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the Sharpe ratio for 5819.KL",
+          "description": "Direct ticker - Sharpe ratio",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the risk profile of Maybank?",
+          "description": "Company name - risk profile",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze CIMB's stock volatility",
+          "description": "Company name - volatility analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the Value at Risk for Public Bank?",
+          "description": "Company name - VaR calculation",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the maximum drawdown for Tenaga Nasional",
+          "description": "Company name - max drawdown",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How risky is investing in Petronas Gas?",
+          "description": "Company name - risk assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Get the historical stock prices for Hong Leong Bank",
+          "description": "Historical price data request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_stock_data"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_stock_data"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Show me IHH Healthcare's price performance over the past year",
+          "description": "Price performance query",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the trading volumes for Press Metal?",
+          "description": "Volume data request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate the risk-adjusted returns of Gamuda",
+          "description": "Risk-adjusted returns",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is RHB Bank a low-risk investment?",
+          "description": "Low-risk assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the annualized return for Sunway?",
+          "description": "Annualized return calculation",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is YTL Corporation suitable for a conservative investor?",
+          "description": "Conservative investor suitability",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze Axiata's risk for an aggressive portfolio",
+          "description": "Aggressive portfolio risk",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the downside risk of MISC Berhad?",
+          "description": "Downside risk analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate risk metrics for IOI Corporation",
+          "description": "General risk metrics",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    }
+  },
+  "gemini-2.5-pro": {
+    "fundamental": {
+      "results": [
+        {
+          "query": "Analyze the financial health of 1155.KL",
+          "description": "Direct ticker - financial health analysis",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the fundamentals of 1023.KL?",
+          "description": "Direct ticker - general fundamentals",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Review the financial statements of 5819.KL",
+          "description": "Direct ticker - financial statements",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze the financial health of Maybank",
+          "description": "Company name - requires ticker resolution",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the profitability of CIMB Group?",
+          "description": "Company name - profitability focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate Public Bank's balance sheet",
+          "description": "Company name - balance sheet focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How is Tenaga Nasional's cash flow?",
+          "description": "Company name - cash flow focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Assess the debt levels of Petronas Gas",
+          "description": "Company name - debt analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the ROE of Hong Leong Bank?",
+          "description": "Specific metric - ROE",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the current ratio for IHH Healthcare",
+          "description": "Specific metric - current ratio",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "finance_report_pull"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the profit margins of Press Metal?",
+          "description": "Specific metric - profit margins",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Should I invest in Gamuda based on financials?",
+          "description": "Investment recommendation based on fundamentals",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is RHB Bank financially stable?",
+          "description": "Financial stability assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate the growth potential of Sunway based on fundamentals",
+          "description": "Growth potential from fundamentals",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze YTL Corporation's revenue trends",
+          "description": "Revenue trend analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the key financial risks for Axiata?",
+          "description": "Financial risk identification",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Review MISC Berhad's quarterly performance",
+          "description": "Quarterly performance review",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How has Nestle Malaysia's earnings changed?",
+          "description": "Earnings change analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    },
+    "sentiment": {
+      "results": [
+        {
+          "query": "What is the market sentiment for 1155.KL?",
+          "description": "Direct ticker - general sentiment",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze the news sentiment of 1023.KL",
+          "description": "Direct ticker - news sentiment",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [],
+          "match": "ERROR",
+          "success": false,
+          "attempts": 3,
+          "error": "429 Resource has been exhausted (e.g. check quota).",
+          "error_type": "API_ERROR"
+        },
+        {
+          "query": "How is the media coverage for 5347.KL?",
+          "description": "Direct ticker - media coverage",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the sentiment around Maybank?",
+          "description": "Company name - requires ticker resolution",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze news sentiment for CIMB",
+          "description": "Company name - news sentiment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [],
+          "match": "ERROR",
+          "success": false,
+          "attempts": 3,
+          "error": "429 Resource has been exhausted (e.g. check quota).",
+          "error_type": "API_ERROR"
+        },
+        {
+          "query": "How is the market feeling about Public Bank?",
+          "description": "Company name - market feeling",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are people saying about Tenaga Nasional?",
+          "description": "Company name - public opinion",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is there positive news about Petronas Chemicals?",
+          "description": "Company name - positive news check",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Get recent news articles about Hong Leong Bank",
+          "description": "Recent news request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What news has been published about IHH Healthcare recently?",
+          "description": "Recent publications query",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Show me the latest headlines for Press Metal",
+          "description": "Latest headlines request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is the sentiment for Gamuda improving or declining?",
+          "description": "Sentiment trend analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Has there been negative news about RHB Bank?",
+          "description": "Negative news check",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the overall mood around Maxis?",
+          "description": "Overall mood assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Based on news, should I be worried about Axiata?",
+          "description": "Concern assessment from news",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is media sentiment bullish or bearish on YTL Power?",
+          "description": "Bullish/bearish sentiment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze investor sentiment for Sime Darby",
+          "description": "Investor sentiment analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What do news articles say about SD Guthrie's outlook?",
+          "description": "Outlook from news",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    },
+    "valuation": {
+      "results": [
+        {
+          "query": "Analyze the risk metrics for 1155.KL",
+          "description": "Direct ticker - risk metrics",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the volatility of 1023.KL?",
+          "description": "Direct ticker - volatility",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the Sharpe ratio for 5819.KL",
+          "description": "Direct ticker - Sharpe ratio",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the risk profile of Maybank?",
+          "description": "Company name - risk profile",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze CIMB's stock volatility",
+          "description": "Company name - volatility analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the Value at Risk for Public Bank?",
+          "description": "Company name - VaR calculation",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the maximum drawdown for Tenaga Nasional",
+          "description": "Company name - max drawdown",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How risky is investing in Petronas Gas?",
+          "description": "Company name - risk assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Get the historical stock prices for Hong Leong Bank",
+          "description": "Historical price data request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_stock_data"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_stock_data"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Show me IHH Healthcare's price performance over the past year",
+          "description": "Price performance query",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the trading volumes for Press Metal?",
+          "description": "Volume data request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate the risk-adjusted returns of Gamuda",
+          "description": "Risk-adjusted returns",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is RHB Bank a low-risk investment?",
+          "description": "Low-risk assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the annualized return for Sunway?",
+          "description": "Annualized return calculation",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is YTL Corporation suitable for a conservative investor?",
+          "description": "Conservative investor suitability",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze Axiata's risk for an aggressive portfolio",
+          "description": "Aggressive portfolio risk",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the downside risk of MISC Berhad?",
+          "description": "Downside risk analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate risk metrics for IOI Corporation",
+          "description": "General risk metrics",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    }
+  },
+  "gemini-2.0-flash-lite": {
+    "fundamental": {
+      "results": [
+        {
+          "query": "Analyze the financial health of 1155.KL",
+          "description": "Direct ticker - financial health analysis",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the fundamentals of 1023.KL?",
+          "description": "Direct ticker - general fundamentals",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Review the financial statements of 5819.KL",
+          "description": "Direct ticker - financial statements",
+          "expected": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze the financial health of Maybank",
+          "description": "Company name - requires ticker resolution",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the profitability of CIMB Group?",
+          "description": "Company name - profitability focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate Public Bank's balance sheet",
+          "description": "Company name - balance sheet focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How is Tenaga Nasional's cash flow?",
+          "description": "Company name - cash flow focus",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "finance_report_pull"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Assess the debt levels of Petronas Gas",
+          "description": "Company name - debt analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the ROE of Hong Leong Bank?",
+          "description": "Specific metric - ROE",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the current ratio for IHH Healthcare",
+          "description": "Specific metric - current ratio",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the profit margins of Press Metal?",
+          "description": "Specific metric - profit margins",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Should I invest in Gamuda based on financials?",
+          "description": "Investment recommendation based on fundamentals",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is RHB Bank financially stable?",
+          "description": "Financial stability assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate the growth potential of Sunway based on fundamentals",
+          "description": "Growth potential from fundamentals",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [],
+          "match": "ERROR",
+          "success": false,
+          "attempts": 1,
+          "error": "The resolution lifetime expired after 21.614 seconds: Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.",
+          "error_type": "OTHER_ERROR"
+        },
+        {
+          "query": "Analyze YTL Corporation's revenue trends",
+          "description": "Revenue trend analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the key financial risks for Axiata?",
+          "description": "Financial risk identification",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Review MISC Berhad's quarterly performance",
+          "description": "Quarterly performance review",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How has Nestle Malaysia's earnings changed?",
+          "description": "Earnings change analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "rag_analysis",
+            "finance_report_pull"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    },
+    "sentiment": {
+      "results": [
+        {
+          "query": "What is the market sentiment for 1155.KL?",
+          "description": "Direct ticker - general sentiment",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze the news sentiment of 1023.KL",
+          "description": "Direct ticker - news sentiment",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How is the media coverage for 5347.KL?",
+          "description": "Direct ticker - media coverage",
+          "expected": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the sentiment around Maybank?",
+          "description": "Company name - requires ticker resolution",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze news sentiment for CIMB",
+          "description": "Company name - news sentiment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How is the market feeling about Public Bank?",
+          "description": "Company name - market feeling",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are people saying about Tenaga Nasional?",
+          "description": "Company name - public opinion",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is there positive news about Petronas Chemicals?",
+          "description": "Company name - positive news check",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Get recent news articles about Hong Leong Bank",
+          "description": "Recent news request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What news has been published about IHH Healthcare recently?",
+          "description": "Recent publications query",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Show me the latest headlines for Press Metal",
+          "description": "Latest headlines request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is the sentiment for Gamuda improving or declining?",
+          "description": "Sentiment trend analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Has there been negative news about RHB Bank?",
+          "description": "Negative news check",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the overall mood around Maxis?",
+          "description": "Overall mood assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Based on news, should I be worried about Axiata?",
+          "description": "Concern assessment from news",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is media sentiment bullish or bearish on YTL Power?",
+          "description": "Bullish/bearish sentiment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze investor sentiment for Sime Darby",
+          "description": "Investor sentiment analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What do news articles say about SD Guthrie's outlook?",
+          "description": "Outlook from news",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_article_sentiment",
+            "get_recent_articles"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_recent_articles"
+          ],
+          "match": "PARTIAL",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    },
+    "valuation": {
+      "results": [
+        {
+          "query": "Analyze the risk metrics for 1155.KL",
+          "description": "Direct ticker - risk metrics",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the volatility of 1023.KL?",
+          "description": "Direct ticker - volatility",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the Sharpe ratio for 5819.KL",
+          "description": "Direct ticker - Sharpe ratio",
+          "expected": [
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the risk profile of Maybank?",
+          "description": "Company name - risk profile",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze CIMB's stock volatility",
+          "description": "Company name - volatility analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the Value at Risk for Public Bank?",
+          "description": "Company name - VaR calculation",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate the maximum drawdown for Tenaga Nasional",
+          "description": "Company name - max drawdown",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "How risky is investing in Petronas Gas?",
+          "description": "Company name - risk assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Get the historical stock prices for Hong Leong Bank",
+          "description": "Historical price data request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "get_stock_data"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "get_stock_data"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Show me IHH Healthcare's price performance over the past year",
+          "description": "Price performance query",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What are the trading volumes for Press Metal?",
+          "description": "Volume data request",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Evaluate the risk-adjusted returns of Gamuda",
+          "description": "Risk-adjusted returns",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is RHB Bank a low-risk investment?",
+          "description": "Low-risk assessment",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the annualized return for Sunway?",
+          "description": "Annualized return calculation",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Is YTL Corporation suitable for a conservative investor?",
+          "description": "Conservative investor suitability",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Analyze Axiata's risk for an aggressive portfolio",
+          "description": "Aggressive portfolio risk",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "What is the downside risk of MISC Berhad?",
+          "description": "Downside risk analysis",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        },
+        {
+          "query": "Calculate risk metrics for IOI Corporation",
+          "description": "General risk metrics",
+          "expected": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "actual": [
+            "resolve_ticker_symbol",
+            "analyze_stock_metrics"
+          ],
+          "match": "EXACT",
+          "success": true,
+          "attempts": 1,
+          "error": null,
+          "error_type": null
+        }
+      ],
+      "test_cases_completed": 18
+    }
+  }
+}

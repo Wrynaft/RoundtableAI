@@ -1,0 +1,6 @@
+Metric,Multi-Agent Portfolio,Fundamental Agent Portfolio,Valuation Agent Portfolio,KLCI Benchmark
+Cumulative Return,+12.43%,+6.12%,+11.89%,+3.42%
+Annualized Return,+62.27%,+27.81%,+59.03%,+14.90%
+Volatility,13.97%,7.95%,7.48%,7.44%
+Sharpe Ratio,4.24,3.12,7.49,1.60
+Max Drawdown,-3.41%,-3.00%,-0.81%,-2.16%

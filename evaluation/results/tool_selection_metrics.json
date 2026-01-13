@@ -1,38 +1,113 @@
 {
-  "evaluation_date": "2026-01-04T00:47:19.813283",
-  "total_test_cases": 54,
-  "per_agent_metrics": {
-    "fundamental": {
-      "accuracy": 0.9444444444444444,
-      "precision": 1.0,
-      "recall": 0.9607843137254902,
-      "f1_score": 0.98,
-      "exact_matches": 17,
-      "total_cases": 18
+  "evaluation_date": "2026-01-07T22:03:55.968896",
+  "models_tested": [
+    "gemini-2.0-flash",
+    "gemini-2.5-pro",
+    "gemini-2.0-flash-lite"
+  ],
+  "total_test_cases": 162,
+  "per_model_metrics": {
+    "gemini-2.0-flash": {
+      "agents": {
+        "fundamental": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "exact_matches": 17,
+          "total_cases": 17,
+          "error_count": 1,
+          "successful_cases": 17
+        },
+        "sentiment": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "exact_matches": 18,
+          "total_cases": 18,
+          "error_count": 0,
+          "successful_cases": 18
+        },
+        "valuation": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "exact_matches": 18,
+          "total_cases": 18,
+          "error_count": 0,
+          "successful_cases": 18
+        }
+      }
     },
-    "sentiment": {
-      "accuracy": 0.8888888888888888,
-      "precision": 1.0,
-      "recall": 0.9411764705882353,
-      "f1_score": 0.9696969696969697,
-      "exact_matches": 16,
-      "total_cases": 18
+    "gemini-2.5-pro": {
+      "agents": {
+        "fundamental": {
+          "accuracy": 0.9444444444444444,
+          "precision": 1.0,
+          "recall": 0.9803921568627451,
+          "f1_score": 0.99009900990099,
+          "exact_matches": 17,
+          "total_cases": 18,
+          "error_count": 0,
+          "successful_cases": 18
+        },
+        "sentiment": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "exact_matches": 16,
+          "total_cases": 16,
+          "error_count": 2,
+          "successful_cases": 16
+        },
+        "valuation": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "exact_matches": 18,
+          "total_cases": 18,
+          "error_count": 0,
+          "successful_cases": 18
+        }
+      }
     },
-    "valuation": {
-      "accuracy": 0.8888888888888888,
-      "precision": 0.96875,
-      "recall": 0.9393939393939394,
-      "f1_score": 0.9538461538461539,
-      "exact_matches": 16,
-      "total_cases": 18
+    "gemini-2.0-flash-lite": {
+      "agents": {
+        "fundamental": {
+          "accuracy": 0.8823529411764706,
+          "precision": 0.9791666666666666,
+          "recall": 0.9791666666666666,
+          "f1_score": 0.9791666666666666,
+          "exact_matches": 15,
+          "total_cases": 17,
+          "error_count": 1,
+          "successful_cases": 17
+        },
+        "sentiment": {
+          "accuracy": 0.5555555555555556,
+          "precision": 1.0,
+          "recall": 0.84,
+          "f1_score": 0.9130434782608696,
+          "exact_matches": 10,
+          "total_cases": 18,
+          "error_count": 0,
+          "successful_cases": 18
+        },
+        "valuation": {
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "exact_matches": 18,
+          "total_cases": 18,
+          "error_count": 0,
+          "successful_cases": 18
+        }
+      }
     }
-  },
-  "aggregate_metrics": {
-    "accuracy": 0.9074074074074074,
-    "precision": 0.9922480620155039,
-    "recall": 0.9481481481481482,
-    "f1_score": 0.9696969696969696,
-    "exact_matches": 49,
-    "total_cases": 54
   }
 }

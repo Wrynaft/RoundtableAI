@@ -1,0 +1,1056 @@
+{
+  "experiment_date": "2026-01-08T11:07:20.967119",
+  "configuration": {
+    "models": [
+      "gemini-2.0-flash",
+      "gemini-2.5-pro",
+      "gemini-2.0-flash-lite"
+    ],
+    "num_stocks": 5,
+    "max_rounds": 5,
+    "consensus_threshold": 0.75,
+    "risk_tolerance": "moderate"
+  },
+  "notes": {
+    "rate_limit_handling": "Rate limit wait times are excluded from timing metrics",
+    "failed_debates": "Failed debates are excluded from efficiency calculations",
+    "retry_logic": "Up to 3 retries with exponential backoff for rate limit errors"
+  },
+  "efficiency_metrics": {
+    "gemini-2.0-flash": {
+      "model_name": "gemini-2.0-flash",
+      "num_debates": 5,
+      "avg_total_time": 52.29,
+      "avg_time_per_round": 15.66,
+      "avg_time_per_agent": 5.22,
+      "avg_tokens_per_second": 0.0,
+      "avg_total_tokens": 0.0,
+      "avg_rounds": 3.4,
+      "avg_rounds_to_consensus": 1.3,
+      "consensus_rate": 0.6,
+      "debates": [
+        {
+          "company": "MALAYAN BANKING BERHAD",
+          "ticker": "1155.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 39.04,
+          "time_per_round": 19.52,
+          "time_per_agent": 6.51,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 29.69,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            26.47,
+            9.39
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.6,
+            "sentiment": 3.98,
+            "valuation": 9.35
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "CIMB GROUP HOLDINGS BERHAD",
+          "ticker": "1023.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 26.42,
+          "time_per_round": 13.21,
+          "time_per_agent": 4.4,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 16.9,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            13.34,
+            8.43
+          ],
+          "agent_avg_times": {
+            "fundamental": 3.98,
+            "sentiment": 3.24,
+            "valuation": 3.67
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "TENAGA NASIONAL BHD",
+          "ticker": "5347.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 69.62,
+          "time_per_round": 13.92,
+          "time_per_agent": 4.64,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 5,
+          "rounds_to_consensus": null,
+          "time_to_consensus": null,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "api_calls_made": 15,
+          "consensus_reached": false,
+          "round_times": [
+            30.28,
+            10.13,
+            9.15,
+            7.76,
+            7.89
+          ],
+          "agent_avg_times": {
+            "fundamental": 7.14,
+            "sentiment": 3.03,
+            "valuation": 2.87
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "PUBLIC BANK BERHAD",
+          "ticker": "1295.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 47.88,
+          "time_per_round": 15.96,
+          "time_per_agent": 5.32,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 3,
+          "rounds_to_consensus": 2,
+          "time_to_consensus": 34.4,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0,
+            0
+          ],
+          "api_calls_made": 9,
+          "consensus_reached": true,
+          "round_times": [
+            15.5,
+            10.6,
+            17.84
+          ],
+          "agent_avg_times": {
+            "fundamental": 6.12,
+            "sentiment": 4.76,
+            "valuation": 3.77
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "PETRONAS CHEMICALS GROUP BERHAD",
+          "ticker": "5183.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 78.51,
+          "time_per_round": 15.7,
+          "time_per_agent": 5.23,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 5,
+          "rounds_to_consensus": null,
+          "time_to_consensus": null,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "api_calls_made": 15,
+          "consensus_reached": false,
+          "round_times": [
+            18.48,
+            13.68,
+            16.37,
+            12.12,
+            13.48
+          ],
+          "agent_avg_times": {
+            "fundamental": 5.41,
+            "sentiment": 4.79,
+            "valuation": 4.63
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      ]
+    },
+    "gemini-2.5-pro": {
+      "model_name": "gemini-2.5-pro",
+      "num_debates": 3,
+      "avg_total_time": 518.67,
+      "avg_time_per_round": 259.34,
+      "avg_time_per_agent": 86.45,
+      "avg_tokens_per_second": 0.0,
+      "avg_total_tokens": 0.0,
+      "avg_rounds": 2.0,
+      "avg_rounds_to_consensus": 1.0,
+      "consensus_rate": 1.0,
+      "debates": [
+        {
+          "company": "MALAYAN BANKING BERHAD",
+          "ticker": "1155.KL",
+          "model_name": "gemini-2.5-pro",
+          "total_time": 228.71,
+          "time_per_round": 114.35,
+          "time_per_agent": 38.12,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 195.92,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            99.08,
+            96.84
+          ],
+          "agent_avg_times": {
+            "fundamental": 33.62,
+            "sentiment": 32.61,
+            "valuation": 31.73
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "PUBLIC BANK BERHAD",
+          "ticker": "1295.KL",
+          "model_name": "gemini-2.5-pro",
+          "total_time": 611.5,
+          "time_per_round": 305.75,
+          "time_per_agent": 101.92,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 467.66,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            278.68,
+            309.85
+          ],
+          "agent_avg_times": {
+            "fundamental": 136.12,
+            "sentiment": 93.4,
+            "valuation": 64.74
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "PETRONAS CHEMICALS GROUP BERHAD",
+          "ticker": "5183.KL",
+          "model_name": "gemini-2.5-pro",
+          "total_time": 715.82,
+          "time_per_round": 357.91,
+          "time_per_agent": 119.3,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 589.62,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            497.01,
+            184.98
+          ],
+          "agent_avg_times": {
+            "fundamental": 134.0,
+            "sentiment": 85.15,
+            "valuation": 121.84
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      ]
+    },
+    "gemini-2.0-flash-lite": {
+      "model_name": "gemini-2.0-flash-lite",
+      "num_debates": 4,
+      "avg_total_time": 38.73,
+      "avg_time_per_round": 19.37,
+      "avg_time_per_agent": 6.46,
+      "avg_tokens_per_second": 0.0,
+      "avg_total_tokens": 0.0,
+      "avg_rounds": 2.0,
+      "avg_rounds_to_consensus": 1.0,
+      "consensus_rate": 1.0,
+      "debates": [
+        {
+          "company": "MALAYAN BANKING BERHAD",
+          "ticker": "1155.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 28.67,
+          "time_per_round": 14.34,
+          "time_per_agent": 4.78,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 17.45,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            13.6,
+            10.34
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.15,
+            "sentiment": 4.35,
+            "valuation": 3.46
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "CIMB GROUP HOLDINGS BERHAD",
+          "ticker": "1023.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 29.84,
+          "time_per_round": 14.92,
+          "time_per_agent": 4.97,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 19.43,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            15.17,
+            10.53
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.96,
+            "sentiment": 4.27,
+            "valuation": 3.62
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "PUBLIC BANK BERHAD",
+          "ticker": "1295.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 66.28,
+          "time_per_round": 33.14,
+          "time_per_agent": 11.05,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 52.75,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            48.65,
+            12.5
+          ],
+          "agent_avg_times": {
+            "fundamental": 15.4,
+            "sentiment": 4.53,
+            "valuation": 10.64
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        },
+        {
+          "company": "PETRONAS CHEMICALS GROUP BERHAD",
+          "ticker": "5183.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 30.14,
+          "time_per_round": 15.07,
+          "time_per_agent": 5.02,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 18.74,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            15.0,
+            10.35
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.75,
+            "sentiment": 3.78,
+            "valuation": 4.15
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      ]
+    }
+  },
+  "detailed_results": {
+    "gemini-2.0-flash": [
+      {
+        "ticker": "1155.KL",
+        "company": "Maybank",
+        "recommendation": "HOLD",
+        "confidence": 0.85,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "MALAYAN BANKING BERHAD",
+          "ticker": "1155.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 39.04,
+          "time_per_round": 19.52,
+          "time_per_agent": 6.51,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 29.69,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            26.47,
+            9.39
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.6,
+            "sentiment": 3.98,
+            "valuation": 9.35
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "1023.KL",
+        "company": "CIMB",
+        "recommendation": "HOLD",
+        "confidence": 0.85,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "CIMB GROUP HOLDINGS BERHAD",
+          "ticker": "1023.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 26.42,
+          "time_per_round": 13.21,
+          "time_per_agent": 4.4,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 16.9,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            13.34,
+            8.43
+          ],
+          "agent_avg_times": {
+            "fundamental": 3.98,
+            "sentiment": 3.24,
+            "valuation": 3.67
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "5347.KL",
+        "company": "Tenaga Nasional",
+        "recommendation": "HOLD",
+        "confidence": 0.7,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "TENAGA NASIONAL BHD",
+          "ticker": "5347.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 69.62,
+          "time_per_round": 13.92,
+          "time_per_agent": 4.64,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 5,
+          "rounds_to_consensus": null,
+          "time_to_consensus": null,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "api_calls_made": 15,
+          "consensus_reached": false,
+          "round_times": [
+            30.28,
+            10.13,
+            9.15,
+            7.76,
+            7.89
+          ],
+          "agent_avg_times": {
+            "fundamental": 7.14,
+            "sentiment": 3.03,
+            "valuation": 2.87
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "1295.KL",
+        "company": "Public Bank",
+        "recommendation": "HOLD",
+        "confidence": 0.7,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "PUBLIC BANK BERHAD",
+          "ticker": "1295.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 47.88,
+          "time_per_round": 15.96,
+          "time_per_agent": 5.32,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 3,
+          "rounds_to_consensus": 2,
+          "time_to_consensus": 34.4,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0,
+            0
+          ],
+          "api_calls_made": 9,
+          "consensus_reached": true,
+          "round_times": [
+            15.5,
+            10.6,
+            17.84
+          ],
+          "agent_avg_times": {
+            "fundamental": 6.12,
+            "sentiment": 4.76,
+            "valuation": 3.77
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "5183.KL",
+        "company": "Petronas Chemicals",
+        "recommendation": "SELL",
+        "confidence": 0.75,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "PETRONAS CHEMICALS GROUP BERHAD",
+          "ticker": "5183.KL",
+          "model_name": "gemini-2.0-flash",
+          "total_time": 78.51,
+          "time_per_round": 15.7,
+          "time_per_agent": 5.23,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 5,
+          "rounds_to_consensus": null,
+          "time_to_consensus": null,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "api_calls_made": 15,
+          "consensus_reached": false,
+          "round_times": [
+            18.48,
+            13.68,
+            16.37,
+            12.12,
+            13.48
+          ],
+          "agent_avg_times": {
+            "fundamental": 5.41,
+            "sentiment": 4.79,
+            "valuation": 4.63
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      }
+    ],
+    "gemini-2.5-pro": [
+      {
+        "ticker": "1155.KL",
+        "company": "Maybank",
+        "recommendation": "BUY",
+        "confidence": 0.8,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "MALAYAN BANKING BERHAD",
+          "ticker": "1155.KL",
+          "model_name": "gemini-2.5-pro",
+          "total_time": 228.71,
+          "time_per_round": 114.35,
+          "time_per_agent": 38.12,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 195.92,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            99.08,
+            96.84
+          ],
+          "agent_avg_times": {
+            "fundamental": 33.62,
+            "sentiment": 32.61,
+            "valuation": 31.73
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "1023.KL",
+        "company": "CIMB",
+        "success": false,
+        "error": "429 Resource has been exhausted (e.g. check quota).",
+        "rate_limit_hits": 3
+      },
+      {
+        "ticker": "5347.KL",
+        "company": "Tenaga Nasional",
+        "success": false,
+        "error": "429 Resource has been exhausted (e.g. check quota).",
+        "rate_limit_hits": 3
+      },
+      {
+        "ticker": "1295.KL",
+        "company": "Public Bank",
+        "recommendation": "HOLD",
+        "confidence": 0.95,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "PUBLIC BANK BERHAD",
+          "ticker": "1295.KL",
+          "model_name": "gemini-2.5-pro",
+          "total_time": 611.5,
+          "time_per_round": 305.75,
+          "time_per_agent": 101.92,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 467.66,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            278.68,
+            309.85
+          ],
+          "agent_avg_times": {
+            "fundamental": 136.12,
+            "sentiment": 93.4,
+            "valuation": 64.74
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "5183.KL",
+        "company": "Petronas Chemicals",
+        "recommendation": "SELL",
+        "confidence": 0.95,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "PETRONAS CHEMICALS GROUP BERHAD",
+          "ticker": "5183.KL",
+          "model_name": "gemini-2.5-pro",
+          "total_time": 715.82,
+          "time_per_round": 357.91,
+          "time_per_agent": 119.3,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 589.62,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            497.01,
+            184.98
+          ],
+          "agent_avg_times": {
+            "fundamental": 134.0,
+            "sentiment": 85.15,
+            "valuation": 121.84
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      }
+    ],
+    "gemini-2.0-flash-lite": [
+      {
+        "ticker": "1155.KL",
+        "company": "Maybank",
+        "recommendation": "HOLD",
+        "confidence": 0.9,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "MALAYAN BANKING BERHAD",
+          "ticker": "1155.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 28.67,
+          "time_per_round": 14.34,
+          "time_per_agent": 4.78,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 17.45,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            13.6,
+            10.34
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.15,
+            "sentiment": 4.35,
+            "valuation": 3.46
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "1023.KL",
+        "company": "CIMB",
+        "recommendation": "HOLD",
+        "confidence": 0.9,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "CIMB GROUP HOLDINGS BERHAD",
+          "ticker": "1023.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 29.84,
+          "time_per_round": 14.92,
+          "time_per_agent": 4.97,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 19.43,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            15.17,
+            10.53
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.96,
+            "sentiment": 4.27,
+            "valuation": 3.62
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "5347.KL",
+        "company": "Tenaga Nasional",
+        "success": false,
+        "error": "The resolution lifetime expired after 21.604 seconds: Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.; Server Do53:192.168.100.1@53 answered The DNS operation timed out.; Server Do53:150.205.1.2@53 answered The DNS operation timed out.",
+        "rate_limit_hits": 0
+      },
+      {
+        "ticker": "1295.KL",
+        "company": "Public Bank",
+        "recommendation": "HOLD",
+        "confidence": 0.9,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "PUBLIC BANK BERHAD",
+          "ticker": "1295.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 66.28,
+          "time_per_round": 33.14,
+          "time_per_agent": 11.05,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 52.75,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            48.65,
+            12.5
+          ],
+          "agent_avg_times": {
+            "fundamental": 15.4,
+            "sentiment": 4.53,
+            "valuation": 10.64
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      },
+      {
+        "ticker": "5183.KL",
+        "company": "Petronas Chemicals",
+        "recommendation": "HOLD",
+        "confidence": 0.9,
+        "success": true,
+        "rate_limit_hits": 0,
+        "metrics": {
+          "company": "PETRONAS CHEMICALS GROUP BERHAD",
+          "ticker": "5183.KL",
+          "model_name": "gemini-2.0-flash-lite",
+          "total_time": 30.14,
+          "time_per_round": 15.07,
+          "time_per_agent": 5.02,
+          "tokens_per_second": 0.0,
+          "rounds_completed": 2,
+          "rounds_to_consensus": 1,
+          "time_to_consensus": 18.74,
+          "total_tokens": 0,
+          "total_input_tokens": 0,
+          "total_output_tokens": 0,
+          "tokens_by_round": [
+            0,
+            0
+          ],
+          "api_calls_made": 6,
+          "consensus_reached": true,
+          "round_times": [
+            15.0,
+            10.35
+          ],
+          "agent_avg_times": {
+            "fundamental": 4.75,
+            "sentiment": 3.78,
+            "valuation": 4.15
+          },
+          "agent_tokens": {
+            "fundamental": 0,
+            "sentiment": 0,
+            "valuation": 0
+          }
+        }
+      }
+    ]
+  }
+}

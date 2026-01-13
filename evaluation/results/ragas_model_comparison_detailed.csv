@@ -1,0 +1,28 @@
+model,company,category,question,faithfulness,answer_relevancy
+gemini-2.0-flash,Maybank,comprehensive,Should I invest in Maybank?,0.7083333333333334,0.8196008092148346
+gemini-2.0-flash,CIMB,comprehensive,Is CIMB a good investment for a moderate risk investor?,0.8846153846153846,0.8634763877696279
+gemini-2.0-flash,Public Bank,comprehensive,Analyze Public Bank for long-term investment,0.6666666666666666,0.7970863584580987
+gemini-2.0-flash,IHH Healthcare,risk_focused,Is IHH Healthcare safe for a conservative investor?,0.9354838709677419,0.7623167624590428
+gemini-2.0-flash,Hong Leong Bank,sector_specific,Evaluate Hong Leong Bank as a banking sector investment,0.9583333333333334,0.8362258091541073
+gemini-2.0-flash,RHB Bank,valuation_focused,Is RHB Bank undervalued compared to its fundamentals?,0.9642857142857143,0.8557971920893906
+gemini-2.0-flash,Sunway,growth_focused,Analyze Sunway's growth potential for my portfolio,0.7777777777777778,0.8468910642710378
+gemini-2.0-flash,MISC Berhad,income_focused,Is MISC Berhad good for dividend income?,0.92,0.8432091853050703
+gemini-2.0-flash,Axiata,sector_allocation,Should I add Axiata to my telecommunications holdings?,1.0,0.8588958007208505
+gemini-2.0-flash,YTL Corporation,timing_focused,Is now a good time to invest in YTL Corporation?,0.88,0.8772544062569964
+gemini-2.5-pro,Maybank,comprehensive,Should I invest in Maybank?,0.8235294117647058,0.9073944972634773
+gemini-2.5-pro,Public Bank,comprehensive,Analyze Public Bank for long-term investment,0.9861111111111112,0.8078460718288731
+gemini-2.5-pro,IHH Healthcare,risk_focused,Is IHH Healthcare safe for a conservative investor?,0.6,0.872390169582169
+gemini-2.5-pro,RHB Bank,valuation_focused,Is RHB Bank undervalued compared to its fundamentals?,0.6984126984126984,0.866488611967914
+gemini-2.5-pro,Sunway,growth_focused,Analyze Sunway's growth potential for my portfolio,1.0,0.835290118152386
+gemini-2.5-pro,MISC Berhad,income_focused,Is MISC Berhad good for dividend income?,0.9354838709677419,0.8336127900823386
+gemini-2.5-pro,Axiata,sector_allocation,Should I add Axiata to my telecommunications holdings?,0.95,0.8280427760187032
+gemini-2.0-flash-lite,Maybank,comprehensive,Should I invest in Maybank?,1.0,0.8213827233667087
+gemini-2.0-flash-lite,CIMB,comprehensive,Is CIMB a good investment for a moderate risk investor?,0.75,0.8118626884764405
+gemini-2.0-flash-lite,Public Bank,comprehensive,Analyze Public Bank for long-term investment,0.7777777777777778,0.7787883706786881
+gemini-2.0-flash-lite,IHH Healthcare,risk_focused,Is IHH Healthcare safe for a conservative investor?,0.8409090909090909,0.8310248455065969
+gemini-2.0-flash-lite,Hong Leong Bank,sector_specific,Evaluate Hong Leong Bank as a banking sector investment,0.9629629629629629,0.8066642973352502
+gemini-2.0-flash-lite,RHB Bank,valuation_focused,Is RHB Bank undervalued compared to its fundamentals?,0.9459459459459459,0.8556254201010042
+gemini-2.0-flash-lite,Sunway,growth_focused,Analyze Sunway's growth potential for my portfolio,0.6896551724137931,0.8217444916923983
+gemini-2.0-flash-lite,MISC Berhad,income_focused,Is MISC Berhad good for dividend income?,0.875,0.808250722289112
+gemini-2.0-flash-lite,Axiata,sector_allocation,Should I add Axiata to my telecommunications holdings?,1.0,0.8463952833169065
+gemini-2.0-flash-lite,YTL Corporation,timing_focused,Is now a good time to invest in YTL Corporation?,0.7727272727272727,0.8772544062569964

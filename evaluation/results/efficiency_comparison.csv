@@ -1,0 +1,4 @@
+Model,Successful,Failed,Rate Limit Hits,Avg Total Time (s),Time/Round (s),Time/Agent (s),Avg Rounds,Consensus Rate
+gemini-2.0-flash,5,0,0,52.29448537826538,15.663504139582315,5.221168046527438,3.4,0.6
+gemini-2.5-pro,3,2,6,518.6749488512675,259.33747442563373,86.4458248085446,2.0,1.0
+gemini-2.0-flash-lite,4,1,0,38.73043692111969,19.365218460559845,6.455072820186615,2.0,1.0
