@@ -465,22 +465,6 @@ def main():
     with st.sidebar:
         st.header("Portfolio Settings")
 
-
-        # Quick add popular stocks
-        st.subheader("Quick Add")
-        popular_stocks = ["Maybank", "CIMB", "Public Bank", "Tenaga", "Petronas Chemicals"]
-
-        for stock in popular_stocks:
-            if st.button(f"➕ {stock}", key=f"quick_{stock}", width='stretch'):
-                success, msg = add_stock_to_portfolio(stock)
-                if success:
-                    st.success(msg)
-                else:
-                    st.warning(msg)
-                st.rerun()
-
-        st.divider()
-
         # Risk Settings
         st.subheader("⚙️ Analysis Settings")
         
@@ -490,8 +474,6 @@ def main():
             index=["Conservative", "Moderate", "Aggressive"].index(st.session_state.portfolio_risk),
             help="Determines how agents evaluate risk and potential returns."
         )
-
-        st.divider()
 
         # Portfolio Management
         st.subheader("💾 Portfolio Management")
@@ -558,6 +540,21 @@ def main():
             - Duplicate tickers will be skipped
             - Invalid rows will be skipped with warnings
             """)
+
+        st.divider()
+
+        # Quick add popular stocks
+        st.subheader("Quick Add")
+        popular_stocks = ["Maybank", "CIMB", "Public Bank", "Tenaga", "Petronas Chemicals"]
+
+        for stock in popular_stocks:
+            if st.button(f"➕ {stock}", key=f"quick_{stock}", width='stretch'):
+                success, msg = add_stock_to_portfolio(stock)
+                if success:
+                    st.success(msg)
+                else:
+                    st.warning(msg)
+                st.rerun()
 
         st.divider()
 

@@ -460,6 +460,57 @@ From your {agent_type} analysis perspective, respond to their assessment:
 
 Be constructive in your critique. Acknowledge valid points while highlighting different perspectives. Reference your previous analysis if relevant."""
 
+    def get_comparison_synthesis_prompt(self, results: Dict[str, 'FinalRecommendation'], risk_tolerance: str) -> str:
+        """
+        Generate a prompt to synthesize a comparative analysis.
+
+        Args:
+            results: Dictionary of company name -> FinalRecommendation
+            risk_tolerance: User's risk tolerance
+
+        Returns:
+            Formatted prompt string
+        """
+        # Build summaries for each company
+        company_summaries = []
+        for company, rec in results.items():
+            summary = f"=== ANALYSIS FOR {company} ===\n"
+            summary += f"Recommendation: {rec.recommendation.value} (Confidence: {rec.confidence:.0%})\n"
+            summary += f"Consensus Level: {rec.consensus_level:.0%}\n"
+            summary += f"Key Points:\n"
+            for point in rec.key_points[:3]: # Top 3 points
+                summary += f"- {point}\n"
+            summary += f"Summary: {rec.summary[:500]}..." # Truncate summary if too long
+            company_summaries.append(summary)
+            
+        summaries_text = "\n\n".join(company_summaries)
+        
+        return f"""You are an expert Investment Portfolio Manager. You have received detailed debate reports for multiple companies.
+Your task is to compare them and recommend the BEST investment for a {risk_tolerance.upper()} investor.
+
+{summaries_text}
+
+Compare these options based on:
+1. Alignment with {risk_tolerance} risk profile.
+2. Fundamental strength and valuation.
+3. Market sentiment and momentum.
+
+**You MUST start your response with this EXACT structured header:**
+```
+[COMPARISON DECISION]
+WINNER: [Company Name]
+CONFIDENCE: <your confidence 0-100>%
+[/COMPARISON DECISION]
+```
+
+After the header, provide a comprehensive comparative analysis:
+
+1.  **Direct Comparison**: A concise comparison of strengths and weaknesses (you can use a markdown table).
+2.  **Winner Rationale**: Why is the winning company the better choice *specifically* for this risk profile?
+3.  **Loser Analysis**: Why were the other options rejected? (e.g. higher risk, lower growth potential).
+4.  **Portfolio Strategy**: If the user holds both, should they switch? Or hold both?
+"""
+
     def get_synthesis_prompt(self, state: DebateState) -> str:
         """
         Generate the final synthesis prompt to combine all perspectives.

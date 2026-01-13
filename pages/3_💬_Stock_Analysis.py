@@ -6,6 +6,7 @@ Users can input natural language queries and receive investment recommendations.
 """
 import streamlit as st
 import time
+import re
 from datetime import datetime
 from typing import Optional
 
@@ -151,37 +152,6 @@ def main():
 
     # Sidebar settings
     with st.sidebar:
-        st.markdown("### ⚙️ Analysis Settings")
-
-        # Model selection
-        available_models = get_available_models()
-        model_options = list(available_models.keys())
-        model_names = [available_models[m]["name"] for m in model_options]
-
-        # Create a mapping for display
-        current_model_idx = model_options.index(st.session_state.selected_model) if st.session_state.selected_model in model_options else 0
-
-        selected_model_name = st.selectbox(
-            "🤖 AI Model",
-            options=model_names,
-            index=current_model_idx,
-            help="Select the Gemini model to use for analysis"
-        )
-
-        # Map back to model key
-        selected_model_key = model_options[model_names.index(selected_model_name)]
-
-        # Show model description
-        model_info = available_models[selected_model_key]
-        st.caption(f"*{model_info['description']}*")
-
-        # Check if model changed - reset orchestrator if so
-        if selected_model_key != st.session_state.selected_model:
-            st.session_state.selected_model = selected_model_key
-            st.session_state.orchestrator = None  # Force recreate with new model
-            st.session_state.current_orchestrator_model = None
-
-        st.markdown("---")
 
         debate_config = get_debate_config()
 
@@ -421,6 +391,49 @@ If you're asking about general strategies, I currently need a starting point (a 
                     st.rerun()
                     return
 
+                # Check for multi-company comparison
+                companies = []
+                if isinstance(company, list):
+                    companies = company
+                elif isinstance(company, str) and "," in company:
+                    companies = [c.strip() for c in company.split(",")]
+
+                if len(companies) > 1:
+                    st.write("")
+                    st.write(f"**Step 2:** Starting comparative analysis for {', '.join(companies)}...")
+                    st.info("⚠️ Running sequential debates for each company to ensure depth. This may take a minute...")
+                    
+                    try:
+                        # Run comparative debate directly
+                        final_rec = orchestrator.run_comparative_debate(companies, risk_tolerance=risk_tolerance)
+                        
+                        timing["debate"] = time.time() - timing["total_start"] # approx
+                        timing["total"] = timing["debate"]
+                        
+                        result = {
+                            "response": final_rec.summary,
+                            "route_type": "comparison",
+                            "agent_used": ["fundamental", "sentiment", "valuation"],
+                            "recommendation": final_rec.recommendation.value,
+                            "confidence": final_rec.confidence,
+                            "consensus": final_rec.consensus_level,
+                            "risk_tolerance": risk_tolerance,
+                            "full_result": final_rec,
+                            "classification": classification,
+                            "timing": timing
+                        }
+                        
+                        st.session_state.last_result = result
+                        st.session_state.is_debating = False
+                        status.update(label="✅ Comparative Analysis Complete", state="complete")
+                        st.rerun()
+                        return
+                        
+                    except Exception as e:
+                        st.error(f"Error during comparative analysis: {e}")
+                        st.session_state.is_debating = False
+                        return
+
                 # Step 2: Run multi-agent debate with streaming
                 st.write("")
                 st.write("**Step 2:** Starting multi-agent debate...")
@@ -619,14 +632,24 @@ def render_results(result: dict):
 
         with info_cols[2]:
             company = classification.get('company', 'N/A')
-            st.metric("Company", company)
+            if isinstance(company, list):
+                company_display = ", ".join(company)
+            else:
+                company_display = company
+            st.metric("Company", company_display)
 
         with info_cols[3]:
             if route_type == 'debate':
                 st.metric("Agents Used", "3 (All)")
             else:
                 agent_used = result.get('agent_used')
-                st.metric("Agent Used", agent_used.title() if agent_used else 'N/A')
+                if isinstance(agent_used, list):
+                    display_val = f"{len(agent_used)} Agents"
+                elif isinstance(agent_used, str):
+                    display_val = agent_used.title()
+                else:
+                    display_val = 'N/A'
+                st.metric("Agent Used", display_val)
 
         with info_cols[4]:
             model_key = result.get('model_used', 'gemini-2.0-flash')
@@ -659,8 +682,14 @@ def render_results(result: dict):
                     rounds = result.get('rounds_completed', 'N/A')
                     st.metric("Rounds", rounds)
                 else:
-                    agent_used = result.get('agent_used', 'N/A')
-                    st.metric("Agent", agent_used.title() if agent_used else 'N/A')
+                    agent_used = result.get('agent_used')
+                    if isinstance(agent_used, list):
+                        display_val = f"{len(agent_used)} Agents"
+                    elif isinstance(agent_used, str):
+                        display_val = agent_used.title()
+                    else:
+                        display_val = 'N/A'
+                    st.metric("Agent", display_val)
         
         st.markdown("---")
 
@@ -670,6 +699,8 @@ def render_results(result: dict):
         render_debate_results(result)
     elif route_type == 'single_agent':
         render_single_agent_results(result)
+    elif route_type == 'comparison':
+        render_comparison_results(result)
     elif route_type == 'general':
         st.info(result.get('response', 'How can I help you with your investments?'))
     elif route_type == 'error':
@@ -746,6 +777,46 @@ def render_debate_results(result: dict):
         debate_data = st.session_state.orchestrator.export_debate()
         transcript = st.session_state.orchestrator.get_debate_transcript() if hasattr(st.session_state.orchestrator, 'get_debate_transcript') else ""
         render_export_options(debate_data, transcript)
+
+
+def render_comparison_results(result: dict):
+    """Render comparative analysis results."""
+    st.markdown("### ⚔️ Comparative Analysis")
+    
+    # Extract "Winner" from summary if possible, or just use recommendation
+    rec = result.get('recommendation', 'HOLD')
+    summary = result.get('response', '')
+    
+    # Try to find winner in summary text
+    winner_match = re.search(r'WINNER:\s*(.*)', summary)
+    winner = winner_match.group(1).strip() if winner_match else "See Analysis"
+    
+    # Winner Card
+    st.markdown(f"""
+    <div style="
+        background: linear-gradient(135deg, #1E1E1E 0%, #2a2a2a 100%);
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        border: 2px solid #4CAF50;
+        margin-bottom: 20px;
+    ">
+        <h3 style="color: #4CAF50; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Recommended Choice</h3>
+        <h1 style="color: #fff; font-size: 2.5em; margin: 10px 0;">{winner}</h1>
+        <p style="color: #aaa; margin: 0;">Based on {result.get('risk_tolerance', 'moderate').title()} Risk Profile</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Parse out decision block for cleaner display
+    clean_summary = re.sub(r'```.*?\[COMPARISON DECISION\].*?\[/COMPARISON DECISION\].*?```', '', summary, flags=re.DOTALL).strip()
+    clean_summary = re.sub(r'\[COMPARISON DECISION\].*?\[/COMPARISON DECISION\]', '', clean_summary, flags=re.DOTALL).strip()
+    
+    # Clean up any remaining wrapper code fences to prevent code block rendering
+    clean_summary = re.sub(r'^```\w*\s*', '', clean_summary).strip()
+    clean_summary = re.sub(r'\s*```$', '', clean_summary).strip()
+    
+    st.markdown(clean_summary)
+
 
 
 def render_single_agent_results(result: dict):

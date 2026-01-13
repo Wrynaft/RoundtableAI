@@ -8,7 +8,7 @@ This module provides the central orchestrator that:
 - Handles round-robin turn taking
 - Synthesizes final recommendations
 """
-from typing import Dict, Optional, Callable, Generator, Any, Tuple
+from typing import Dict, Optional, Callable, Generator, Any, Tuple, List
 from datetime import datetime
 import re
 import time
@@ -171,7 +171,7 @@ Respond in this exact format:
 IS_INVESTMENT_RELATED: [true/false]
 NEEDS_DEBATE: [true/false]
 AGENT: [fundamental/sentiment/valuation/none]
-COMPANY: [company name or ticker, or "none" if not specified]
+COMPANY: [comma-separated list of companies, e.g. "Maybank, CIMB", or "none" if not specified]
 RISK_TOLERANCE: [conservative/moderate/aggressive]
 REASONING: [brief explanation including why you chose this classification]"""
 
@@ -226,7 +226,12 @@ REASONING: [brief explanation including why you chose this classification]"""
                 # Strip brackets if present
                 value = value.strip("[]")
                 if value.lower() != "none":
-                    result["company"] = value
+                    # Check for comma-separated list
+                    if "," in value:
+                        # Keep as list of strings
+                        result["company"] = [c.strip() for c in value.split(",")]
+                    else:
+                        result["company"] = value
             elif line.startswith("RISK_TOLERANCE:"):
                 value = line.split(":", 1)[1].strip().lower()
                 # Strip brackets if present
@@ -234,7 +239,10 @@ REASONING: [brief explanation including why you chose this classification]"""
                 if value in ["conservative", "moderate", "aggressive"]:
                     result["risk_tolerance"] = value
             elif line.startswith("REASONING:"):
-                result["reasoning"] = line.split(":", 1)[1].strip()
+                try:
+                    result["reasoning"] = line.split(":", 1)[1].strip()
+                except IndexError:
+                    pass
 
         return result
 
@@ -276,9 +284,43 @@ REASONING: [brief explanation including why you chose this classification]"""
                     "classification": classification
                 }
 
-            # Run multi-agent debate
+            # Check for multi-company comparison
+            companies = []
+            if isinstance(target_company, list):
+                companies = target_company
+            elif isinstance(target_company, str) and "," in target_company:
+                companies = [c.strip() for c in target_company.split(",")]
+            
+            if len(companies) > 1:
+                # Run comparative debate
+                try:
+                    final_rec = self.run_comparative_debate(companies, risk_tolerance=effective_risk_tolerance)
+                    return {
+                        "response": final_rec.summary,
+                        "route_type": "comparison",
+                        "agent_used": ["fundamental", "sentiment", "valuation"],
+                        "recommendation": final_rec.recommendation.value,
+                        "confidence": final_rec.confidence,
+                        "consensus": final_rec.consensus_level,
+                        "risk_tolerance": effective_risk_tolerance,
+                        "full_result": final_rec,
+                        "classification": classification,
+                        "companies": companies
+                    }
+                except Exception as e:
+                    return {
+                        "response": f"Error during comparative analysis: {str(e)}",
+                        "route_type": "error",
+                        "agent_used": None,
+                        "recommendation": None,
+                        "risk_tolerance": effective_risk_tolerance,
+                        "classification": classification
+                    }
+
+            # Run standard single-company debate
             try:
-                final_rec = self.run_debate(target_company, risk_tolerance=effective_risk_tolerance)
+                target_company_str = target_company[0] if isinstance(target_company, list) else target_company
+                final_rec = self.run_debate(target_company_str, risk_tolerance=effective_risk_tolerance)
                 return {
                     "response": final_rec.summary,
                     "route_type": "debate",
@@ -495,6 +537,95 @@ REASONING: [brief explanation including why you chose this classification]"""
         self.current_debate.finish_debate(final_rec.recommendation)
 
         return final_rec
+
+    def run_comparative_debate(self, companies: List[str], risk_tolerance: str = "moderate") -> FinalRecommendation:
+        """
+        Run sequential debates for multiple companies and synthesize a comparison.
+
+        Args:
+            companies: List of company names/tickers
+            risk_tolerance: User's risk tolerance
+
+        Returns:
+            FinalRecommendation object containing the comparative analysis
+        """
+        results = {}
+        
+        # Run debates sequentially to avoid rate limits
+        for company in companies:
+            print(f"Running debate for {company}...")
+            try:
+                # Using existing run_debate method
+                # This handles resolving ticker, running rounds, etc.
+                rec = self.run_debate(company, risk_tolerance=risk_tolerance)
+                results[company] = rec
+            except Exception as e:
+                print(f"Error analyzing {company}: {e}")
+                # Continue with other companies if one fails
+                continue
+        
+        if not results:
+            raise ValueError("All debates failed.")
+            
+        return self._synthesize_comparison(results, risk_tolerance)
+
+    def _synthesize_comparison(self, results: Dict[str, FinalRecommendation], risk_tolerance: str) -> FinalRecommendation:
+        """
+        Synthesize a comparative analysis from multiple debate results.
+        """
+        # Get comparison prompt
+        prompt = self.debate_manager.get_comparison_synthesis_prompt(results, risk_tolerance)
+        
+        # Invoke LLM
+        response = self.llm.invoke(prompt)
+        content = response.content if hasattr(response, 'content') else str(response)
+        
+        # Handle list response format
+        if isinstance(content, list):
+            text_parts = []
+            for block in content:
+                if isinstance(block, str):
+                    text_parts.append(block)
+                elif isinstance(block, dict) and 'text' in block:
+                    text_parts.append(block['text'])
+                elif hasattr(block, 'text'):
+                    text_parts.append(block.text)
+            comparison_text = '\n'.join(text_parts)
+        else:
+            comparison_text = content
+            
+        # Determine "winner" based on confidence/recommendation logic
+        # For simplicity, we create a specialized FinalRecommendation
+        # logic could be expanded to parse the "Winner" from text
+        
+        best_company = None
+        highest_score = -1
+        
+        for company, rec in results.items():
+            score = 0
+            if rec.recommendation == Recommendation.BUY:
+                score += 2
+            elif rec.recommendation == Recommendation.HOLD:
+                score += 1
+            
+            score += rec.confidence
+            
+            if score > highest_score:
+                highest_score = score
+                best_company = company
+                
+        # Create a "Comparative" recommendation object
+        # We misuse the standard object slightly to fit the UI contract
+        return FinalRecommendation(
+            recommendation=Recommendation.BUY if best_company else Recommendation.HOLD, # Placeholder
+            confidence=0.0, # Placeholder
+            consensus_level=0.0,
+            summary=comparison_text, # The full comparative report
+            key_points=[],
+            risks=[],
+            agent_breakdown={}, # Not applicable for comparison top-level
+            debate_state=None 
+        )
 
     def run_debate(self, company: str, risk_tolerance: str = "moderate") -> FinalRecommendation:
         """
