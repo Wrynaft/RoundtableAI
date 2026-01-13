@@ -456,16 +456,6 @@ def main():
     with st.sidebar:
         st.header("Portfolio Settings")
 
-        # Allocation method
-        allocation_method = st.radio(
-            "Allocation Method",
-            options=["equal", "confidence"],
-            format_func=lambda x: "Equal Weight" if x == "equal" else "Confidence Weighted",
-            help="Equal: Same weight for all stocks. Confidence: Weight by agent confidence scores."
-        )
-        st.session_state.allocation_method = allocation_method
-
-        st.divider()
 
         # Quick add popular stocks
         st.subheader("Quick Add")

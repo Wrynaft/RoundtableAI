@@ -144,8 +144,6 @@ with tab1:
 
     # Scenario selector
     scenario_options = {
-        "Moderate Risk - 3 Month Hold": ("backtest_comparison.csv", "backtest_cumulative_returns.png", "backtest_results.png"),
-        "Aggressive Risk - 3 Month Hold": ("backtest_comparison_aggressive.csv", "backtest_cumulative_returns_aggressive.png", "backtest_results_aggressive.png"),
         "Moderate Risk - 1 Month Hold": ("backtest_comparison_moderate_1_month.csv", "backtest_cumulative_returns_moderate_1_month.png", "backtest_results_moderate_1_month.png"),
         "Aggressive Risk - 1 Month Hold": ("backtest_comparison_aggressive_1_month.csv", "backtest_cumulative_returns_aggressive_1_month.png", "backtest_results_aggressive_1_month.png"),
     }
@@ -288,17 +286,61 @@ with tab2:
     st.markdown("---")
 
     # Load RAGAS data
-    ragas_metrics = load_json("ragas_metrics.json")
-    ragas_detailed = load_csv("ragas_detailed_results.csv")
+    # Try loading the multi-model comparison files first
+    ragas_metrics = load_json("ragas_model_comparison.json")
+    ragas_detailed = load_csv("ragas_model_comparison_detailed.csv")
 
     if ragas_metrics:
+        # Check for new multi-model format (per_model_results in comparison file)
+        if "per_model_results" in ragas_metrics:
+            st.subheader("🤖 Model Performance Comparison")
+            
+            models = list(ragas_metrics["per_model_results"].keys())
+            selected_model = st.selectbox(
+                "Select Model to Evaluate", 
+                models,
+                index=0,
+                key="ragas_model_selector"
+            )
+            
+            # Get selected model data
+            current_metrics = ragas_metrics["per_model_results"][selected_model]
+            
+            # For category metrics, we need to calculate from detailed CSV
+            cat_metrics = {'faithfulness': {}, 'answer_relevancy': {}}
+            
+            if ragas_detailed is not None and "model" in ragas_detailed.columns:
+                # Filter by model
+                model_df = ragas_detailed[ragas_detailed["model"] == selected_model]
+                
+                # Group by category and calculate means
+                if not model_df.empty:
+                    cat_means = model_df.groupby("category")[["faithfulness", "answer_relevancy"]].mean()
+                    cat_metrics['faithfulness'] = cat_means['faithfulness'].to_dict()
+                    cat_metrics['answer_relevancy'] = cat_means['answer_relevancy'].to_dict()
+            
+        else:
+            # Legacy format (ragas_metrics.json has aggregate_metrics and per_category_metrics)
+            current_metrics = ragas_metrics.get('aggregate_metrics', {})
+            # Ensure keys match what we expect below
+            if 'overall_average' not in current_metrics and 'overall' not in current_metrics:
+                 # It might be the flat legacy per_model_results if loaded that way, but let's assume standard legacy
+                 pass
+                 
+            # Legacy category metrics are pre-calculated
+            cat_metrics = ragas_metrics.get('per_category_metrics', {})
+
         # Overall metrics
         st.subheader("📊 Overall RAGAS Scores")
 
         col1, col2, col3 = st.columns(3)
+        
+        # Handle different key names (legacy: overall_average, new: overall)
+        faithfulness_score = current_metrics.get('faithfulness', 0)
+        relevancy_score = current_metrics.get('answer_relevancy', 0)
+        overall_score = current_metrics.get('overall', current_metrics.get('overall_average', 0))
 
         with col1:
-            faithfulness_score = ragas_metrics['aggregate_metrics']['faithfulness']
             st.metric(
                 "Faithfulness",
                 f"{faithfulness_score:.1%}",
@@ -306,7 +348,6 @@ with tab2:
             )
 
         with col2:
-            relevancy_score = ragas_metrics['aggregate_metrics']['answer_relevancy']
             st.metric(
                 "Answer Relevancy",
                 f"{relevancy_score:.1%}",
@@ -314,7 +355,6 @@ with tab2:
             )
 
         with col3:
-            overall_score = ragas_metrics['aggregate_metrics']['overall_average']
             st.metric(
                 "Overall Average",
                 f"{overall_score:.1%}",
@@ -324,46 +364,68 @@ with tab2:
         st.markdown("---")
 
         # Per-category breakdown
-        st.subheader("Performance by Query Category")
+        # Use computed cat_metrics or loaded ones
+        if cat_metrics and cat_metrics.get('faithfulness'):
+            st.subheader("Performance by Query Category")
 
-        # Create dataframe for per-category metrics
-        categories = list(ragas_metrics['per_category_metrics']['faithfulness'].keys())
-        category_data = []
-        for cat in categories:
-            category_data.append({
-                'Category': cat.replace('_', ' ').title(),
-                'Faithfulness': ragas_metrics['per_category_metrics']['faithfulness'][cat],
-                'Answer Relevancy': ragas_metrics['per_category_metrics']['answer_relevancy'][cat]
-            })
+            categories = list(cat_metrics['faithfulness'].keys())
+            category_data = []
+            
+            for cat in categories:
+                category_data.append({
+                    'Category': cat.replace('_', ' ').title(),
+                    'Faithfulness': cat_metrics['faithfulness'].get(cat, 0),
+                    'Answer Relevancy': cat_metrics.get('answer_relevancy', {}).get(cat, 0)
+                })
 
-        category_df = pd.DataFrame(category_data)
+            category_df = pd.DataFrame(category_data)
 
-        # Create grouped bar chart
-        fig = go.Figure()
-        fig.add_trace(go.Bar(
-            name='Faithfulness',
-            x=category_df['Category'],
-            y=category_df['Faithfulness'],
-            marker_color='#4CAF50'
-        ))
-        fig.add_trace(go.Bar(
-            name='Answer Relevancy',
-            x=category_df['Category'],
-            y=category_df['Answer Relevancy'],
-            marker_color='#2196F3'
-        ))
+            # Create grouped bar chart
+            fig = go.Figure()
+            fig.add_trace(go.Bar(
+                name='Faithfulness',
+                x=category_df['Category'],
+                y=category_df['Faithfulness'],
+                marker_color='#4CAF50'
+            ))
+            fig.add_trace(go.Bar(
+                name='Answer Relevancy',
+                x=category_df['Category'],
+                y=category_df['Answer Relevancy'],
+                marker_color='#2196F3'
+            ))
 
-        fig.update_layout(
-            title='RAGAS Scores by Query Category',
-            xaxis_title='Query Category',
-            yaxis_title='Score',
-            barmode='group',
-            height=400,
-            yaxis_range=[0, 1],
-            hovermode='x unified'
-        )
+            fig.update_layout(
+                title=f'RAGAS Scores by Query Category',
+                xaxis_title='Query Category',
+                yaxis_title='Score',
+                barmode='group',
+                height=400,
+                yaxis_range=[0, 1],
+                hovermode='x unified'
+            )
 
-        st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True)
+            
+            # Key Insights based on CURRENT model
+            st.markdown("---")
+            st.markdown("### 📋 Key Insights")
+
+            if cat_metrics['faithfulness']:
+                best_faith = max(cat_metrics['faithfulness'].items(), key=lambda x: x[1])
+                worst_faith = min(cat_metrics['faithfulness'].items(), key=lambda x: x[1])
+
+                st.markdown(f"""
+                **RAGAS Evaluation Summary:**
+
+                - **High Faithfulness** ({faithfulness_score:.1%}): Recommendations are well-grounded in agent analyses
+                - **Strong Relevancy** ({relevancy_score:.1%}): Answers directly address user investment questions
+                - **Best Performance**: {best_faith[0].replace('_', ' ').title()} queries ({best_faith[1]:.1%} faithfulness)
+                - **Improvement Area**: {worst_faith[0].replace('_', ' ').title()} queries ({worst_faith[1]:.1%} faithfulness)
+
+                The system demonstrates strong ability to generate faithful, relevant investment recommendations
+                across diverse query types without hallucinating information beyond agent analyses.
+                """)
 
         # Detailed results table
         st.markdown("---")
@@ -372,6 +434,11 @@ with tab2:
         if ragas_detailed is not None:
             # Format scores as percentages
             display_df = ragas_detailed.copy()
+            
+            # If multi-model CSV, filter by selected model
+            if "model" in display_df.columns and "per_model_results" in ragas_metrics:
+                 display_df = display_df[display_df["model"] == selected_model]
+            
             display_df['faithfulness'] = display_df['faithfulness'].apply(lambda x: f"{x:.1%}" if pd.notna(x) else "N/A")
             display_df['answer_relevancy'] = display_df['answer_relevancy'].apply(lambda x: f"{x:.1%}" if pd.notna(x) else "N/A")
             display_df['category'] = display_df['category'].str.replace('_', ' ').str.title()
@@ -388,25 +455,6 @@ with tab2:
                 use_container_width=True
             )
 
-        # Insights
-        st.markdown("---")
-        st.markdown("### 📋 Key Insights")
-
-        best_faith_cat = max(ragas_metrics['per_category_metrics']['faithfulness'].items(), key=lambda x: x[1])
-        worst_faith_cat = min(ragas_metrics['per_category_metrics']['faithfulness'].items(), key=lambda x: x[1])
-
-        st.markdown(f"""
-        **RAGAS Evaluation Summary:**
-
-        - **High Faithfulness** ({faithfulness_score:.1%}): Recommendations are well-grounded in agent analyses
-        - **Strong Relevancy** ({relevancy_score:.1%}): Answers directly address user investment questions
-        - **Best Performance**: {best_faith_cat[0].replace('_', ' ').title()} queries ({best_faith_cat[1]:.1%} faithfulness)
-        - **Improvement Area**: {worst_faith_cat[0].replace('_', ' ').title()} queries ({worst_faith_cat[1]:.1%} faithfulness)
-
-        The system demonstrates strong ability to generate faithful, relevant investment recommendations
-        across diverse query types without hallucinating information beyond agent analyses.
-        """)
-
         # Display chart if available
         ragas_chart_path = RESULTS_DIR / "ragas_evaluation.png"
         if ragas_chart_path.exists():
@@ -415,7 +463,7 @@ with tab2:
             st.image(str(ragas_chart_path), use_container_width=True)
 
     else:
-        st.error("Could not load RAGAS metrics from ragas_metrics.json")
+        st.error("Could not load RAGAS metrics from ragas_model_comparison.json or ragas_metrics.json")
 
 # =============================================================================
 # TAB 3: TOOL SELECTION
@@ -442,38 +490,80 @@ with tab3:
     tool_metrics = load_json("tool_selection_metrics.json")
 
     if tool_metrics:
+        # Check for new multi-model format
+        if "per_model_metrics" in tool_metrics:
+            st.subheader("🤖 Model Performance Comparison")
+            
+            models = list(tool_metrics["per_model_metrics"].keys())
+            selected_model = st.selectbox(
+                "Select Model to Evaluate", 
+                models,
+                index=0,
+                key="tool_model_selector"
+            )
+            
+            # Get selected model data
+            model_data = tool_metrics["per_model_metrics"][selected_model]
+            per_agent_metrics = model_data.get("agents", {})
+            
+            # Calculate aggregates dynamically
+            total_cases = 0
+            total_matches = 0
+            weighted_precision = 0
+            weighted_recall = 0
+            weighted_f1 = 0
+            
+            for agent, m in per_agent_metrics.items():
+                n = m.get("total_cases", 0)
+                total_cases += n
+                total_matches += m.get("exact_matches", 0)
+                weighted_precision += m.get("precision", 0) * n
+                weighted_recall += m.get("recall", 0) * n
+                weighted_f1 += m.get("f1_score", 0) * n
+            
+            agg = {
+                "accuracy": total_matches / total_cases if total_cases > 0 else 0,
+                "precision": weighted_precision / total_cases if total_cases > 0 else 0,
+                "recall": weighted_recall / total_cases if total_cases > 0 else 0,
+                "f1_score": weighted_f1 / total_cases if total_cases > 0 else 0,
+                "total_cases": total_cases
+            }
+            
+        else:
+            # Legacy format support
+            agg = tool_metrics.get('aggregate_metrics', {})
+            per_agent_metrics = tool_metrics.get('per_agent_metrics', {})
+
         # Overall metrics
         st.subheader("📊 Aggregate Performance")
 
         col1, col2, col3, col4 = st.columns(4)
 
-        agg = tool_metrics['aggregate_metrics']
-
         with col1:
             st.metric(
                 "Overall Accuracy",
-                f"{agg['accuracy']:.1%}",
+                f"{agg.get('accuracy', 0):.1%}",
                 help="Exact tool matches across all test cases"
             )
 
         with col2:
             st.metric(
                 "Precision",
-                f"{agg['precision']:.1%}",
+                f"{agg.get('precision', 0):.1%}",
                 help="Proportion of selected tools that were correct"
             )
 
         with col3:
             st.metric(
                 "Recall",
-                f"{agg['recall']:.1%}",
+                f"{agg.get('recall', 0):.1%}",
                 help="Proportion of correct tools that were selected"
             )
 
         with col4:
             st.metric(
                 "F1 Score",
-                f"{agg['f1_score']:.1%}",
+                f"{agg.get('f1_score', 0):.1%}",
                 help="Harmonic mean of precision and recall"
             )
 
@@ -484,7 +574,7 @@ with tab3:
 
         # Create agent comparison dataframe
         agent_data = []
-        for agent_name, metrics in tool_metrics['per_agent_metrics'].items():
+        for agent_name, metrics in per_agent_metrics.items():
             agent_data.append({
                 'Agent': agent_name.replace('_', ' ').title(),
                 'Accuracy': metrics['accuracy'],
@@ -512,7 +602,7 @@ with tab3:
             ))
 
         fig.update_layout(
-            title='Tool Selection Metrics by Agent',
+            title=f'Tool Selection Metrics by Agent ({selected_model if "per_model_metrics" in tool_metrics else "Comparison"})',
             xaxis_title='Agent',
             yaxis_title='Score',
             barmode='group',
@@ -542,22 +632,23 @@ with tab3:
         st.markdown("---")
         st.markdown("### 📋 Key Insights")
 
-        best_agent = max(tool_metrics['per_agent_metrics'].items(), key=lambda x: x[1]['f1_score'])
-        best_agent_name = best_agent[0].replace('_', ' ').title()
-        best_f1 = best_agent[1]['f1_score']
+        if per_agent_metrics:
+            best_agent = max(per_agent_metrics.items(), key=lambda x: x[1]['f1_score'])
+            best_agent_name = best_agent[0].replace('_', ' ').title()
+            best_f1 = best_agent[1]['f1_score']
 
-        st.markdown(f"""
-        **Tool Selection Performance Summary:**
+            st.markdown(f"""
+            **Tool Selection Performance Summary:**
 
-        - **Overall Accuracy**: {agg['accuracy']:.1%} of test cases had perfect tool selection
-        - **High Precision**: {agg['precision']:.1%} means agents rarely select incorrect tools
-        - **Strong Recall**: {agg['recall']:.1%} indicates agents find most necessary tools
-        - **Top Performer**: {best_agent_name} Agent with {best_f1:.1%} F1 score
-        - **Tested**: {agg['total_cases']} test cases across {len(tool_metrics['per_agent_metrics'])} agents
+            - **Overall Accuracy**: {agg.get('accuracy', 0):.1%} of test cases had perfect tool selection
+            - **High Precision**: {agg.get('precision', 0):.1%} means agents rarely select incorrect tools
+            - **Strong Recall**: {agg.get('recall', 0):.1%} indicates agents find most necessary tools
+            - **Top Performer**: {best_agent_name} Agent with {best_f1:.1%} F1 score
+            - **Tested**: {agg.get('total_cases', 0)} test cases across {len(per_agent_metrics)} agents
 
-        The high tool selection accuracy demonstrates that agents reliably invoke the correct
-        analytical tools, ensuring data quality and analysis validity throughout the debate process.
-        """)
+            The high tool selection accuracy demonstrates that agents reliably invoke the correct
+            analytical tools, ensuring data quality and analysis validity throughout the debate process.
+            """)
 
         # Display chart if available
         tool_chart_path = RESULTS_DIR / "tool_selection_evaluation.png"

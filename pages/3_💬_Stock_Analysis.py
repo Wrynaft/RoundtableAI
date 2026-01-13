@@ -374,7 +374,7 @@ Your query doesn't appear to be about investments or financial analysis.
 - "Is CIMB a good dividend stock?"
 
 Please ask an investment-related question, and I'll be happy to help!""",
-                    "route_type": "error",
+                    "route_type": "general",
                     "agent_used": None,
                     "recommendation": None,
                     "risk_tolerance": classification.get("risk_tolerance", "moderate"),
@@ -382,7 +382,7 @@ Please ask an investment-related question, and I'll be happy to help!""",
                     "timing": timing
                 }
                 st.session_state.is_debating = False
-                status.update(label="❌ Query not investment-related", state="error", expanded=False)
+                status.update(label="✅ Query processed", state="complete", expanded=False)
                 st.rerun()
                 return
 
@@ -400,15 +400,24 @@ Please ask an investment-related question, and I'll be happy to help!""",
             if needs_debate:
                 if not company:
                     st.session_state.last_result = {
-                        "response": "Please specify which company or stock you'd like me to analyze.",
-                        "route_type": "error",
+                        "response": """I understand you have an investment question, but I specialize in analyzing specific **companies** and **stocks**.
+
+To get a detailed analysis, please include a company name or ticker symbol in your query.
+
+**For example:**
+- "Analyze **Maybank** for a dividend portfolio"
+- "Is **Public Bank** a good fit for a conservative investor?"
+- "Compare **CIMB** vs **RHB**"
+
+If you're asking about general strategies, I currently need a starting point (a specific stock) to ground my analysis.""",
+                        "route_type": "general",
                         "agent_used": None,
                         "recommendation": None,
                         "risk_tolerance": risk_tolerance,
                         "classification": classification
                     }
                     st.session_state.is_debating = False
-                    status.update(label="❌ Analysis failed - no company specified", state="error")
+                    status.update(label="ℹ️ Please specify a company", state="complete")
                     st.rerun()
                     return
 
@@ -419,7 +428,11 @@ Please ask an investment-related question, and I'll be happy to help!""",
                 # Resolve company to ticker
                 resolution = orchestrator.resolve_company(company)
                 if not resolution.get("success"):
-                    raise ValueError(f"Could not resolve company: {company}. {resolution.get('error', '')}")
+                    error_msg = resolution.get("error", f"Could not resolve company: {company}.")
+                    if "candidates" in resolution:
+                        candidates = ", ".join([c["company_name"] for c in resolution["candidates"][:3]])
+                        error_msg = f"Multiple matches found for '{company}'. Did you mean: {candidates}?"
+                    raise ValueError(error_msg)
 
                 ticker = resolution["ticker"]
                 company_name = resolution.get("company_name", company)
@@ -590,70 +603,75 @@ def render_results(result: dict):
     route_type = result.get('route_type')
     classification = result.get('classification', {})
 
-    # Show classification info
-    st.markdown("### 📋 Query Classification")
+    # Show classification info only for valid analyses
+    if route_type not in ['general', 'error']:
+        st.markdown("### 📋 Query Classification")
 
-    info_cols = st.columns(5)
+        info_cols = st.columns(5)
 
-    with info_cols[0]:
-        st.metric("Route Type", route_type.upper() if route_type else "N/A")
+        with info_cols[0]:
+            st.metric("Route Type", route_type.upper() if route_type else "N/A")
 
-    with info_cols[1]:
-        risk_tol = result.get('risk_tolerance', 'moderate')
-        risk_emoji = {"conservative": "🛡️", "moderate": "⚖️", "aggressive": "🚀"}.get(risk_tol, "⚖️")
-        st.metric("Risk Tolerance", f"{risk_emoji} {risk_tol.title()}")
+        with info_cols[1]:
+            risk_tol = result.get('risk_tolerance', 'moderate')
+            risk_emoji = {"conservative": "🛡️", "moderate": "⚖️", "aggressive": "🚀"}.get(risk_tol, "⚖️")
+            st.metric("Risk Tolerance", f"{risk_emoji} {risk_tol.title()}")
 
-    with info_cols[2]:
-        company = classification.get('company', 'N/A')
-        st.metric("Company", company)
+        with info_cols[2]:
+            company = classification.get('company', 'N/A')
+            st.metric("Company", company)
 
-    with info_cols[3]:
-        if route_type == 'debate':
-            st.metric("Agents Used", "3 (All)")
-        else:
-            st.metric("Agent Used", result.get('agent_used', 'N/A').title())
-
-    with info_cols[4]:
-        model_key = result.get('model_used', 'gemini-2.0-flash')
-        model_display = get_available_models().get(model_key, {}).get("name", model_key)
-        st.metric("Model", model_display)
-
-    # Show timing info if available
-    timing = result.get('timing', {})
-    if timing:
-        st.markdown("### ⏱️ Performance Metrics")
-        timing_cols = st.columns(4)
-
-        with timing_cols[0]:
-            total_time = timing.get('total', 0)
-            st.metric("Total Time", f"{total_time:.1f}s")
-
-        with timing_cols[1]:
-            classification_time = timing.get('classification', 0)
-            st.metric("Classification", f"{classification_time:.1f}s")
-
-        with timing_cols[2]:
-            debate_time = timing.get('debate', 0)
+        with info_cols[3]:
             if route_type == 'debate':
-                st.metric("Debate Time", f"{debate_time:.1f}s")
+                st.metric("Agents Used", "3 (All)")
             else:
-                st.metric("Agent Response", f"{debate_time:.1f}s")
+                agent_used = result.get('agent_used')
+                st.metric("Agent Used", agent_used.title() if agent_used else 'N/A')
 
-        with timing_cols[3]:
-            if route_type == 'debate':
-                rounds = result.get('rounds_completed', 'N/A')
-                st.metric("Rounds", rounds)
-            else:
-                agent_used = result.get('agent_used', 'N/A')
-                st.metric("Agent", agent_used.title() if agent_used else 'N/A')
+        with info_cols[4]:
+            model_key = result.get('model_used', 'gemini-2.0-flash')
+            model_display = get_available_models().get(model_key, {}).get("name", model_key)
+            st.metric("Model", model_display)
 
-    st.markdown("---")
+        # Show timing info if available
+        timing = result.get('timing', {})
+        if timing:
+            st.markdown("### ⏱️ Performance Metrics")
+            timing_cols = st.columns(4)
+
+            with timing_cols[0]:
+                total_time = timing.get('total', 0)
+                st.metric("Total Time", f"{total_time:.1f}s")
+
+            with timing_cols[1]:
+                classification_time = timing.get('classification', 0)
+                st.metric("Classification", f"{classification_time:.1f}s")
+
+            with timing_cols[2]:
+                debate_time = timing.get('debate', 0)
+                if route_type == 'debate':
+                    st.metric("Debate Time", f"{debate_time:.1f}s")
+                else:
+                    st.metric("Agent Response", f"{debate_time:.1f}s")
+
+            with timing_cols[3]:
+                if route_type == 'debate':
+                    rounds = result.get('rounds_completed', 'N/A')
+                    st.metric("Rounds", rounds)
+                else:
+                    agent_used = result.get('agent_used', 'N/A')
+                    st.metric("Agent", agent_used.title() if agent_used else 'N/A')
+        
+        st.markdown("---")
+
 
     # Render based on route type
     if route_type == 'debate':
         render_debate_results(result)
     elif route_type == 'single_agent':
         render_single_agent_results(result)
+    elif route_type == 'general':
+        st.info(result.get('response', 'How can I help you with your investments?'))
     elif route_type == 'error':
         st.error(result.get('response', 'An error occurred'))
 
