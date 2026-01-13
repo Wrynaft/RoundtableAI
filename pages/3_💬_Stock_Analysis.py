@@ -377,7 +377,6 @@ To get a detailed analysis, please include a company name or ticker symbol in yo
 **For example:**
 - "Analyze **Maybank** for a dividend portfolio"
 - "Is **Public Bank** a good fit for a conservative investor?"
-- "Compare **CIMB** vs **RHB**"
 
 If you're asking about general strategies, I currently need a starting point (a specific stock) to ground my analysis.""",
                         "route_type": "general",

@@ -61,10 +61,10 @@ st.markdown("---")
 st.markdown("## 🎯 Evaluation Framework")
 
 st.markdown("""
-Our multi-agent system is evaluated across **three key dimensions** to ensure robust and reliable stock recommendations:
+The multi-agent system is evaluated across **four key dimensions** to ensure robust and reliable stock recommendations:
 """)
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.markdown("""
@@ -77,9 +77,6 @@ with col1:
     ">
         <div style="font-size: 48px; margin-bottom: 10px;">📊</div>
         <h3 style="color: #4CAF50; margin-bottom: 10px;">Backtesting</h3>
-        <p style="color: #ccc; font-size: 14px;">
-            Historical performance of recommendations against market benchmarks
-        </p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -94,9 +91,6 @@ with col2:
     ">
         <div style="font-size: 48px; margin-bottom: 10px;">🎭</div>
         <h3 style="color: #2196F3; margin-bottom: 10px;">RAGAS Metrics</h3>
-        <p style="color: #ccc; font-size: 14px;">
-            Faithfulness and relevancy of agent responses using RAG evaluation
-        </p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -111,9 +105,20 @@ with col3:
     ">
         <div style="font-size: 48px; margin-bottom: 10px;">🔧</div>
         <h3 style="color: #FF9800; margin-bottom: 10px;">Tool Selection</h3>
-        <p style="color: #ccc; font-size: 14px;">
-            Accuracy of agents in selecting the correct tools for analysis
-        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col4:
+    st.markdown("""
+    <div style="
+        background: linear-gradient(135deg, #4a1a5c 0%, #602d6d 100%);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        height: 180px;
+    ">
+        <div style="font-size: 48px; margin-bottom: 10px;">🚀</div>
+        <h3 style="color: #9C27B0; margin-bottom: 10px;">Efficiency</h3>
     </div>
     """, unsafe_allow_html=True)
 
@@ -123,7 +128,7 @@ st.markdown("---")
 # Create Main Tabs
 # =============================================================================
 
-tab1, tab2, tab3 = st.tabs(["📊 Backtesting Results", "🎭 RAGAS Evaluation", "🔧 Tool Selection"])
+tab1, tab2, tab3, tab4 = st.tabs(["📊 Backtesting Results", "🎭 RAGAS Evaluation", "🔧 Tool Selection", "🚀 Performance Metrics"])
 
 # =============================================================================
 # TAB 1: BACKTESTING
@@ -136,8 +141,8 @@ with tab1:
     This section evaluates the multi-agent system's investment recommendations by simulating
     historical trading based on model predictions and comparing performance against the KLCI benchmark.
 
-    **Methodology**: The system generates BUY/HOLD/SELL recommendations for KLCI constituent stocks,
-    and we track portfolio performance over specified holding periods.
+    **Methodology**: The system generates BUY/HOLD/SELL recommendations for KLCI constituent stocks, with KLCI stocks as the stock-picking pool,
+    and the portfolio performance is tracked over specified holding periods.
     """)
 
     st.markdown("---")
@@ -274,13 +279,13 @@ with tab2:
     st.header("RAGAS Evaluation Metrics")
 
     st.markdown("""
-    **RAGAS** (Retrieval-Augmented Generation Assessment) evaluates the quality of our multi-agent
-    responses without requiring ground truth labels. We measure two key aspects:
+    **RAGAS** (Retrieval-Augmented Generation Assessment) evaluates the quality of the multi-agent
+    responses. There are two key aspects:
 
     - **Faithfulness**: How well the final recommendation is grounded in the agent outputs (context)
     - **Answer Relevancy**: How relevant the answer is to the user's investment question
 
-    **Evaluation Setup**: 14 investment queries across different categories, evaluated by Gemini 2.5 Pro
+    **Evaluation Setup**: 10 investment queries across different categories, evaluated by Gemini 2.0 Flash
     """)
 
     st.markdown("---")
@@ -406,26 +411,6 @@ with tab2:
             )
 
             st.plotly_chart(fig, use_container_width=True)
-            
-            # Key Insights based on CURRENT model
-            st.markdown("---")
-            st.markdown("### 📋 Key Insights")
-
-            if cat_metrics['faithfulness']:
-                best_faith = max(cat_metrics['faithfulness'].items(), key=lambda x: x[1])
-                worst_faith = min(cat_metrics['faithfulness'].items(), key=lambda x: x[1])
-
-                st.markdown(f"""
-                **RAGAS Evaluation Summary:**
-
-                - **High Faithfulness** ({faithfulness_score:.1%}): Recommendations are well-grounded in agent analyses
-                - **Strong Relevancy** ({relevancy_score:.1%}): Answers directly address user investment questions
-                - **Best Performance**: {best_faith[0].replace('_', ' ').title()} queries ({best_faith[1]:.1%} faithfulness)
-                - **Improvement Area**: {worst_faith[0].replace('_', ' ').title()} queries ({worst_faith[1]:.1%} faithfulness)
-
-                The system demonstrates strong ability to generate faithful, relevant investment recommendations
-                across diverse query types without hallucinating information beyond agent analyses.
-                """)
 
         # Detailed results table
         st.markdown("---")
@@ -480,7 +465,7 @@ with tab3:
     **Evaluation Metrics**:
     - **Accuracy**: Percentage of test cases where agent selected exactly the right tools
     - **Precision**: Of the tools selected, what percentage were correct
-    - **Recall**: Of the tools that should have been selected, what percentage were
+    - **Recall**: Of the tools that should have been selected, what percentage were actually selected
     - **F1 Score**: Harmonic mean of precision and recall
     """)
 
@@ -660,40 +645,7 @@ with tab3:
     else:
         st.error("Could not load tool selection metrics from tool_selection_metrics.json")
 
-# =============================================================================
-# Overall Summary
-# =============================================================================
-
-st.markdown("---")
-st.markdown("## 🎯 Evaluation Summary")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    ### 📊 Backtesting
-    ✅ Outperforms KLCI benchmark
-    ✅ Strong risk-adjusted returns
-    ✅ Validated across multiple scenarios
-    """)
-
-with col2:
-    st.markdown("""
-    ### 🎭 RAGAS
-    ✅ High faithfulness (81.1%)
-    ✅ Strong relevancy (85.1%)
-    ✅ Consistent across query types
-    """)
-
-with col3:
-    st.markdown("""
-    ### 🔧 Tool Selection
-    ✅ 90.7% overall accuracy
-    ✅ 99.2% precision
-    ✅ Reliable tool invocation
-    """)
-
-st.markdown("---")
+st.divider()
 
 st.info("""
 💡 **Conclusion**: The multi-agent debate system demonstrates strong performance across all evaluation
@@ -701,15 +653,99 @@ dimensions, validating its effectiveness for generating reliable investment reco
 Bursa Malaysia stocks.
 """)
 
-# Footer
-st.markdown("---")
-st.markdown("""
-<div style="text-align: center; padding: 20px; color: #666;">
-    <p style="font-size: 12px;">
-        Evaluation results based on backtesting period: September 2024 - December 2, 2025
-    </p>
-    <p style="font-size: 12px;">
-        Evaluated: Gemini 2.0 Flash model with 3 specialized agents (Fundamental, Sentiment, Valuation)
-    </p>
-</div>
-""", unsafe_allow_html=True)
+
+# =============================================================================
+# TAB 4: EFFICIENCY METRICS
+# =============================================================================
+
+with tab4:
+    st.header("Efficiency Metrics")
+    
+    # Load efficiency data
+    eff_csv = load_csv("efficiency_comparison.csv")
+    eff_json = load_json("efficiency_comparison.json")
+    
+    if eff_csv is None or eff_json is None:
+        st.warning("Performance metrics not found. Please run the efficiency benchmark first.")
+    else:
+        # Summary Metrics
+        st.subheader("Benchmark Summary")
+        st.dataframe(
+            eff_csv.style.format({
+                "Avg Total Time (s)": "{:.2f}",
+                "Time/Round (s)": "{:.2f}",
+                "Time/Agent (s)": "{:.2f}",
+                "Avg Rounds": "{:.1f}",
+                "Consensus Rate": "{:.1%}"
+            }),
+            use_container_width=True
+        )
+        
+        st.markdown("---")
+        
+        # Visualizations
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.subheader("⏱️ Model Latency Comparison")
+            
+            fig_time = go.Figure()
+            fig_time.add_trace(go.Bar(
+                name="Avg Total Time",
+                x=eff_csv['Model'],
+                y=eff_csv['Avg Total Time (s)'],
+                marker_color='#2196F3'
+            ))
+            fig_time.add_trace(go.Bar(
+                name="Time/Agent",
+                x=eff_csv['Model'],
+                y=eff_csv['Time/Agent (s)'],
+                marker_color='#4CAF50'
+            ))
+            
+            fig_time.update_layout(
+                barmode='group',
+                title="Average Latency (Lower is Better)",
+                yaxis_title="Seconds",
+                height=400
+            )
+            st.plotly_chart(fig_time, use_container_width=True)
+            
+        # Detailed Breakdown
+        st.markdown("---")
+        st.subheader("🔍 Detailed Breakdown by Model")
+        
+        selected_model_perf = st.selectbox(
+            "Select Model for Detail",
+            options=eff_csv['Model'].tolist()
+        )
+        
+        if eff_json and "efficiency_metrics" in eff_json:
+            model_metrics = eff_json["efficiency_metrics"].get(selected_model_perf)
+            
+            if model_metrics:
+                m_col1, m_col2, m_col3, m_col4 = st.columns(4)
+                m_col1.metric("Num Debates", model_metrics.get("num_debates", 0))
+                m_col2.metric("Avg Rounds to Consensus", f"{model_metrics.get('avg_rounds_to_consensus', 0):.1f}")
+                m_col3.metric("Consensus Rate", f"{model_metrics.get('consensus_rate', 0):.1%}")
+                m_col4.metric("Avg Time/Round", f"{model_metrics.get('avg_time_per_round', 0):.2f}s")
+                
+                # Show specific debates
+                if "debates" in model_metrics:
+                    st.write("Recent Debates:")
+                    debate_df = pd.DataFrame(model_metrics["debates"])
+                    
+                    # Select relevant columns for clean display
+                    # Check if columns exist
+                    cols = ['company', 'ticker', 'total_time', 'rounds_completed']
+                    available_cols = [c for c in cols if c in debate_df.columns]
+                    
+                    if 'consensus_reached' in debate_df.columns:
+                        available_cols.append('consensus_reached')
+                    
+                    st.dataframe(
+                        debate_df[available_cols].style.format({
+                            'total_time': '{:.2f}s'
+                        }),
+                        use_container_width=True
+                    )

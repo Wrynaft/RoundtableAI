@@ -43,10 +43,6 @@ def get_llm(
 
     Uses Gemini via Google AI API for inference.
 
-    Prerequisites:
-        1. Get API key from: https://aistudio.google.com/apikey
-        2. Set GOOGLE_API_KEY in .env file
-
     Args:
         model_name: Gemini model name (default: gemini-2.0-flash)
                    Options: gemini-2.0-flash, gemini-2.5-pro
@@ -71,9 +67,6 @@ def get_llm(
     if not api_key:
         raise ValueError(
             "GOOGLE_API_KEY not found in environment variables.\n"
-            "Please set it in your .env file:\n"
-            "GOOGLE_API_KEY=your_api_key_here\n\n"
-            "Get your API key from: https://aistudio.google.com/apikey"
         )
 
     print(f"Initializing Gemini model: {actual_model_id}")
@@ -260,38 +253,4 @@ Respond to their critique from your {self.agent_type} analysis perspective:
         if hasattr(self, 'chat'):
             return self.chat(prompt, thread_id=thread_id)
         raise NotImplementedError("Subclass must implement chat method")
-
-    def get_analysis_summary(self, thread_id: str = "default") -> str:
-        """
-        Get a brief summary of the agent's analysis for the current thread.
-
-        Args:
-            thread_id: Thread ID to get summary for
-
-        Returns:
-            Brief summary of the analysis
-        """
-        prompt = """Provide a brief 2-3 sentence summary of your analysis so far, including:
-1. Your main conclusion
-2. Your recommendation (BUY/HOLD/SELL)
-3. Your confidence level"""
-
-        if hasattr(self, 'chat'):
-            return self.chat(prompt, thread_id=thread_id)
-        return "No analysis available"
-
-    def get_recommendation_strength(self) -> str:
-        """
-        Get a description of how strongly this agent type typically influences recommendations.
-
-        Returns:
-            Description of recommendation strength
-        """
-        strength_descriptions = {
-            "fundamental": "Strong influence - fundamentals are core to intrinsic value",
-            "sentiment": "Moderate influence - sentiment affects short-term movements",
-            "valuation": "Strong influence - risk-return metrics guide position sizing",
-            "base": "Unknown influence"
-        }
-        return strength_descriptions.get(self.agent_type, strength_descriptions["base"])
 

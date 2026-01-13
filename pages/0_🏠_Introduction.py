@@ -109,7 +109,7 @@ with tab3:
                 flex-shrink: 0;
             ">1</span>
             <p style="color: #ccc; margin: 0;">
-                To develop a <strong style="color: #4CAF50;">multi-agent system integrating LLMs</strong> utilizing specialized analytical tools for stock data retrieval, valuation, and financial metric computation within the Bursa Malaysia market
+                To develop a <strong style="color: #4CAF50;">LLM-Based multi-agent system</strong> that integrates fragmented Bursa stock data to perform stock analysis supported by explainable debate reasoning
             </p>
         </div>
     </div>
@@ -243,11 +243,6 @@ st.markdown("## 🚀 Quick Start")
 
 st.markdown("""
 Ready to analyze a stock? Head over to the **Stock Analysis** page and enter your question!
-
-**Example queries:**
-- "Should I invest in Maybank? I'm looking for stable dividends."
-- "Is CIMB a good investment for aggressive growth?"
-- "What's your recommendation on Tenaga Nasional for a conservative investor?"
 """)
 
 col1, col2, col3, col4 = st.columns(4)

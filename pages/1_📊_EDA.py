@@ -149,7 +149,7 @@ with tab1:
     st.header("Valuation Analysis")
 
     st.markdown("""
-    This section analyzes the composition of companies in our dataset across different sectors,
+    This section analyzes the composition of companies in the dataset across different sectors,
     providing insights into market diversity and sector representation on Bursa Malaysia.
     """)
 
@@ -214,7 +214,6 @@ with tab1:
     - **Largest Sector**: {top_sector} with {top_count} companies ({top_count/total_companies*100:.1f}% of dataset)
     - **Sector Diversity**: {fundamentals_df['sector'].nunique()} distinct sectors represented
     - **Industry Granularity**: {fundamentals_df['industry'].nunique()} unique industries across all sectors
-    - This diversity enables comprehensive sector-based comparative analysis by the Fundamental Agent
     """)
 
 # =============================================================================
@@ -331,7 +330,7 @@ with tab2:
             ax.set_yticklabels(source_counts.index)
             ax.invert_yaxis()
             ax.set_xlabel('Number of Articles', fontsize=12)
-            ax.set_title('Top 15 News Sources by Article Count', fontsize=14, fontweight='bold')
+            ax.set_title('Top News Sources by Article Count', fontsize=14, fontweight='bold')
             ax.grid(axis='x', alpha=0.3)
 
             # Add value labels
@@ -505,8 +504,7 @@ with tab3:
     **Financial Health Overview** ({selected_sector_fund} Sector):
     - These metrics help the Fundamental Agent assess company financial health comprehensively
     - Strong correlations between profitability metrics (gross/operating/profit margins) indicate consistent operational efficiency
-    - The heatmap reveals how valuation, profitability, and leverage interact in {selected_sector_fund if selected_sector_fund != 'All' else 'the market'}
-    - Companies with {len(filtered_metrics)} records provide robust statistical foundation for analysis
+    - The heatmap reveals how valuation, profitability, and leverage interact in the market
     """)
 
 # =============================================================================
