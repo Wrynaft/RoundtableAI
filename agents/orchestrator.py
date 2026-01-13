@@ -679,10 +679,25 @@ REASONING: [brief explanation including why you chose this classification]"""
         # Get synthesis prompt
         prompt = self.debate_manager.get_synthesis_prompt(self.current_debate)
 
-        # Use fundamental agent for synthesis (or could create a dedicated synthesis agent)
-        synthesis_agent = self.agents["fundamental"]
-        thread_id = f"synthesis-{self.current_debate.ticker}"
-        synthesis_response = synthesis_agent.chat(prompt, thread_id=thread_id)
+        # Use Orchestrator LLM for neutral synthesis
+        response = self.llm.invoke(prompt)
+        
+        # Extract content from response
+        content = response.content if hasattr(response, 'content') else str(response)
+        
+        # Handle different response formats (Gemini 2.5 Pro returns list of content blocks)
+        if isinstance(content, list):
+            text_parts = []
+            for block in content:
+                if isinstance(block, str):
+                    text_parts.append(block)
+                elif isinstance(block, dict) and 'text' in block:
+                    text_parts.append(block['text'])
+                elif hasattr(block, 'text'):
+                    text_parts.append(block.text)
+            synthesis_response = '\n'.join(text_parts)
+        else:
+            synthesis_response = content
 
         # Create final recommendation
         final_rec = self.debate_manager.create_final_recommendation(
@@ -765,77 +780,6 @@ REASONING: [brief explanation including why you chose this classification]"""
             return {}
 
         return self.current_debate.to_dict()
-
-    def _extract_tokens_from_response(self, response) -> int:
-        """
-        Extract token count from LLM response.
-
-        Different LLM providers return token usage in different formats.
-        This method attempts to extract it uniformly.
-
-        Args:
-            response: LLM response object (AIMessage from langchain)
-
-        Returns:
-            Total tokens used (input + output), or 0 if not available
-        """
-        try:
-            # For langchain AIMessage with response_metadata (Groq format)
-            if hasattr(response, 'response_metadata'):
-                metadata = response.response_metadata
-                if 'usage' in metadata:
-                    usage = metadata['usage']
-                    if isinstance(usage, dict):
-                        # Groq format: {'prompt_tokens': X, 'completion_tokens': Y, 'total_tokens': Z}
-                        return usage.get('total_tokens', 0)
-                # Some providers store token info differently in metadata
-                if 'token_usage' in metadata:
-                    token_usage = metadata['token_usage']
-                    if isinstance(token_usage, dict):
-                        return token_usage.get('total_tokens', 0)
-
-            # For Gemini responses with usage_metadata
-            if hasattr(response, 'usage_metadata'):
-                usage = response.usage_metadata
-                # Gemini format: usage_metadata.total_token_count
-                if hasattr(usage, 'total_token_count'):
-                    return usage.total_token_count
-                # Alternative attribute names
-                if hasattr(usage, 'total_tokens'):
-                    return usage.total_tokens
-
-            # For direct usage attribute (some providers)
-            if hasattr(response, 'usage'):
-                usage = response.usage
-                if hasattr(usage, 'total_tokens'):
-                    return usage.total_tokens
-                if hasattr(usage, 'total_token_count'):
-                    return usage.total_token_count
-
-            # Last resort: estimate from content length
-            # Rough estimate: 1 token ≈ 4 characters
-            if hasattr(response, 'content'):
-                content = response.content
-                if isinstance(content, list):
-                    # Handle content blocks
-                    total_chars = 0
-                    for block in content:
-                        if isinstance(block, str):
-                            total_chars += len(block)
-                        elif isinstance(block, dict) and 'text' in block:
-                            total_chars += len(block['text'])
-                        elif hasattr(block, 'text'):
-                            total_chars += len(block.text)
-                    return total_chars // 4
-                else:
-                    return len(str(content)) // 4
-
-        except Exception:
-            # Silently fail - metrics will show 0 tokens
-            pass
-
-        return 0
-
 
 def create_debate_orchestrator(
     llm=None,

@@ -52,6 +52,8 @@ def init_session_state():
         st.session_state.portfolio_analyzing = False
     if "allocation_method" not in st.session_state:
         st.session_state.allocation_method = "equal"
+    if "portfolio_risk" not in st.session_state:
+        st.session_state.portfolio_risk = "Moderate"
 
 
 # =============================================================================
@@ -434,6 +436,13 @@ def render_allocation_pie_chart(weights: Dict):
     plt.close()
 
 
+@st.dialog("Debate Transcript")
+def view_transcript_dialog(stock_name: str, transcript: str):
+    """Display debate transcript in a modal dialog."""
+    st.markdown(f"### Analysis Transcript for {stock_name}")
+    st.text_area("Full Transcript", value=transcript, height=600, disabled=True)
+
+
 # =============================================================================
 # Main Page
 # =============================================================================
@@ -469,6 +478,18 @@ def main():
                 else:
                     st.warning(msg)
                 st.rerun()
+
+        st.divider()
+
+        # Risk Settings
+        st.subheader("⚙️ Analysis Settings")
+        
+        st.session_state.portfolio_risk = st.selectbox(
+            "Risk Appetite",
+            options=["Conservative", "Moderate", "Aggressive"],
+            index=["Conservative", "Moderate", "Aggressive"].index(st.session_state.portfolio_risk),
+            help="Determines how agents evaluate risk and potential returns."
+        )
 
         st.divider()
 
@@ -638,9 +659,16 @@ def main():
                     """, unsafe_allow_html=True)
 
                     # Remove button below the card
-                    if st.button("🗑️ Remove", key=f"remove_{ticker}", type="secondary"):
-                        remove_stock_from_portfolio(ticker)
-                        st.rerun()
+                    col_btn1, col_btn2 = st.columns([1, 1])
+                    with col_btn1:
+                        if has_analysis and "transcript" in rec_data:
+                            if st.button("📄 View Transcript", key=f"trans_{ticker}", use_container_width=True):
+                                view_transcript_dialog(name, rec_data["transcript"])
+                    
+                    with col_btn2:
+                        if st.button("🗑️ Remove", key=f"remove_{ticker}", type="secondary", use_container_width=True):
+                            remove_stock_from_portfolio(ticker)
+                            st.rerun()
 
         st.divider()
 
@@ -795,7 +823,9 @@ def main():
                             try:
                                 # Run analysis
                                 query = f"Should I invest in {name}? Provide a recommendation."
-                                result = orchestrator.route_query(query)
+                                # Use selected risk tolerance
+                                risk_tolerance = st.session_state.portfolio_risk.lower()
+                                result = orchestrator.route_query(query, risk_tolerance=risk_tolerance)
 
                                 # Extract recommendation from result (orchestrator returns a dict)
                                 if isinstance(result, dict):
@@ -809,7 +839,8 @@ def main():
                                         "confidence": result.get("confidence", 0.5),
                                         "summary": result.get("response", ""),  # 'response' contains the summary
                                         "consensus": result.get("consensus", None),
-                                        "route_type": result.get("route_type", "unknown")
+                                        "route_type": result.get("route_type", "unknown"),
+                                        "transcript": orchestrator.get_debate_transcript() if result.get("route_type") == "debate" else None
                                     }
                                 else:
                                     st.session_state.portfolio_recommendations[ticker] = {

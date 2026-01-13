@@ -503,7 +503,7 @@ CONFIDENCE: <your confidence 0-100>%
 
 After the structured header, provide:
 
-1. **Synthesis Summary**: Combine the key insights from all three perspectives (Fundamental, Sentiment, Risk-return)
+1. **Synthesis Summary**: Combine the key insights from all three perspectives (Fundamental, Sentiment, Risk-return). IMPORTANT: If any agent changed their mind (e.g. SELL to BUY) as shown in the "Debate Evolution", explicitly explain *why* they shifted.
 
 2. **Key Investment Points**: The 3-5 most important points for this {risk_tolerance} investor
 

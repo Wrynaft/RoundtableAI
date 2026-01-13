@@ -181,46 +181,6 @@ class FundamentalAgent(BaseAgentMixin):
             return '\n'.join(text_parts)
         return content
 
-    def chat_stream(self, message: str, thread_id: str = "default") -> Generator[str, None, None]:
-        """
-        Stream chat response token by token.
-
-        Args:
-            message: User's question or request
-            thread_id: Unique identifier for conversation thread
-
-        Yields:
-            Response text chunks as they are generated
-        """
-        config = create_agent_config(thread_id)
-
-        # Use the agent's stream method
-        for event in self.agent.stream(
-            {"messages": [{"role": "user", "content": message}]},
-            config=config,
-            stream_mode="messages"
-        ):
-            # Extract content from message events
-            # stream_mode="messages" yields (message, metadata) tuples
-            if isinstance(event, tuple) and len(event) >= 1:
-                msg = event[0]
-                # Check if it's an AI message with content
-                if hasattr(msg, 'content') and msg.content:
-                    # Only yield if it's from the AI (not tool calls)
-                    if hasattr(msg, 'type') and msg.type == 'AIMessageChunk':
-                        content = msg.content
-                        # Handle different response formats (Gemini 2.5 Pro may return list)
-                        if isinstance(content, list):
-                            for block in content:
-                                if isinstance(block, str):
-                                    yield block
-                                elif isinstance(block, dict) and 'text' in block:
-                                    yield block['text']
-                                elif hasattr(block, 'text'):
-                                    yield block.text
-                        else:
-                            yield content
-
     def analyze_company(self, company: str, thread_id: str = "default") -> str:
         """
         Convenience method to analyze a company's fundamentals.

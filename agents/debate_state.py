@@ -245,6 +245,41 @@ class DebateState:
         self.final_recommendation = final_rec
         self.ended_at = datetime.now()
 
+    def _analyze_debate_evolution(self) -> str:
+        """
+        Analyze how agent recommendations changed throughout the debate.
+        
+        Returns:
+            Formatted string describing the evolution of the debate
+        """
+        evolution_parts = []
+        
+        # Group messages by agent
+        agent_history: Dict[str, List[DebateMessage]] = {}
+        for msg in self.messages:
+            if msg.agent_type not in agent_history:
+                agent_history[msg.agent_type] = []
+            agent_history[msg.agent_type].append(msg)
+            
+        # Analyze each agent's journey
+        for agent_type, history in agent_history.items():
+            if not history:
+                continue
+                
+            first_rec = history[0].recommendation
+            last_rec = history[-1].recommendation
+            
+            if first_rec != last_rec:
+                evolution_parts.append(f"- {agent_type.upper()} Agent shifted from {first_rec.value} to {last_rec.value}.")
+                # Find the pivot point
+                for i in range(1, len(history)):
+                    if history[i].recommendation != history[i-1].recommendation:
+                        evolution_parts.append(f"  * Changed mind in Round {history[i].round_number} (Confidence: {history[i].confidence:.0%})")
+            else:
+                evolution_parts.append(f"- {agent_type.upper()} Agent maintained {first_rec.value} throughout the debate.")
+                
+        return "\n".join(evolution_parts) if evolution_parts else "No significant changes in position."
+
     def get_debate_summary(self) -> str:
         """Generate a summary of the debate for synthesis."""
         summary_parts = []
@@ -252,6 +287,10 @@ class DebateState:
         summary_parts.append(f"Investor Risk Tolerance: {self.risk_tolerance.upper()}")
         summary_parts.append(f"Rounds completed: {self.current_round}")
         summary_parts.append(f"Consensus: {self.calculate_consensus():.1%}")
+        summary_parts.append("")
+        
+        summary_parts.append("=== DEBATE EVOLUTION ===")
+        summary_parts.append(self._analyze_debate_evolution())
         summary_parts.append("")
 
         # Summarize each agent's position

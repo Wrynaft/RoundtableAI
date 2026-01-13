@@ -295,27 +295,3 @@ Respond to their critique from your {self.agent_type} analysis perspective:
         }
         return strength_descriptions.get(self.agent_type, strength_descriptions["base"])
 
-    def chat_stream(
-        self,
-        message: str,
-        thread_id: str = "default"
-    ) -> Generator[str, None, None]:
-        """
-        Stream chat response token by token.
-
-        This method should be overridden in subclasses that support streaming.
-        The default implementation falls back to non-streaming chat.
-
-        Args:
-            message: User's question or request
-            thread_id: Unique identifier for conversation thread
-
-        Yields:
-            Response text chunks as they are generated
-        """
-        # Default implementation: fall back to non-streaming
-        if hasattr(self, 'chat'):
-            response = self.chat(message, thread_id=thread_id)
-            yield response
-        else:
-            raise NotImplementedError("Subclass must implement chat or chat_stream method")
