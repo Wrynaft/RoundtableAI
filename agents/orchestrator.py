@@ -153,10 +153,10 @@ MULTI-AGENT DEBATE is needed when:
 - Query asks to "analyze," "evaluate," "assess," or "recommend" regarding investments
 
 SINGLE AGENT is sufficient when:
-- Query asks for simple factual information (stock prices, company data)
-- Query is about specific technical/valuation analysis only → use "valuation" agent
+- Query asks for simple factual information regarding price or market data → use "valuation" agent
+- Query is about specific technical/valuation analysis, price history, or stock charts → use "valuation" agent
 - Query is about news sentiment only → use "sentiment" agent
-- Query is about fundamental/financial data only → use "fundamental" agent
+- Query is about fundamental/financial data only (revenue, earnings, balance sheet) → use "fundamental" agent
 - Query asks for definitions or explanations
 - Query is a simple informational request that doesn't require decision-making
 

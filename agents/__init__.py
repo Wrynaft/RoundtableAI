@@ -1,15 +1,3 @@
-"""
-Agent modules for RoundtableAI multi-agent system.
-
-This package contains specialized analysis agents:
-- FundamentalAgent: Financial statement analysis and company fundamentals
-- SentimentAgent: News sentiment analysis using FinBERT scores
-- ValuationAgent: Risk-return metrics and valuation analysis
-- DebateOrchestrator: Multi-agent debate coordination
-
-Each agent uses Llama 3 8B via HuggingFace Transformers with LangChain's
-create_agent for tool orchestration and conversation management.
-"""
 from .base import (
     BaseAgentMixin,
     get_llm,
